@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mix">#009ffd</color>
+    <color name="Mix">#2a2a72</color>
+
+    <color name="mix1">#045de9</color>
+    <color name="Mix1">#09c6f9</color>
+
+    <color name="mix2">#0d324d</color>
+    <color name="Mix2">#7f5a83</color>
+
+    <color name="mix3">#ffdd00</color>
+    <color name="Mix3">#fbb034</color>
+
+    <color name="mix4">#42378f</color>
+    <color name="Mix4">#f53844</color>
+
+    <color name="mix5">#d99058</color>
+    <color name="Mix5">#f8de7e</color>
+
+    <color name="mix6">#ffc719</color>
+    <color name="Mix6">#bf033b</color>
+
+    <color name="mix7">#ee9617</color>
+    <color name="Mix7">#fe5858</color>
+
+    <color name="mix8">#6617cb</color>
+    <color name="Mix8">#cb218e</color>
+
+    <color name="mix9">#166d3b</color>
+    <color name="Mix9">#203026</color>
+
+    <color name="black">#FF000000</color>
+    <color name="off_black">#DF473D3D</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#d60e00</color>
+
+
+
+</resources>

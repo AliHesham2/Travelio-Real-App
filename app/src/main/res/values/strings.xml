@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Travelio</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_app">Travelio</string>
+    <string name="sign_in_button">Sign In</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="confirm">Confirm</string>
+    <string name="filter">filter</string>
+
+    <!-- Auth Dialogue Text. -->
+    <string name="title">Session Expired</string>
+    <string name="supporting_text">Please, Login again</string>
+    <string name="cancel">OK</string>
+
+    <!-- Token -->
+    <string name="TOKEN_SAVED_AT">_To_ken_</string>
+
+    <!-- Binding -->
+    <string name="LE">LE</string>
+    <string name="CLASS">Class: </string>
+    <string name="TO">To: </string>
+    <string name="FROM">From: </string>
+    <string name="PER_PERSON">per person</string>
+
+    <!-- Auth Errors -->
+    <string name="INVALID_EMAIL_FORM">Invalid email</string>
+    <string name="NO_EMAIL">Enter email please</string>
+    <string name="INVALID_PASSWORD">At least 8 characters</string>
+    <string name="NO_PASSWORD">Enter password please</string>
+    <string name="INVALID_PHONE">Should be  11 numbers</string>
+    <string name="NO_PHONE">Enter phone please</string>
+    <string name="INVALID_NAME">At least 3 characters</string>
+    <string name="NO_NAME">Enter full name please</string>
+    <string name="NO_DATA">Please fill all fields!</string>
+    <string name="NO_INTERNET">Network Error</string>
+    <string name="WRONG">SomeThing Went Wrong</string>
+    <string name="UN_KNOW_VIEW_MODEL">Unknown ViewModel class</string>
+
+    <!-- Response Static -->
+    <string name="DATA">data</string>
+    <string name="TOKEN">token</string>
+    <string name="MESSAGE">message</string>
+</resources>

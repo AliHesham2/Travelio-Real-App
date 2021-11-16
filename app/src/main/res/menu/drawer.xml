@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/hotel"
+            android:icon="@drawable/outline_apartment_24"
+            android:title="Hotels" />
+        <item
+            android:id="@+id/trip"
+            android:icon="@drawable/baseline_directions_bus_filled_20"
+            android:title="Trips" />
+        <item
+            android:id="@+id/fullTrip"
+            android:icon="@drawable/outline_emoji_transportation_24"
+            android:title="Full trip package" />
+        <item
+            android:id="@+id/Trans"
+            android:icon="@drawable/baseline_airport_shuttle_24"
+            android:title="Transportation" />
+        <item
+            android:id="@+id/order"
+            android:icon="@drawable/outline_list_alt_24"
+            android:title="Requests" />
+    </group>
+
+</menu>

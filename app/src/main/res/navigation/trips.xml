@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trips"
+    app:startDestination="@id/tripsFragment">
+
+    <fragment
+        android:id="@+id/tripsFragment"
+        android:name="com.example.bezo.view.dashboard.trips.TripsFragment"
+        android:label="TripsFragment"
+        tools:layout="@layout/fragment_trips">
+        <action
+            android:id="@+id/action_tripsFragment_to_singleTripsFragment"
+            app:destination="@id/singleTripsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleTripsFragment"
+        android:name="com.example.bezo.view.single.trips.SingleTripsFragment"
+        android:label="SingleTripsFragment"
+        tools:layout="@layout/fragment_single_trips">
+        <action
+            android:id="@+id/action_singleTripsFragment_to_tripsFragment"
+            app:destination="@id/tripsFragment" />
+        <argument
+            android:name="tripData"
+            app:argType="com.example.bezo.model.data.Trip" />
+    </fragment>
+
+</navigation>

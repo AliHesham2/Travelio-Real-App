@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/orders"
+    app:startDestination="@id/hotelOrder">
+
+
+    <fragment
+        android:id="@+id/fullTripOrder"
+        android:name="com.example.bezo.view.dashboard.orders.full_trip_order.FullTripOrder"
+        android:label="fragment_full_trip_order"
+        tools:layout="@layout/fragment_full_trip_order" />
+    <fragment
+        android:id="@+id/hotelOrder"
+        android:name="com.example.bezo.view.dashboard.orders.hotel_order.HotelOrder"
+        android:label="fragment_hotel_order"
+        tools:layout="@layout/fragment_hotel_order" />
+    <fragment
+        android:id="@+id/transportationOrder"
+        android:name="com.example.bezo.view.dashboard.orders.transportation_order.TransportationOrder"
+        android:label="fragment_transportation_order"
+        tools:layout="@layout/fragment_transportation_order" />
+    <fragment
+        android:id="@+id/tripOrder"
+        android:name="com.example.bezo.view.dashboard.orders.trips_order.TripOrder"
+        android:label="fragment_trip_order"
+        tools:layout="@layout/fragment_trip_order" />
+</navigation>

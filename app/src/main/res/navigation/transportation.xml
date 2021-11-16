@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transportation"
+    app:startDestination="@id/transportationFragment">
+
+    <fragment
+        android:id="@+id/transportationFragment"
+        android:name="com.example.bezo.view.dashboard.transportation.TransportationFragment"
+        android:label="TransportationFragment"
+        tools:layout="@layout/fragment_transportation">
+        <action
+            android:id="@+id/action_transportationFragment_to_singleTransportationFragment"
+            app:destination="@id/singleTransportationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/singleTransportationFragment"
+        android:name="com.example.bezo.view.single.transportation.SingleTransportationFragment"
+        android:label="SingleTransportationFragment"
+        tools:layout="@layout/fragment_single_transportation">
+        <action
+            android:id="@+id/action_singleTransportationFragment_to_transportationFragment"
+            app:destination="@id/transportationFragment" />
+        <argument
+            android:name="transportData"
+            app:argType="com.example.bezo.model.data.Transportation" />
+    </fragment>
+
+</navigation>

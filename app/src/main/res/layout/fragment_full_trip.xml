@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="data"
+            type="com.example.bezo.view.dashboard.fulltrip.FullTripViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.dashboard.fulltrip.FullTripFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@null"
+        android:background="@null"
+        app:liftOnScroll="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/mix9"
+                app:title="Full Trips"
+                app:titleTextColor="@color/white"
+                app:menu="@menu/filter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fullTrips_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:fullTripAdapter="@{data.data}"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:listitem="@layout/custom_full_trip_card_view" />
+
+    <ProgressBar
+        android:id="@+id/first_load"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/Mix9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appBarLayout" />
+
+    <ProgressBar
+        android:id="@+id/other_load"
+        android:visibility="gone"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:indeterminateTint="@color/Mix9"
+        app:layout_constraintBottom_toBottomOf="@+id/fullTrips_recycler"
+        app:layout_constraintEnd_toEndOf="@+id/fullTrips_recycler"
+        app:layout_constraintStart_toStartOf="@+id/fullTrips_recycler"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
