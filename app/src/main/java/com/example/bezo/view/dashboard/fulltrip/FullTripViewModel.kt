@@ -1,27 +1,24 @@
 package com.example.bezo.view.dashboard.fulltrip
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.bezo.R
 import com.example.bezo.model.data.FullTrip
 import com.example.bezo.model.data.FullTrips
 import com.example.bezo.model.preference.Token
-import com.example.bezo.model.service.AppApi
+import com.example.bezo.requests.fulltrip.FullTripRequests
+import com.example.bezo.view.util.PopUpMsg
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
-import java.io.IOException
 
 class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
     private var pageNumber = 0
 
     private var _data = MutableLiveData<List<FullTrip>>()
-    val data : LiveData<List<FullTrip>>
+    val data: LiveData<List<FullTrip>>
         get() = _data
 
     private val _loading = MutableLiveData<Boolean?>()
@@ -32,107 +29,91 @@ class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
     val noAuth: LiveData<Boolean?>
         get() = _noAuth
 
-    private val _loading1 = MutableLiveData<Boolean?>()
-    val loading1: LiveData<Boolean?>
-        get() = _loading1
-
     private val _loadMore = MutableLiveData<Boolean?>()
     val loadMore: LiveData<Boolean?>
         get() = _loadMore
 
     private val _error = MutableLiveData<String?>()
-    val error : LiveData<String?>
+    val error: LiveData<String?>
         get() = _error
 
     init {
         callRequest()
     }
 
-    fun callRequest(){
+    fun callRequest() {
         viewModelScope.launch(Dispatchers.IO) {
-            try{
+            try {
                 getFullTrips()
-            }catch (t: Exception){
-                if (t is IOException) {
-                    whenFail(app.resources.getString(R.string.NO_INTERNET))
-                } else {
-                    whenFail(app.resources.getString(R.string.WRONG))
-                }
+            } catch (t: Exception) {
+                handleException(t)
             }
         }
     }
 
     private suspend fun getFullTrips() {
-        toggleLoading()
+        loading()
         pageNumber++
-        val response = AppApi.appData.getFullTrips(5, pageNumber)
-        if (response.isSuccessful) {
-            val data = response.body()
-            whenSuccess(data)
-        }else{
-            if(response.code() == 401){
-                authFail()
+        FullTripRequests.getFullPackage(pageNumber,app.resources){ data, error, success ->
+            if(success){
+                whenSuccess(data)
             }else{
-                val error = response.errorBody()?.charStream()?.readText()
-                if (error != null) {
-                    whenFail(JSONObject(error).getString(app.resources.getString(R.string.MESSAGE)))
-                }
-            }
-        }
-
-    }
-    private suspend fun toggleLoading(){
-        withContext(Dispatchers.Main){
-            if(_data.value == null){
-                _loading.value = true
-            }else{
-                _loading1.value = true
-            }
-        }
-    }
-
-    private suspend fun whenSuccess(data: FullTrips?) {
-        withContext(Dispatchers.Main){
-            if (data != null) {
-                val tripData = data.data.Package.data
-                if(tripData.isNotEmpty()){
-                    _loadMore.value = true
-                    if(_data.value.isNullOrEmpty()){
-                        _loading.value =false
-                        _data.value = tripData
-                    }else{
-                        _loading1.value =false
-                        _data.value = _data.value!!.plus(tripData)
-                    }
+                if(error == null){
+                    authFail()
                 }else{
-                    _loadMore.value = false
+                    whenFail(error)
                 }
             }
         }
     }
 
-    private suspend fun authFail(){
-        withContext(Dispatchers.Main){
-            Token.removeToken()
-            _noAuth.value = true
+    private fun whenSuccess(data: FullTrips?) {
+        if (data != null) {
+            stopLoading()
+            val tripData = data.data.Package.data
+            if (tripData.isNotEmpty()) {
+                _loadMore.value = true
+                if (_data.value.isNullOrEmpty()) {
+                    _data.value = tripData
+                } else {
+                    _data.value = _data.value!!.plus(tripData)
+                }
+            } else {
+                _loadMore.value = false
+            }
         }
     }
 
-    private suspend fun whenFail(msg:String){
-        withContext(Dispatchers.Main){
-            _loading.value = false
-            _loading1.value = false
-            _error.value = msg
+    //Show Loading spinner
+    private suspend fun loading() {
+        withContext(Dispatchers.Main) {
+            _loading.value = true
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        Log.i("cleared","Cleared")
-        _error.value = null
-        _loading.value = null
-        _loadMore.value = null
-        _loading1.value = null
-        _noAuth.value = null
+    //No Network Handler
+    private suspend fun handleException(t: Exception) {
+        stopLoading()
+        withContext(Dispatchers.Main) {
+            PopUpMsg.handleError(app.applicationContext, t)
+        }
+    }
+
+    //Hide loading spinner
+    private fun stopLoading() {
+        _loading.value = false
+    }
+
+    //Handle Backend Errors
+    private fun whenFail(msg: String) {
+        stopLoading()
+        _error.value = msg
+    }
+
+    //Session Expired
+    private fun authFail() {
+        stopLoading()
+        Token.removeToken()
+        _noAuth.value = true
     }
 }

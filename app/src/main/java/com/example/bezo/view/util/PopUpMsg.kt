@@ -13,6 +13,7 @@ import com.example.bezo.R
 import com.example.bezo.view.registration.RegistrationActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import java.io.IOException
 
 class PopUpMsg {
 
@@ -21,6 +22,14 @@ class PopUpMsg {
         const val BASE_URL = "https://hatours.herokuapp.com"
 
         private lateinit var  mProgressDialog : Dialog
+
+        fun handleError(context: Context, e: Exception) {
+            if (e is IOException) {
+                toastMsg(context,context.resources.getString(R.string.NO_INTERNET))
+            } else {
+                toastMsg(context,context.resources.getString(R.string.WRONG))
+            }
+        }
 
         fun alertMsg(view: View, msg: String){
             Snackbar.make(view, msg, Snackbar.LENGTH_LONG).also { snackBar ->
@@ -36,7 +45,7 @@ class PopUpMsg {
             MaterialAlertDialogBuilder(currentFragment.requireContext())
                 .setTitle(currentFragment.resources.getString(R.string.title))
                 .setMessage(currentFragment.resources.getString(R.string.supporting_text))
-                .setPositiveButton(currentFragment.resources.getString(R.string.cancel)) { dialog, _ ->
+                .setPositiveButton(currentFragment.resources.getString(R.string.submit)) { dialog, _ ->
                     val intent = Intent(currentFragment.context, RegistrationActivity::class.java)
                     currentFragment.startActivity(intent)
                     currentFragment.requireActivity().finish()

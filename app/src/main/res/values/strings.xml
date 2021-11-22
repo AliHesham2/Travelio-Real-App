@@ -10,10 +10,16 @@
     <!-- Auth Dialogue Text. -->
     <string name="title">Session Expired</string>
     <string name="supporting_text">Please, Login again</string>
-    <string name="cancel">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Submit</string>
+    <string name="submit">OK</string>
 
     <!-- Token -->
     <string name="TOKEN_SAVED_AT">_To_ken_</string>
+
+    <!-- Toast -->
+    <string name="INVALID_NUMBER">quantity can not be less than or equal 0</string>
+    <string name="BOOKING_DONE">Done</string>
 
     <!-- Binding -->
     <string name="LE">LE</string>
@@ -40,4 +46,7 @@
     <string name="DATA">data</string>
     <string name="TOKEN">token</string>
     <string name="MESSAGE">message</string>
+    <string name="offer">Enter offer quantity..</string>
+    <string name="_0">0</string>
+    <string name="just_photo">JustPhoto</string>
 </resources>

@@ -10,6 +10,7 @@ import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import com.example.bezo.databinding.FragmentSingleTransportationBinding
 import com.example.bezo.view.util.FullScreenImage
+import com.example.bezo.view.util.PopUpMsg
 
 
 class SingleTransportationFragment : Fragment() {
@@ -45,6 +46,26 @@ class SingleTransportationFragment : Fragment() {
                 binding.recyclerViewImg.visibility = View.VISIBLE
             }
         })
+        viewModel.loading.observe(this.viewLifecycleOwner,{
+            if(it == true){
+                PopUpMsg.showDialogue(this.requireContext())
+            }else{
+                PopUpMsg.hideDialogue()
+            }
+        })
+        viewModel.error.observe(this.viewLifecycleOwner,{
+            if(it != null){
+                PopUpMsg.alertMsg(this.requireView(),it)
+            }
+        })
+
+
+        viewModel.noAuth.observe(this.viewLifecycleOwner,{
+            if(it == true){
+                PopUpMsg.showLoginAgainDialogue(this)
+            }
+        })
+
 
         return binding.root
     }

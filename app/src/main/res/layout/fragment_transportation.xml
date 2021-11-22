@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="data"
             type="com.example.bezo.view.dashboard.transportation.TransportationViewModel" />
@@ -43,16 +44,18 @@
         android:id="@+id/transports_recycler"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:transportAdapter="@{data.data}"
+        android:layoutAnimation="@anim/layout_animation"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:transportAdapter="@{data.data}"
         tools:listitem="@layout/custom_transports_card_view" />
 
     <ProgressBar
         android:id="@+id/first_load"
-        android:visibility="gone"
+        android:visibility="@{data.loading == true &amp;&amp; data.data == null ? View.VISIBLE :View.GONE }"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/Mix9"
@@ -63,14 +66,13 @@
 
     <ProgressBar
         android:id="@+id/other_load"
-        android:visibility="gone"
+        android:visibility="@{data.loading == true &amp;&amp; data.data != null ? View.VISIBLE :View.GONE }"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:indeterminateTint="@color/Mix9"
-        app:layout_constraintBottom_toBottomOf="@+id/transports_recycler"
         app:layout_constraintEnd_toEndOf="@+id/transports_recycler"
         app:layout_constraintStart_toStartOf="@+id/transports_recycler"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 

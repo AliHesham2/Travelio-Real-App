@@ -6,6 +6,7 @@ import com.example.bezo.view.util.PopUpMsg
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -50,6 +51,18 @@ interface AppAuth {
     @GET("/api/user/packages")
     suspend fun getFullTrips(@Query("perPage") page:Int,
                           @Query("page") pageNumber:Int): Response<FullTrips>
+
+    @POST("/api/user/hotels/booking")
+    suspend fun hotelBooking(@Body requestBody: HotelBookingData): Response<ResponseBody>
+
+    @POST("/api/user/trips/booking")
+    suspend fun tripBooking(@Body requestBody: TripsBookingData): Response<ResponseBody>
+
+    @POST("/api/user/transports/booking")
+    suspend fun transportsBooking(@Body requestBody: TransportsBookingData): Response<ResponseBody>
+
+    @POST("/api/user/packages/booking")
+    suspend fun fullTripBooking(@Body requestBody: FullTripBookingData): Response<ResponseBody>
 
 }
 

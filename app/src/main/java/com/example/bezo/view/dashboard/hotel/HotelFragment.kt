@@ -72,21 +72,7 @@ class HotelFragment : Fragment() {
             }
         })
 
-        viewModel.loading.observe(this.viewLifecycleOwner,{
-            if(it == true){
-                binding.firstLoad.visibility = VISIBLE
-            }else{
-                binding.firstLoad.visibility = GONE
-            }
-        })
 
-        viewModel.loading1.observe(this.viewLifecycleOwner,{
-            if(it == true){
-                binding.otherLoad.visibility = VISIBLE
-            }else{
-                binding.otherLoad.visibility = GONE
-            }
-        })
 
         //Pagination
         binding.hotelsRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener(){

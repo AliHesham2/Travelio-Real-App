@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="data"
             type="com.example.bezo.view.single.trips.SingleTripsViewModel" />
@@ -320,7 +321,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:orientation="horizontal"
-            android:visibility="visible"
+            android:visibility="@{data.noImage == true ? View.GONE : View.VISIBLE}"
             app:tripImageAdapter="@{data.data.images}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/booking"
@@ -339,7 +340,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:visibility="gone"
+            android:visibility="@{data.noImage == true ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@+id/booking"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -353,6 +354,7 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/fill_button"
             android:text="Book Now"
+            android:onClick="@{(v) -> data.onBookClick(v)}"
             android:textSize="12sp"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentFullTripBinding
-import com.example.bezo.view.dashboard.transportation.TransportationFragmentDirections
 import com.example.bezo.view.util.PopUpMsg
 
 
@@ -67,22 +66,6 @@ class FullTripFragment : Fragment() {
         viewModel.loadMore.observe(this.viewLifecycleOwner,{
             if(it != null){
                 loadMore = it
-            }
-        })
-
-        viewModel.loading.observe(this.viewLifecycleOwner,{
-            if(it == true){
-                binding.firstLoad.visibility = View.VISIBLE
-            }else{
-                binding.firstLoad.visibility = View.GONE
-            }
-        })
-
-        viewModel.loading1.observe(this.viewLifecycleOwner,{
-            if(it == true){
-                binding.otherLoad.visibility = View.VISIBLE
-            }else{
-                binding.otherLoad.visibility = View.GONE
             }
         })
 

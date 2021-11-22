@@ -1,21 +1,19 @@
 package com.example.bezo.view.dashboard.transportation
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.bezo.R
 import com.example.bezo.model.data.Transportation
 import com.example.bezo.model.data.Transportations
 import com.example.bezo.model.preference.Token
-import com.example.bezo.model.service.AppApi
+import com.example.bezo.requests.transportation.TransportationRequests
+import com.example.bezo.view.util.PopUpMsg
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
-import java.io.IOException
+
 
 class TransportationViewModel(private val app:Application):AndroidViewModel(app) {
     private var pageNumber = 0
@@ -31,10 +29,6 @@ class TransportationViewModel(private val app:Application):AndroidViewModel(app)
     private val _noAuth = MutableLiveData<Boolean?>()
     val noAuth: LiveData<Boolean?>
         get() = _noAuth
-
-    private val _loading1 = MutableLiveData<Boolean?>()
-    val loading1: LiveData<Boolean?>
-        get() = _loading1
 
     private val _loadMore = MutableLiveData<Boolean?>()
     val loadMore: LiveData<Boolean?>
@@ -53,86 +47,73 @@ class TransportationViewModel(private val app:Application):AndroidViewModel(app)
             try{
                 getTransports()
             }catch (t: Exception){
-                if (t is IOException) {
-                    whenFail(app.resources.getString(R.string.NO_INTERNET))
-                } else {
-                    whenFail(app.resources.getString(R.string.WRONG))
-                }
+                handleException(t)
             }
         }
     }
-
+    //send pageNumber and get the response (Transports Data)
     private suspend fun getTransports() {
-        toggleLoading()
+        loading()
         pageNumber++
-        val response = AppApi.appData.getTransportations(5, pageNumber)
-        if (response.isSuccessful) {
-            val data = response.body()
-            whenSuccess(data)
-        }else{
-            if(response.code() == 401){
-                authFail()
-            }else{
-                val error = response.errorBody()?.charStream()?.readText()
-                if (error != null) {
-                    whenFail(JSONObject(error).getString(app.resources.getString(R.string.MESSAGE)))
-                }
-            }
-        }
-
-    }
-    private suspend fun toggleLoading(){
-        withContext(Dispatchers.Main){
-            if(_data.value == null){
-                _loading.value = true
-            }else{
-                _loading1.value = true
-            }
-        }
+       TransportationRequests.getTransportations(pageNumber,app.resources){ data, error, success ->
+           if(success){
+               whenSuccess(data)
+           }else{
+               if(error == null){
+                   authFail()
+               }else{
+                   whenFail(error)
+               }
+           }
+       }
     }
 
-    private suspend fun whenSuccess(data: Transportations?) {
-        withContext(Dispatchers.Main){
-            if (data != null) {
-                val transportData = data.data.Transports.data
-                if(transportData.isNotEmpty()){
-                    _loadMore.value = true
-                    if(_data.value.isNullOrEmpty()){
-                        _loading.value =false
-                        _data.value = transportData
-                    }else{
-                        _loading1.value =false
-                        _data.value = _data.value!!.plus(transportData)
-                    }
+    //Display Transports Data
+    private  fun whenSuccess(data: Transportations?) {
+        if (data != null) {
+            stopLoading()
+            val transportData = data.data.Transports.data
+            if(transportData.isNotEmpty()){
+                _loadMore.value = true
+                if(_data.value.isNullOrEmpty()){
+                    _data.value = transportData
                 }else{
-                    _loadMore.value = false
+                    _data.value = _data.value!!.plus(transportData)
                 }
+            }else{
+                _loadMore.value = false
             }
         }
     }
 
-    private suspend fun authFail(){
+
+    //Show Loading spinner
+    private suspend fun loading(){
         withContext(Dispatchers.Main){
-            Token.removeToken()
-            _noAuth.value = true
+            _loading.value = true
         }
     }
-
-    private suspend fun whenFail(msg:String){
+    //No Network Handler
+    private suspend fun handleException(t: Exception) {
+        stopLoading()
         withContext(Dispatchers.Main){
-            _loading.value = false
-            _loading1.value = false
-            _error.value = msg
+            PopUpMsg.handleError(app.applicationContext,t)
         }
     }
-
-    override fun onCleared() {
-        super.onCleared()
-        Log.i("cleared","Cleared")
-        _error.value = null
-        _loading.value = null
-        _loadMore.value = null
-        _loading1.value = null
-        _noAuth.value = null
+    //Hide loading spinner
+    private  fun stopLoading(){
+        _loading.value = false
     }
+    //Handle Backend Errors
+    private  fun whenFail(msg:String){
+        stopLoading()
+        _error.value = msg
+    }
+    //Session Expired
+    private  fun authFail(){
+        stopLoading()
+        Token.removeToken()
+        _noAuth.value = true
+    }
+
 }

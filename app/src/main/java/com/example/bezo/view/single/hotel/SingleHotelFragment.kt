@@ -10,6 +10,7 @@ import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import com.example.bezo.databinding.FragmentSingleHotelBinding
 import com.example.bezo.view.util.FullScreenImage
+import com.example.bezo.view.util.PopUpMsg
 
 
 class SingleHotelFragment : Fragment() {
@@ -35,16 +36,29 @@ class SingleHotelFragment : Fragment() {
             this.startActivity(fullScreenIntent)
         })
 
+
         //observers
-        viewModel.noImage.observe(this.viewLifecycleOwner,{
+        viewModel.loading.observe(this.viewLifecycleOwner,{
             if(it == true){
-                binding.recyclerViewImg.visibility = View.GONE
-                binding.textView3.visibility = View.VISIBLE
+                PopUpMsg.showDialogue(this.requireContext())
             }else{
-                binding.textView3.visibility = View.GONE
-                binding.recyclerViewImg.visibility = View.VISIBLE
+                PopUpMsg.hideDialogue()
             }
         })
+
+        viewModel.error.observe(this.viewLifecycleOwner,{
+            if(it != null){
+                PopUpMsg.alertMsg(this.requireView(),it)
+            }
+        })
+
+
+        viewModel.noAuth.observe(this.viewLifecycleOwner,{
+            if(it == true){
+                PopUpMsg.showLoginAgainDialogue(this)
+            }
+        })
+
 
 
         return binding.root

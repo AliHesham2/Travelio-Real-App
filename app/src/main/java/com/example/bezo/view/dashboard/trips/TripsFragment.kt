@@ -68,22 +68,6 @@ class TripsFragment : Fragment() {
         })
 
 
-        viewModel.loading.observe(this.viewLifecycleOwner,{
-            if(it == true){
-                binding.firstLoad.visibility = View.VISIBLE
-            }else{
-                binding.firstLoad.visibility = View.GONE
-            }
-        })
-
-        viewModel.loading1.observe(this.viewLifecycleOwner,{
-            if(it == true){
-                binding.otherLoad.visibility = View.VISIBLE
-            }else{
-                binding.otherLoad.visibility = View.GONE
-            }
-        })
-
         //Pagination
         binding.tripsRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

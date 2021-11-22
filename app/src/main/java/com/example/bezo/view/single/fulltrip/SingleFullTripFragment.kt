@@ -12,6 +12,7 @@ import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import com.example.bezo.databinding.FragmentSingleFullTripBinding
 import com.example.bezo.view.util.FullScreenImage
+import com.example.bezo.view.util.PopUpMsg
 
 
 class SingleFullTripFragment : Fragment() {
@@ -39,25 +40,27 @@ class SingleFullTripFragment : Fragment() {
         })
 
         //observers
-        viewModel.noImage.observe(this.viewLifecycleOwner,{
+        viewModel.loading.observe(this.viewLifecycleOwner,{
             if(it == true){
-                binding.recyclerViewImg.visibility = GONE
-                binding.textView3.visibility = VISIBLE
+                PopUpMsg.showDialogue(this.requireContext())
             }else{
-                binding.textView3.visibility = GONE
-                binding.recyclerViewImg.visibility = VISIBLE
+                PopUpMsg.hideDialogue()
             }
         })
 
-        viewModel.noHotel.observe(this.viewLifecycleOwner,{
-            if(it == true){
-                binding.recyclerViewHotel.visibility = GONE
-                binding.textView4.visibility = VISIBLE
-            }else{
-                binding.textView4.visibility = GONE
-                binding.recyclerViewHotel.visibility = VISIBLE
+        viewModel.error.observe(this.viewLifecycleOwner,{
+            if(it != null){
+                PopUpMsg.alertMsg(this.requireView(),it)
             }
         })
+
+
+        viewModel.noAuth.observe(this.viewLifecycleOwner,{
+            if(it == true){
+                PopUpMsg.showLoginAgainDialogue(this)
+            }
+        })
+
 
         binding.recyclerViewHotel.adapter = SingleTripHotelAdapter(SingleTripHotelAdapter.OnClickListener{
 
