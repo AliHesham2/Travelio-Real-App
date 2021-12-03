@@ -128,13 +128,15 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="140dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="4dp"
             android:maxLines="2"
             android:text="@{data.data.companies.name}"
             android:textColor="@color/black"
             android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/home_s1"
             app:layout_constraintStart_toEndOf="@+id/home_s"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,7 +144,6 @@
             android:id="@+id/home_s1"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginStart="15dp"
             android:src="@drawable/baseline_room_1_24"
             app:layout_constraintEnd_toStartOf="@+id/address"
             app:layout_constraintStart_toEndOf="@+id/name"
@@ -150,13 +151,15 @@
 
         <TextView
             android:id="@+id/address"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="2dp"
             android:maxLines="2"
             android:text="@{data.data.companies.address}"
             android:textColor="@color/black"
             android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/home_s1"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -172,14 +175,16 @@
 
         <TextView
             android:id="@+id/email"
-            android:layout_width="140dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
             android:maxLines="2"
             android:text="@{data.data.companies.email}"
             android:textColor="@color/black"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/home_s4"
             app:layout_constraintStart_toStartOf="@+id/name"
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -195,15 +200,17 @@
 
         <TextView
             android:id="@+id/phone"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="2dp"
             android:maxLines="1"
             android:text="@{data.data.companies.phone}"
             android:textColor="@color/black"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/home_s1"
             app:layout_constraintTop_toBottomOf="@+id/address" />
     </androidx.constraintlayout.widget.ConstraintLayout>

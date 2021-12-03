@@ -29,6 +29,7 @@ class VerifyFragment : Fragment() {
 
         //onClickListeners
 
+
         //ChangeListeners
         binding.num1.editText?.doOnTextChanged { text, _, _, _ ->
             if(text.toString().trim().isNotEmpty()){

@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.AbsListView
 import androidx.lifecycle.ViewModelProvider
@@ -29,7 +27,7 @@ class HotelFragment : Fragment() {
     ): View {
 
         //Initialization
-        binding = FragmentHotelBinding.inflate(inflater)
+        binding = FragmentHotelBinding.inflate(inflater,container,false)
         val application = requireNotNull(activity).application
         val viewModelFactory = HotelViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(HotelViewModel::class.java)
@@ -51,6 +49,7 @@ class HotelFragment : Fragment() {
             }
 
         }
+        binding.topAppBar.setNavigationOnClickListener { this.requireActivity().onBackPressed() }
 
         //observer
         viewModel.error.observe(this.viewLifecycleOwner,{

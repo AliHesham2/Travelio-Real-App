@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.bezo.model.data.UserData
 import com.example.bezo.model.data.UserLoginData
 import com.example.bezo.requests.registration.Registration
 import com.example.bezo.view.util.PopUpMsg
@@ -17,9 +18,10 @@ class SignInViewModel(private val app:Application) : AndroidViewModel(app) {
     val loading: LiveData<Boolean?>
         get() = _loading
 
-    private val _isSuccess = MutableLiveData<Boolean?>()
-    val isSuccess : LiveData<Boolean?>
+    private val _isSuccess = MutableLiveData<UserData>()
+    val isSuccess : LiveData<UserData>
         get() = _isSuccess
+
 
     private val _error = MutableLiveData<String?>()
     val error : LiveData<String?>
@@ -39,10 +41,10 @@ class SignInViewModel(private val app:Application) : AndroidViewModel(app) {
 
     // fun run in background  to send request and get response
     private suspend fun sendRequest(requestBody: UserLoginData){
-        Registration.signInSendRequest(requestBody, app.resources) { error, success ->
+        Registration.signInSendRequest(requestBody, app.resources) { data,error, success ->
             if (success) {
                 _loading.value = false
-                _isSuccess.value = true
+                _isSuccess.value = data
             } else {
                 _loading.value = false
                 _error.value = error

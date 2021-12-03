@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.bezo.R
 import com.example.bezo.databinding.FragmentTransportationOrderBinding
-
+import com.example.bezo.view.util.PopUpMsg
 
 
 class TransportationOrder : Fragment() {
@@ -22,10 +25,23 @@ class TransportationOrder : Fragment() {
         val application = requireNotNull(activity).application
         val viewModelFactory = TransportationOrderViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(TransportationOrderViewModel::class.java)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.data = viewModel
+
+        //adapter
+        binding.transportsRecycler.adapter = TransportsOrderAdapter(TransportsOrderAdapter.OnClickListener{
+           requireActivity().findNavController(R.id.nav_fragment).navigate(TransportationOrderFragmentDirections.actionTransportationOrderFragmentDataToSingleTransportsOrder(it))
+        },TransportsOrderAdapter.OnDeleteClickListener{
+            PopUpMsg.deleteAlertDialogue(this.requireContext(),this.resources){ done ->
+                if(done){
+                    viewModel.sendDeleteRequest(it)
+                }
+            }
+        })
+
+
 
         return binding.root
     }
-
-
+    object Instance{val instance : TransportationOrder by lazy { TransportationOrder() } }
 }

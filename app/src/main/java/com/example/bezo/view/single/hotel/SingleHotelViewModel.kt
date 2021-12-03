@@ -91,8 +91,8 @@ class SingleHotelViewModel(private val receivedData: Hotel,private val app: Appl
     }
     //No Network Handler
     private suspend fun handleException(t: Exception) {
-        stopLoading()
         withContext(Dispatchers.Main){
+            stopLoading()
             PopUpMsg.handleError(app.applicationContext,t)
         }
     }

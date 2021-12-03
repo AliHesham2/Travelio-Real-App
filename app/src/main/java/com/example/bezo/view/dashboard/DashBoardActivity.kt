@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.example.bezo.R
 import com.example.bezo.databinding.ActivityDashBoardBinding
+import com.example.bezo.model.data.UserData
 import com.example.bezo.view.dashboard.fulltrip.FullTripActivity
 import com.example.bezo.view.dashboard.hotel.HotelActivity
 import com.example.bezo.view.dashboard.orders.OrderActivity
@@ -18,6 +19,7 @@ class DashBoardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dash_board)
+        val userData = intent.extras?.getParcelable<UserData>(this.resources.getString(R.string.USER))
 
         //OverFlowMenu
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->

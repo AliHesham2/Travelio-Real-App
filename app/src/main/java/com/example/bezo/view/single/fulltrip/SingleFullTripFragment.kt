@@ -10,6 +10,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import com.example.bezo.R
 import com.example.bezo.databinding.FragmentSingleFullTripBinding
 import com.example.bezo.view.util.FullScreenImage
 import com.example.bezo.view.util.PopUpMsg
@@ -34,9 +35,13 @@ class SingleFullTripFragment : Fragment() {
 
         //Adapter
         binding.recyclerViewImg.adapter = SingleFullTripAdapter(SingleFullTripAdapter.OnClickListener{
+            val imageUrl = this.resources.getString(R.string.PHOTO_LINK) + it.imageUrl
             val fullScreenIntent = Intent(this.context, FullScreenImage::class.java)
-            fullScreenIntent.data = it.imageUrl.toUri()
+            fullScreenIntent.data = imageUrl.toUri()
             this.context!!.startActivity(fullScreenIntent)
+        })
+        binding.recyclerViewHotel.adapter = SingleTripHotelAdapter(SingleTripHotelAdapter.OnClickListener{
+
         })
 
         //observers
@@ -61,10 +66,6 @@ class SingleFullTripFragment : Fragment() {
             }
         })
 
-
-        binding.recyclerViewHotel.adapter = SingleTripHotelAdapter(SingleTripHotelAdapter.OnClickListener{
-
-        })
         return binding.root
     }
 }

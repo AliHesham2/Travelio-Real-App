@@ -6,6 +6,7 @@
     <string name="sign_up_button">Sign Up</string>
     <string name="confirm">Confirm</string>
     <string name="filter">filter</string>
+    <string name="MSG">Do u want to delete this order ?</string>
 
     <!-- Auth Dialogue Text. -->
     <string name="title">Session Expired</string>
@@ -17,6 +18,10 @@
     <!-- Token -->
     <string name="TOKEN_SAVED_AT">_To_ken_</string>
 
+    <!-- Tabs -->
+    <string name="RECENT">Recent Orders</string>
+    <string name="EXPIRED">Expired Orders</string>
+
     <!-- Toast -->
     <string name="INVALID_NUMBER">quantity can not be less than or equal 0</string>
     <string name="BOOKING_DONE">Done</string>
@@ -27,6 +32,8 @@
     <string name="TO">To: </string>
     <string name="FROM">From: </string>
     <string name="PER_PERSON">per person</string>
+    <string name="PHOTO_LINK">https://res.cloudinary.com/hatravel/image/upload/v1636822208/</string>
+    <string name="PHOTO_Default_LINK">https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png</string>
 
     <!-- Auth Errors -->
     <string name="INVALID_EMAIL_FORM">Invalid email</string>
@@ -44,9 +51,24 @@
 
     <!-- Response Static -->
     <string name="DATA">data</string>
+    <string name="USER">UserData</string>
     <string name="TOKEN">token</string>
     <string name="MESSAGE">message</string>
     <string name="offer">Enter offer quantity..</string>
     <string name="_0">0</string>
     <string name="just_photo">JustPhoto</string>
+    <string name="full_package">Full Package</string>
+    <string name="trips">Trips</string>
+    <string name="transportation">Transportation</string>
+    <string name="hotels">Hotels</string>
+    <string name="requests">Requests</string>
+    <string name="full_trip_package">Full trip package</string>
+    <string name="quantity">Quantity :</string>
+    <string name="price">price :</string>
+    <string name="ACCEPTED">Done</string>
+    <string name="REJECTED">Refused</string>
+    <string name="PENDING">Pending</string>
+    <string name="no_orders_yet">No orders yet</string>
+    <string name="submit_button">Submit</string>
+
 </resources>

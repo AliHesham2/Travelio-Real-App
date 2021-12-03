@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class FullTrips(val data:FullTripData): Parcelable
 
 @Parcelize
-data class FullTripData(val Package:FullTripModel): Parcelable
+data class FullTripData(val Packages:FullTripModel): Parcelable
 
 @Parcelize
 data class FullTripModel(val data:List<FullTrip>): Parcelable
@@ -48,3 +48,30 @@ data class FullTripHotelData(val id:Int,
 @Parcelize
 data class SomeData(val package_id:Int,
                     val hotelsList_id:Int ):Parcelable
+@Parcelize
+data class FullTripMainReserve(val data:ReserveFullTrip):Parcelable
+@Parcelize
+data class ReserveFullTrip(val Packages:FullTripReserve):Parcelable
+@Parcelize
+data class FullTripReserve(val id:Int,
+                       val name:String,
+                       val city:String,
+                       val email:String,
+                       val phone:String,
+                       val valid_packages:List<FullTripReserveData>?,
+                       val expired_packages:List<FullTripReserveData>?):Parcelable
+@Parcelize
+data class FullTripReserveData(val id:Int,
+                               val country:String,
+                               val city:String,
+                               val price:String,
+                               val details:String,
+                               val title:String,
+                               val date:String,
+                               val company_id:Int,
+                                val pivot:FullTripPivotData,
+                               val hotels_list:List<FullTripHotelData>,
+                               val companies:FullTripCompanies,
+                               val images:List<FullTripImages>):Parcelable
+@Parcelize
+data class FullTripPivotData(val user_id:Int,val package_id:Int,val quantity:Int,val notes:String?,val status:String,val id:Int):Parcelable

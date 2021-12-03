@@ -91,8 +91,8 @@ class SingleTransportationViewModel(private val receivedData: Transportation,pri
     }
     //No Network Handler
     private suspend fun handleException(t: Exception) {
-        stopLoading()
         withContext(Dispatchers.Main){
+            stopLoading()
             PopUpMsg.handleError(app.applicationContext,t)
         }
     }

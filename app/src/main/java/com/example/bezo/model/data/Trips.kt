@@ -37,3 +37,30 @@ data class TripCompanies(val id:Int,
                          val email:String,
                          val phone:String,
                          val email_verified_at:Int? ): Parcelable
+@Parcelize
+data class TripMainReserve(val data:ReserveTrip): Parcelable
+@Parcelize
+data class ReserveTrip(val Trips:TripReserve): Parcelable
+@Parcelize
+data class TripReserve(val id:Int,
+                            val name:String,
+                            val city:String,
+                            val email:String,
+                            val phone:String,
+                            val expired_trips:List<TripReserveData>?,
+                            val valid_trips:List<TripReserveData>?): Parcelable
+@Parcelize
+data class TripReserveData(val id:Int,
+                           val country:String,
+                           val city:String,
+                           val date:String,
+                           val location:String,
+                           val price:String,
+                           val details:String,
+                           val title:String,
+                           val company_id:Int,
+                           val pivot:TripPivotData,
+                           val companies:TripCompanies,
+                           val images:List<TripImages>): Parcelable
+@Parcelize
+data class TripPivotData(val user_id:Int,val trip_id:Int,val quantity:Int,val notes:String?,val status:String,val id:Int): Parcelable

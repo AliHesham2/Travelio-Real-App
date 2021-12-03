@@ -42,3 +42,27 @@ data class HotelData(val id:Int,
                      val country:String,
                      val city:String,
                      val star:Int):Parcelable
+@Parcelize
+data class HotelMainReserve(val data:ReserveHotel):Parcelable
+@Parcelize
+data class ReserveHotel(val Hotels:HotelReserve):Parcelable
+@Parcelize
+data class HotelReserve(val id:Int,
+                     val name:String,
+                     val city:String,
+                     val email:String,
+                     val phone:String,
+                     val hotels:List<HotelReserveData>):Parcelable
+@Parcelize
+data class HotelReserveData(val id:Int,
+                            val persons_per_room:String,
+                            val meal:String,
+                            val price:String,
+                            val hotelsList_id:Int,
+                            val company_id:Int,
+                            val pivot:HotelPivotData,
+                            val hotels_list:HotelData,
+                            val companies:Companies,
+                            val images:List<Images>):Parcelable
+@Parcelize
+data class HotelPivotData(val user_id:Int,val hotel_id:Int,val quantity:Int,val notes:String?,val status:String,val id:Int):Parcelable

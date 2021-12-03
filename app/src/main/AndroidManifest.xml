@@ -16,9 +16,9 @@
         android:theme="@style/Theme.Bezo"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity
-            android:name=".view.util.FullScreenImage"
-            android:exported="false" />
+        <activity android:name=".view.util.FullScreenImage"  />
+        <activity android:name=".view.user.change.ChangePassword" />
+        <activity android:name=".view.user.edit.EditProfile" />
         <activity android:name=".view.dashboard.orders.OrderActivity" />
         <activity android:name=".view.dashboard.trips.TripsActivity" />
         <activity android:name=".view.dashboard.transportation.TransportationActivity" />
@@ -31,7 +31,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

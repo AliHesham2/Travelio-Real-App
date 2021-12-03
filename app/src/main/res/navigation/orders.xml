@@ -3,27 +3,109 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/orders"
-    app:startDestination="@id/hotelOrder">
+    app:startDestination="@id/s1">
 
-
+<navigation
+       android:id="@+id/s1"
+       app:startDestination="@id/hotelOrderData">
     <fragment
-        android:id="@+id/fullTripOrder"
-        android:name="com.example.bezo.view.dashboard.orders.full_trip_order.FullTripOrder"
-        android:label="fragment_full_trip_order"
-        tools:layout="@layout/fragment_full_trip_order" />
-    <fragment
-        android:id="@+id/hotelOrder"
+        android:id="@+id/hotelOrderData"
         android:name="com.example.bezo.view.dashboard.orders.hotel_order.HotelOrder"
-        android:label="fragment_hotel_order"
-        tools:layout="@layout/fragment_hotel_order" />
+        android:label="HotelOrder"
+        tools:layout="@layout/fragment_hotel_order">
+        <action
+            android:id="@+id/action_hotelOrderData_to_singleHotelOrder2"
+            app:destination="@id/singleHotelOrder2" />
+    </fragment>
+       <fragment
+           android:id="@+id/singleHotelOrder2"
+           android:name="com.example.bezo.view.dashboard.single_order.hotel.SingleHotelOrder"
+           android:label="SingleHotelOrder"
+           tools:layout="@layout/fragment_single_hotel_order">
+           <action
+               android:id="@+id/action_singleHotelOrder2_to_hotelOrderData"
+               app:destination="@id/hotelOrderData" />
+           <argument
+               android:name="hotelData"
+               app:argType="com.example.bezo.model.data.HotelReserveData" />
+       </fragment>
+</navigation>
+
+<navigation
+        android:id="@+id/s2"
+        app:startDestination="@id/transportationOrderFragmentData">
     <fragment
-        android:id="@+id/transportationOrder"
-        android:name="com.example.bezo.view.dashboard.orders.transportation_order.TransportationOrder"
-        android:label="fragment_transportation_order"
-        tools:layout="@layout/fragment_transportation_order" />
+        android:id="@+id/transportationOrderFragmentData"
+        android:name="com.example.bezo.view.dashboard.orders.transportation_order.TransportationOrderFragment"
+        android:label="TransportationOrderFragment"
+        tools:layout="@layout/fragment_transportation_order2">
+        <action
+            android:id="@+id/action_transportationOrderFragmentData_to_singleTransportsOrder"
+            app:destination="@id/singleTransportsOrder" />
+    </fragment>
+        <fragment
+            android:id="@+id/singleTransportsOrder"
+            android:name="com.example.bezo.view.dashboard.single_order.trans.SingleTransportsOrder"
+            android:label="SingleTransportsOrder"
+            tools:layout="@layout/fragment_single_transports_order">
+            <action
+                android:id="@+id/action_singleTransportsOrder_to_transportationOrderFragmentData"
+                app:destination="@id/transportationOrderFragmentData" />
+            <argument
+                android:name="transportsData"
+                app:argType="com.example.bezo.model.data.TransportReserveData" />
+        </fragment>
+    </navigation>
+
+<navigation
+    android:id="@+id/s3"
+    app:startDestination="@id/tripOrderFragmentData">
     <fragment
-        android:id="@+id/tripOrder"
-        android:name="com.example.bezo.view.dashboard.orders.trips_order.TripOrder"
-        android:label="fragment_trip_order"
-        tools:layout="@layout/fragment_trip_order" />
+        android:id="@+id/tripOrderFragmentData"
+        android:name="com.example.bezo.view.dashboard.orders.trips_order.TripOrderFragment"
+        android:label="TripOrderFragment"
+        tools:layout="@layout/fragment_trip_order2">
+        <action
+            android:id="@+id/action_tripOrderFragmentData_to_singleTripOrder"
+            app:destination="@id/singleTripOrder" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleTripOrder"
+        android:name="com.example.bezo.view.dashboard.single_order.trip.SingleTripOrder"
+        android:label="SingleTripOrder"
+        tools:layout="@layout/fragment_single_trip_order">
+        <action
+            android:id="@+id/action_singleTripOrder_to_tripOrderFragmentData"
+            app:destination="@id/tripOrderFragmentData" />
+        <argument android:name="tripData"
+            app:argType="com.example.bezo.model.data.TripReserveData" />
+    </fragment>
+</navigation>
+
+<navigation
+    android:id="@+id/s4"
+    app:startDestination="@id/fullTripOrderFragmentData">
+    <fragment
+        android:id="@+id/fullTripOrderFragmentData"
+        android:name="com.example.bezo.view.dashboard.orders.full_trip_order.FullTripOrderFragment"
+        android:label="FullTripOrderFragment"
+        tools:layout="@layout/fragment_full_trip_order2">
+        <action
+            android:id="@+id/action_fullTripOrderFragmentData_to_singleFullTripOrder"
+            app:destination="@id/singleFullTripOrder" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleFullTripOrder"
+        android:name="com.example.bezo.view.dashboard.single_order.full.SingleFullTripOrder"
+        android:label="SingleFullTripOrder"
+        tools:layout="@layout/fragment_single_full_trip_order">
+        <action
+            android:id="@+id/action_singleFullTripOrder_to_fullTripOrderFragmentData"
+            app:destination="@id/fullTripOrderFragmentData" />
+        <argument
+            android:name="fullTripData"
+            app:argType="com.example.bezo.model.data.FullTripReserveData" />
+    </fragment>
+</navigation>
+
 </navigation>

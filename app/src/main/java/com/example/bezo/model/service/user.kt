@@ -2,12 +2,11 @@ package com.example.bezo.model.service
 
 import com.example.bezo.model.data.UserLoginData
 import com.example.bezo.model.data.UserSignUpData
+import com.example.bezo.model.data.Users
 import com.example.bezo.view.util.PopUpMsg
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -33,10 +32,10 @@ private val retrofit =
 
 interface UserAuth {
     @POST("/api/userRegister")
-    suspend fun signUp(@Body requestBody: UserSignUpData): Response<ResponseBody>
+    suspend fun signUp(@Body requestBody: UserSignUpData): Response<Users>
 
     @POST("/api/userLogin")
-    suspend fun signIn(@Body requestBody: UserLoginData): Response<ResponseBody>
+    suspend fun signIn(@Body requestBody: UserLoginData): Response<Users>
 }
 
 object UserApi {

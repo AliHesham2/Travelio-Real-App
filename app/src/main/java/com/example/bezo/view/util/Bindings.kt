@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,10 @@ import com.example.bezo.R
 import com.example.bezo.model.data.*
 import com.example.bezo.view.dashboard.fulltrip.FullTripAdapter
 import com.example.bezo.view.dashboard.hotel.HotelAdapter
+import com.example.bezo.view.dashboard.orders.full_trip_order.FullTripOrderAdapter
+import com.example.bezo.view.dashboard.orders.hotel_order.HotelOrderAdapter
+import com.example.bezo.view.dashboard.orders.transportation_order.TransportsOrderAdapter
+import com.example.bezo.view.dashboard.orders.trips_order.TripsOrderAdapter
 import com.example.bezo.view.dashboard.transportation.TransportAdapter
 import com.example.bezo.view.dashboard.trips.TripAdapter
 import com.example.bezo.view.single.fulltrip.SingleFullTripAdapter
@@ -28,15 +33,33 @@ fun price(txt: TextView, data: String?) {
     txt.text = data + txt.resources.getString(R.string.LE)
 }
 
+@BindingAdapter("quantity")
+fun quantity(txt: TextView, data: Int?) {
+    txt.text = "$data"
+}
+
+@BindingAdapter("status")
+fun status(img: ImageView, data: String?) {
+    if(data != null){
+        when(data){
+            img.resources.getString(R.string.ACCEPTED) -> {img.setImageDrawable(ContextCompat.getDrawable(img.context,R.drawable.accepted))}
+            img.resources.getString(R.string.REJECTED) -> {img.setImageDrawable(ContextCompat.getDrawable(img.context,R.drawable.reject))}
+            img.resources.getString(R.string.PENDING)  -> {img.setImageDrawable(ContextCompat.getDrawable(img.context,R.drawable.pending))}
+        }
+    }
+}
+
+
 @BindingAdapter("showImage")
 fun showImage(img: ImageView, data: String?) {
     if (data != null){
-        val imgUri = data.toUri().buildUpon().scheme("https").build()
+        val imageUrl = img.resources.getString(R.string.PHOTO_LINK) + data
+        val imgUri = imageUrl.toUri().buildUpon().scheme("https").build()
         Glide
             .with(img.context)
             .load(imgUri)
-            .circleCrop()
-            .error("https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png")
+            .centerCrop()
+            .error(img.resources.getString(R.string.PHOTO_Default_LINK))
             .into(img)
     }
 }
@@ -46,6 +69,19 @@ fun showImage(img: ImageView, data: String?) {
 @BindingAdapter("hotelAdapter")
 fun hotelAdapter(recyclerView: RecyclerView, data: List<Hotel>?) {
     val adapter = recyclerView.adapter as HotelAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("hotelArray")
+fun hotelArray(txt: TextView, data: HotelData?) {
+    if (data != null) {
+        txt.text = data.name
+    }
+}
+
+@BindingAdapter("hotelReserveAdapter")
+fun hotelReserveAdapter(recyclerView: RecyclerView, data: List<HotelReserveData>?) {
+    val adapter = recyclerView.adapter as HotelOrderAdapter
     adapter.submitList(data)
 }
 @BindingAdapter("hotelImageAdapter")
@@ -73,6 +109,12 @@ fun hotelRate(rate: RatingBar, data: Int?) {
 @BindingAdapter("transportAdapter")
 fun transportAdapter(recyclerView: RecyclerView, data: List<Transportation>?) {
     val adapter = recyclerView.adapter as TransportAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("transportOrderAdapter")
+fun transportOrderAdapter(recyclerView: RecyclerView, data: List<TransportReserveData>?) {
+    val adapter = recyclerView.adapter as TransportsOrderAdapter
     adapter.submitList(data)
 }
 
@@ -117,6 +159,13 @@ fun tripAdapter(recyclerView: RecyclerView, data: List<Trip>?) {
     val adapter = recyclerView.adapter as TripAdapter
     adapter.submitList(data)
 }
+
+@BindingAdapter("tripOrderAdapter")
+fun tripOrderAdapter(recyclerView: RecyclerView, data: List<TripReserveData>?) {
+    val adapter = recyclerView.adapter as TripsOrderAdapter
+    adapter.submitList(data)
+}
+
 @BindingAdapter("tripImageAdapter")
 fun tripImageAdapter(recyclerView: RecyclerView, data: List<TripImages>?) {
     val adapter = recyclerView.adapter as SingleTripAdapter
@@ -130,6 +179,11 @@ fun fullTripAdapter(recyclerView: RecyclerView, data: List<FullTrip>?) {
     val adapter = recyclerView.adapter as FullTripAdapter
     adapter.submitList(data)
 }
+@BindingAdapter("fullTripReserveAdapter")
+fun fullTripReserveAdapter(recyclerView: RecyclerView, data: List<FullTripReserveData>?) {
+    val adapter = recyclerView.adapter as FullTripOrderAdapter
+    adapter.submitList(data)
+}
 @BindingAdapter("fullTripImageAdapter")
 fun fullTripImageAdapter(recyclerView: RecyclerView, data: List<FullTripImages>?) {
     val adapter = recyclerView.adapter as SingleFullTripAdapter
@@ -138,7 +192,9 @@ fun fullTripImageAdapter(recyclerView: RecyclerView, data: List<FullTripImages>?
 @BindingAdapter("fullTripHotelImageAdapter")
 fun fullTripHotelImageAdapter(recyclerView: RecyclerView, data: List<FullTripHotelData>?) {
     val adapter = recyclerView.adapter as SingleTripHotelAdapter
-    adapter.submitList(data)
+    if(data != null){
+        adapter.submitList(data)
+    }
 }
 
 

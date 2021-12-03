@@ -36,19 +36,19 @@ private val retrofit_app =
         .build()
 
 interface AppAuth {
-    @GET("/api/user/hotels")
+    @GET("/api/user/hotels/getAll")
     suspend fun getHotels(@Query("perPage") page:Int,
                           @Query("page") pageNumber:Int): Response<Hotels>
 
-    @GET("/api/user/trips")
+    @GET("/api/user/trips/getAll")
     suspend fun getTrips(@Query("perPage") page:Int,
                           @Query("page") pageNumber:Int): Response<Trips>
 
-    @GET("/api/user/transports")
+    @GET("/api/user/transports/getAll")
     suspend fun getTransportations(@Query("perPage") page:Int,
                                    @Query("page") pageNumber:Int): Response<Transportations>
 
-    @GET("/api/user/packages")
+    @GET("/api/user/packages/getAll")
     suspend fun getFullTrips(@Query("perPage") page:Int,
                           @Query("page") pageNumber:Int): Response<FullTrips>
 
@@ -63,6 +63,30 @@ interface AppAuth {
 
     @POST("/api/user/packages/booking")
     suspend fun fullTripBooking(@Body requestBody: FullTripBookingData): Response<ResponseBody>
+
+    @GET("/api/user/hotels/reservationsHistory")
+    suspend fun getReserveHotels (): Response<HotelMainReserve>
+
+    @GET("/api/user/trips/reservationsHistory")
+    suspend fun getReserveTrips(@Query("valid") valid:Int): Response<TripMainReserve>
+
+    @GET("/api/user/transports/reservationsHistory")
+    suspend fun getReserveTransportations(@Query("valid") valid:Int): Response<TransportMainReserve>
+
+    @GET("/api/user/packages/reservationsHistory")
+    suspend fun getReserveFullTrips(@Query("valid") valid:Int): Response<FullTripMainReserve>
+
+    @HTTP(method = "DELETE", path = "/api/user/hotels/reservationsDelete", hasBody = true)
+    suspend fun deleteReserveHotels (@Body requestBody: DeleteData): Response<ResponseBody>
+
+    @HTTP(method = "DELETE", path = "/api/user/trips/reservationsDelete", hasBody = true)
+    suspend fun deleteReserveTrips(@Body requestBody: DeleteData): Response<ResponseBody>
+
+    @HTTP(method = "DELETE", path = "/api/user/transports/reservationsDelete", hasBody = true)
+    suspend fun deleteReserveTransportations(@Body requestBody: DeleteData): Response<ResponseBody>
+
+    @HTTP(method = "DELETE", path = "/api/user/packages/reservationsDelete", hasBody = true)
+    suspend fun deleteReserveFullTrips(@Body requestBody: DeleteData): Response<ResponseBody>
 
 }
 

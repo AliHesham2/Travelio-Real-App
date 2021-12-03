@@ -90,8 +90,8 @@ class SingleTripsViewModel(private val receivedData: Trip,private val app: Appli
     }
     //No Network Handler
     private suspend fun handleException(t: Exception) {
-        stopLoading()
         withContext(Dispatchers.Main){
+            stopLoading()
             PopUpMsg.handleError(app.applicationContext,t)
         }
     }

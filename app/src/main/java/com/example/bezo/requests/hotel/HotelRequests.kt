@@ -1,6 +1,7 @@
 package com.example.bezo.requests.hotel
 
 import android.content.res.Resources
+import android.util.Log
 import com.example.bezo.R
 import com.example.bezo.model.data.Hotels
 import com.example.bezo.model.service.AppApi

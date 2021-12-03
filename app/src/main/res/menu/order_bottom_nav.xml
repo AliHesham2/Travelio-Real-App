@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/s1"
+        android:icon="@drawable/outline_apartment_24"
+        android:title="@string/hotels" />
+    <item
+        android:id="@+id/s2"
+        android:icon="@drawable/baseline_airport_shuttle_24"
+        android:title="@string/transportation" />
+    <item
+        android:id="@+id/s3"
+        android:icon="@drawable/baseline_directions_bus_filled_20"
+        android:title="@string/trips" />
+    <item
+        android:id="@+id/s4"
+        android:icon="@drawable/outline_emoji_transportation_24"
+        android:title="@string/full_package" />
 </menu>

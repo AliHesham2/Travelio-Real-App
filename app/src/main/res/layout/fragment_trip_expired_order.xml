@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="data"
+            type="com.example.bezo.view.dashboard.orders.trips_order.TripExpiredOrderViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.dashboard.orders.trips_order.TripExpiredOrder">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/trips_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tripOrderAdapter="@{data.expiredData}"
+        android:visibility="@{data.loading == false &amp;&amp; !data.expiredData.isEmpty() ? View.VISIBLE :View.GONE }"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/custom_reserve_trip" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_orders_yet"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:visibility="@{data.loading == false &amp;&amp; data.expiredData.isEmpty() ? View.VISIBLE :View.GONE }"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/first_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/Mix9"
+        android:visibility="@{data.loading == true  ? View.VISIBLE :View.GONE }"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -2,6 +2,7 @@ package com.example.bezo.requests.registration
 
 import android.content.res.Resources
 import com.example.bezo.R
+import com.example.bezo.model.data.UserData
 import com.example.bezo.model.data.UserLoginData
 import com.example.bezo.model.data.UserSignUpData
 import com.example.bezo.model.preference.Token
@@ -14,42 +15,40 @@ class Registration {
     companion object {
 
         //Send User Data to create account and  get response
-      suspend  fun signUpSendRequest(requestBody: UserSignUpData, resources: Resources,isSuccess:(error:String?,success:Boolean) ->Unit) {
+      suspend  fun signUpSendRequest(requestBody: UserSignUpData, resources: Resources,isSuccess:(data:UserData?,error:String?,success:Boolean) ->Unit) {
             val result = UserApi.user.signUp(requestBody)
             if(result.isSuccessful){
-                val bodyResponse = result.body()?.charStream()?.readText()
-                val token = JSONObject(bodyResponse!!).getJSONObject(resources.getString(R.string.DATA)).getString(resources.getString(R.string.TOKEN))
-                Token.saveToken(token)
+                val bodyResponse = result.body()
+                Token.saveToken(bodyResponse!!.data.token)
                 withContext(Dispatchers.Main){
-                    isSuccess(null,true)
+                    isSuccess(bodyResponse.data.user,null,true)
                 }
             }else{
                 val error = result.errorBody()?.charStream()?.readText()
                 if (error != null) {
                     val errorMsg = JSONObject(error).getString(resources.getString(R.string.MESSAGE))
                     withContext(Dispatchers.Main){
-                        isSuccess(errorMsg,false)
+                        isSuccess(null,errorMsg,false)
                     }
                 }
             }
         }
 
         //Send phone and password  to login  and  get response
-      suspend fun signInSendRequest(requestBody: UserLoginData,resources: Resources,isSuccess:(error:String?,success:Boolean) ->Unit) {
+      suspend fun signInSendRequest(requestBody: UserLoginData,resources: Resources,isSuccess:(data:UserData?,error:String?,success:Boolean) ->Unit) {
             val result = UserApi.user.signIn(requestBody)
             if (result.isSuccessful) {
-                val bodyResponse = result.body()?.charStream()?.readText()
-                val token = JSONObject(bodyResponse!!).getJSONObject(resources.getString(R.string.DATA)).getString(resources.getString(R.string.TOKEN))
-                Token.saveToken(token)
+                val bodyResponse = result.body()
+                Token.saveToken(bodyResponse!!.data.token)
                 withContext(Dispatchers.Main){
-                    isSuccess(null,true)
+                    isSuccess(bodyResponse.data.user,null,true)
                 }
             } else {
                 val error = result.errorBody()?.charStream()?.readText()
                 if (error != null) {
                     val errorMsg = JSONObject(error).getString(resources.getString(R.string.MESSAGE))
                     withContext(Dispatchers.Main){
-                        isSuccess(errorMsg,false)
+                        isSuccess(null,errorMsg,false)
                     }
                 }
             }

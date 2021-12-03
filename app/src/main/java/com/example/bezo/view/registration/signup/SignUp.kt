@@ -46,8 +46,10 @@ class SignUp : Fragment() {
         })
 
         viewModel.isSuccess.observe(this.viewLifecycleOwner,{
-            if(it == true){
-                startActivity(Intent(this.activity, DashBoardActivity::class.java))
+            if(it != null){
+                val intent = Intent(this.activity, DashBoardActivity::class.java)
+                intent.putExtra(this.resources.getString(R.string.USER),it)
+                startActivity(intent)
                 this.activity?.finish()
             }
         })

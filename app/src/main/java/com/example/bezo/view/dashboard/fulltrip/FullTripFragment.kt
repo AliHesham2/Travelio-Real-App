@@ -50,6 +50,8 @@ class FullTripFragment : Fragment() {
 
         }
 
+        binding.topAppBar.setNavigationOnClickListener { this.requireActivity().onBackPressed() }
+
         //observer
         viewModel.error.observe(this.viewLifecycleOwner,{
             if(it != null){

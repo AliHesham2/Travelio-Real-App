@@ -70,7 +70,7 @@ class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
     private fun whenSuccess(data: FullTrips?) {
         if (data != null) {
             stopLoading()
-            val tripData = data.data.Package.data
+            val tripData = data.data.Packages.data
             if (tripData.isNotEmpty()) {
                 _loadMore.value = true
                 if (_data.value.isNullOrEmpty()) {
@@ -93,8 +93,8 @@ class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
 
     //No Network Handler
     private suspend fun handleException(t: Exception) {
-        stopLoading()
         withContext(Dispatchers.Main) {
+            stopLoading()
             PopUpMsg.handleError(app.applicationContext, t)
         }
     }

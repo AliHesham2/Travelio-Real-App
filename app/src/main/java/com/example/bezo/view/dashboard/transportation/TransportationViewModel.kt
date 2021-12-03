@@ -95,8 +95,8 @@ class TransportationViewModel(private val app:Application):AndroidViewModel(app)
     }
     //No Network Handler
     private suspend fun handleException(t: Exception) {
-        stopLoading()
         withContext(Dispatchers.Main){
+            stopLoading()
             PopUpMsg.handleError(app.applicationContext,t)
         }
     }

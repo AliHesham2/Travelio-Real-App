@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import com.example.bezo.R
 import com.example.bezo.databinding.FragmentSingleTransportationBinding
 import com.example.bezo.view.util.FullScreenImage
 import com.example.bezo.view.util.PopUpMsg
@@ -31,8 +32,9 @@ class SingleTransportationFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.recyclerViewImg.adapter = SingleTransportAdapter(SingleTransportAdapter.OnClickListener{
+            val imageUrl = this.resources.getString(R.string.PHOTO_LINK) + it.imageUrl
             val fullScreenIntent = Intent(this.context, FullScreenImage::class.java)
-            fullScreenIntent.data = it.imageUrl.toUri()
+            fullScreenIntent.data = imageUrl.toUri()
             this.context!!.startActivity(fullScreenIntent)
         })
 
@@ -46,6 +48,7 @@ class SingleTransportationFragment : Fragment() {
                 binding.recyclerViewImg.visibility = View.VISIBLE
             }
         })
+
         viewModel.loading.observe(this.viewLifecycleOwner,{
             if(it == true){
                 PopUpMsg.showDialogue(this.requireContext())
@@ -53,6 +56,7 @@ class SingleTransportationFragment : Fragment() {
                 PopUpMsg.hideDialogue()
             }
         })
+
         viewModel.error.observe(this.viewLifecycleOwner,{
             if(it != null){
                 PopUpMsg.alertMsg(this.requireView(),it)

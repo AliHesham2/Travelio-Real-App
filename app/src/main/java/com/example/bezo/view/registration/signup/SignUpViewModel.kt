@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.bezo.model.data.UserData
 import com.example.bezo.model.data.UserSignUpData
 import com.example.bezo.requests.registration.Registration
 import com.example.bezo.view.util.PopUpMsg
@@ -23,8 +24,8 @@ class SignUpViewModel (private val app:Application):AndroidViewModel(app) {
     val error : LiveData<String?>
         get() = _error
 
-    private val _isSuccess = MutableLiveData<Boolean?>()
-    val isSuccess : LiveData<Boolean?>
+    private val _isSuccess = MutableLiveData<UserData>()
+    val isSuccess : LiveData<UserData>
         get() = _isSuccess
 
     //Get the user data from ui and call sendRequest fun in background thread
@@ -41,10 +42,10 @@ class SignUpViewModel (private val app:Application):AndroidViewModel(app) {
 
     // fun run in background  to send request and get response
     private suspend fun sendRequest(requestBody: UserSignUpData) {
-        Registration.signUpSendRequest(requestBody,app.resources){ error, success ->
+        Registration.signUpSendRequest(requestBody,app.resources){ data,error, success ->
             if (success){
                 _loading.value = false
-                _isSuccess.value = true
+                _isSuccess.value = data
             }else{
                 _loading.value = false
                 _error.value = error
