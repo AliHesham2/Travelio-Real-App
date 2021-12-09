@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bezo.databinding.CustomFullTripCardViewBinding
-import com.example.bezo.databinding.CustomTripsCardViewBinding
 import com.example.bezo.model.data.FullTrip
 
 

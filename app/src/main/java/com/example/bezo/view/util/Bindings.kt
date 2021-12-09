@@ -38,6 +38,15 @@ fun quantity(txt: TextView, data: Int?) {
     txt.text = "$data"
 }
 
+@SuppressLint("SetTextI18n")
+@BindingAdapter("city")
+fun city(txt: TextView, data: UserData?) {
+    if (data != null) {
+        txt.text = "${data.cities.name} (${data.cities.country.iso3})"
+    }
+}
+
+
 @BindingAdapter("status")
 fun status(img: ImageView, data: String?) {
     if(data != null){

@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{data.type}"
+                    android:text="@{data.types.name}"
                     android:textColor="@color/mix9"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -100,7 +100,8 @@
                     android:layout_marginEnd="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:status="@{data.pivot.status}" />
+                    app:status="@{data.pivot.status}"
+                    android:contentDescription="@string/just_photo"/>
 
                 <ImageButton
                     android:id="@+id/deleteOrder"

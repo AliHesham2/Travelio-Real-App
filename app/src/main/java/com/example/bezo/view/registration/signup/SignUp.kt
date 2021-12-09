@@ -25,6 +25,7 @@ class SignUp : Fragment() {
     private var email:Boolean = false
     private var phone:Boolean = false
     private var password:Boolean = false
+    private var items = listOf<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
@@ -44,6 +45,12 @@ class SignUp : Fragment() {
             }
 
         })
+        viewModel.citiesList.observe(this.viewLifecycleOwner,{
+            if(!it.isNullOrEmpty()){
+                items = it
+                setUpCity()
+            }
+        })
 
         viewModel.isSuccess.observe(this.viewLifecycleOwner,{
             if(it != null){
@@ -55,17 +62,17 @@ class SignUp : Fragment() {
         })
 
         viewModel.loading.observe(this.viewLifecycleOwner,{
-            if(it == true){
+            if(it == true && items.isNotEmpty()){
                 PopUpMsg.showDialogue(this.requireContext())
             }else{
-                PopUpMsg.hideDialogue()
+                if(items.isNotEmpty()){
+                    PopUpMsg.hideDialogue()
+                }
             }
         })
 
         //dropdownMenu
-        val items = listOf("Alex", "Cairo", "Option 3", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4", "Option 4")
-        val adapter = ArrayAdapter(requireContext(),  android.R.layout.simple_dropdown_item_1line, items)
-        (binding.city.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        setUpCity()
 
         //changeListeners
         binding.username.editText?.doOnTextChanged { text, _, _, _ ->
@@ -126,9 +133,11 @@ class SignUp : Fragment() {
             if(!phone || !email || !username || !password || binding.phone.editText?.text.isNullOrEmpty()|| binding.username.editText?.text.isNullOrEmpty()
                 || binding.email.editText?.text.isNullOrEmpty() || binding.password.editText?.text.isNullOrEmpty() || binding.city.editText?.text.isNullOrEmpty()){
                 PopUpMsg.alertMsg(this.requireView(),this.resources.getString(R.string.NO_DATA))
+            }else if(!items.contains(binding.city.editText?.text.toString().trim())){
+                binding.city.editText?.error = this.resources.getString(R.string.FROM_LIST)
             }else{
-                viewModel.getData(UserSignUpData(binding.username.editText?.text.toString(),binding.email.editText?.text?.toString()!!.trim()
-                                                 ,binding.phone.editText?.text?.toString()!!.trim(), binding.city.editText?.text.toString(),binding.password.editText?.text?.toString()!!.trim()))
+                viewModel.getData(UserSignUpData(name = binding.username.editText?.text.toString(), email = binding.email.editText?.text?.toString()!!.trim()
+                                                 ,phone = binding.phone.editText?.text?.toString()!!.trim(),city_id = viewModel.getID(binding.city.editText?.text.toString().trim()) ?: 0,password = binding.password.editText?.text?.toString()!!.trim()))
             }
         }
 
@@ -136,9 +145,13 @@ class SignUp : Fragment() {
             this.findNavController().navigate(SignUpDirections.actionSignUpToSignIn())
         }
 
-
-
-
         return binding.root
+    }
+    private fun setUpCity() {
+        //dropdownMenu
+        val adapter = ArrayAdapter(requireContext(),  android.R.layout.simple_dropdown_item_1line, this.items)
+        (binding.city.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        (binding.city.editText as? AutoCompleteTextView)?.threshold = 1
+
     }
 }

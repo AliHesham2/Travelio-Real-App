@@ -41,20 +41,20 @@ class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
         callRequest()
     }
 
-    fun callRequest() {
+    fun callRequest( hotels_list_id:String?="",hotels_list_city_id:String?="", minPrice:String?="", maxPrice:String?="", fromDate:String?="", toDate:String?="") {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                getFullTrips()
+                getFullTrips(hotels_list_id,hotels_list_city_id, minPrice, maxPrice, fromDate, toDate)
             } catch (t: Exception) {
                 handleException(t)
             }
         }
     }
 
-    private suspend fun getFullTrips() {
+    private suspend fun getFullTrips(hotels_list_id: String?, hotels_list_city_id: String?, minPrice: String?, maxPrice: String?, fromDate: String?, toDate: String?) {
         loading()
         pageNumber++
-        FullTripRequests.getFullPackage(pageNumber,app.resources){ data, error, success ->
+        FullTripRequests.getFullPackage(pageNumber,app.resources,hotels_list_id!!,hotels_list_city_id!!, minPrice!!, maxPrice!!, fromDate!!, toDate!!){ data, error, success ->
             if(success){
                 whenSuccess(data)
             }else{

@@ -19,8 +19,8 @@ class HotelViewModel(private val app:Application): AndroidViewModel(app) {
 
     private var pageNumber = 0
 
-    private var _data = MutableLiveData<List<Hotel>>()
-    val data : LiveData<List<Hotel>>
+    private var _data = MutableLiveData<List<Hotel>?>()
+    val data : LiveData<List<Hotel>?>
         get() = _data
 
     private val _loading = MutableLiveData<Boolean?>()
@@ -43,10 +43,10 @@ class HotelViewModel(private val app:Application): AndroidViewModel(app) {
         callRequest()
     }
 
-      fun callRequest(){
+      fun callRequest(hotelID:String?="",hotelCityID:String?="",mealID:String?="", stars:String?="",perRoom:String?="",minPrice:String?="",maxPrice:String?=""){
              viewModelScope.launch(Dispatchers.IO) {
                  try{
-                     getHotelsData()
+                     getHotelsData(hotelID,hotelCityID,mealID,stars,perRoom,minPrice,maxPrice)
                  }catch (t: Exception){
                      handleException(t)
                  }
@@ -54,10 +54,10 @@ class HotelViewModel(private val app:Application): AndroidViewModel(app) {
       }
 
     // send pageNumber and get the response (Hotels Data)
-    private suspend fun getHotelsData() {
+    private suspend fun getHotelsData(hotelID: String?, hotelCityID: String?, mealID: String?, stars: String?, perRoom: String?, minPrice: String?, maxPrice: String?) {
         loading()
         pageNumber++
-        HotelRequests.getHotels(pageNumber,app.resources){ data, error, success ->
+        HotelRequests.getHotels(pageNumber,app.resources,hotelID!!,hotelCityID!!,mealID!!,stars!!,perRoom!!,minPrice!!,maxPrice!!){ data, error, success ->
             if(success){
                 whenSuccess(data)
             }else{
@@ -71,6 +71,10 @@ class HotelViewModel(private val app:Application): AndroidViewModel(app) {
         }
     }
 
+     fun resetData(){
+        _data.value = null
+        pageNumber = 0
+    }
     //Display data
     private  fun whenSuccess(data: Hotels?) {
         if (data != null) {

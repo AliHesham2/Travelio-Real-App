@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
-import com.example.bezo.R
 import com.example.bezo.databinding.FragmentVerifyBinding
-import com.example.bezo.view.registration.signin.SignInViewModel
+
 
 class VerifyFragment : Fragment() {
     lateinit var binding : FragmentVerifyBinding

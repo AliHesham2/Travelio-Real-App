@@ -10,8 +10,8 @@ import org.json.JSONObject
 
 class TripRequests {
     companion object{
-        suspend fun getTrips(pageNumber: Int, resources: Resources, isSuccess: (data: Trips?, error: String?, success: Boolean) -> Unit) {
-            val response = AppApi.appData.getTrips(5, pageNumber)
+        suspend fun getTrips(pageNumber: Int, resources: Resources,  city_id:String, location_id:String, minPrice:String, maxPrice:String, fromDate:String, toDate:String, isSuccess: (data: Trips?, error: String?, success: Boolean) -> Unit) {
+            val response = AppApi.appData.getTrips(5, pageNumber,city_id, location_id, minPrice, maxPrice,fromDate,toDate)
             if (response.isSuccessful) {
                 val data = response.body()
                 withContext(Dispatchers.Main){

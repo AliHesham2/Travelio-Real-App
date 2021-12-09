@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.load.engine.Resource
 import com.example.bezo.R
 import com.example.bezo.view.registration.RegistrationActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -21,7 +20,7 @@ class PopUpMsg {
 
     companion object{
 
-        const val BASE_URL = "https://hatours.herokuapp.com"
+        const val BASE_URL = "https://traveliofront.herokuapp.com"
 
         private lateinit var  mProgressDialog : Dialog
 

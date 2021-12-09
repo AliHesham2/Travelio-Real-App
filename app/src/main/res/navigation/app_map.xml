@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_map"
+    app:startDestination="@id/dashBoard">
+
+    <fragment
+        android:id="@+id/dashBoard"
+        android:name="com.example.bezo.view.dashboard.main.DashBoard"
+        android:label="DashBoard"
+        tools:layout="@layout/fragment_dash_board">
+        <action
+            android:id="@+id/action_dashBoard_to_hotelFragment"
+            app:destination="@id/hotelFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_singleHotelFragment"
+            app:destination="@id/singleHotelFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_transportationFragment"
+            app:destination="@id/transportationFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_singleTransportationFragment"
+            app:destination="@id/singleTransportationFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_tripsFragment"
+            app:destination="@id/tripsFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_singleTripsFragment"
+            app:destination="@id/singleTripsFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_fullTripFragment"
+            app:destination="@id/fullTripFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_singleFullTripFragment"
+            app:destination="@id/singleFullTripFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_changePassword2"
+            app:destination="@id/changePassword2" />
+        <action
+            android:id="@+id/action_dashBoard_to_editProfile2"
+            app:destination="@id/editProfile2" />
+    </fragment>
+    <fragment
+        android:id="@+id/hotelFragment"
+        android:name="com.example.bezo.view.dashboard.hotel.HotelFragment"
+        android:label="HotelFragment"
+        tools:layout="@layout/fragment_hotel">
+        <action
+            android:id="@+id/action_hotelFragment_to_singleHotelFragment"
+            app:destination="@id/singleHotelFragment"
+            app:popUpTo="@id/singleHotelFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_hotelFragment_to_dashBoard"
+            app:destination="@id/dashBoard"
+            app:popUpTo="@id/dashBoard" />
+        <argument
+            android:name="collection"
+            app:argType="com.example.bezo.model.data.Collection" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleHotelFragment"
+        android:name="com.example.bezo.view.single.hotel.SingleHotelFragment"
+        android:label="SingleHotelFragment"
+        tools:layout="@layout/fragment_single_hotel">
+        <argument
+            android:name="hotelData"
+            app:argType="com.example.bezo.model.data.Hotel" />
+        <action
+            android:id="@+id/action_singleHotelFragment_to_dashBoard"
+            app:destination="@id/dashBoard"
+            app:popUpTo="@id/dashBoard" />
+        <action
+            android:id="@+id/action_singleHotelFragment_to_hotelFragment"
+            app:destination="@id/hotelFragment"
+            app:popUpTo="@id/hotelFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/transportationFragment"
+        android:name="com.example.bezo.view.dashboard.transportation.TransportationFragment"
+        android:label="TransportationFragment"
+        tools:layout="@layout/fragment_transportation">
+        <action
+            android:id="@+id/action_transportationFragment_to_singleTransportationFragment"
+            app:destination="@id/singleTransportationFragment" />
+        <action
+            android:id="@+id/action_transportationFragment_to_dashBoard"
+            app:destination="@id/dashBoard"
+            app:popUpTo="@id/dashBoard" />
+        <argument
+            android:name="collection"
+            app:argType="com.example.bezo.model.data.Collection" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/singleTransportationFragment"
+        android:name="com.example.bezo.view.single.transportation.SingleTransportationFragment"
+        android:label="SingleTransportationFragment"
+        tools:layout="@layout/fragment_single_transportation">
+        <action
+            android:id="@+id/action_singleTransportationFragment_to_transportationFragment"
+            app:destination="@id/transportationFragment"
+            app:popUpTo="@id/transportationFragment" />
+        <argument
+            android:name="transportData"
+            app:argType="com.example.bezo.model.data.Transportation" />
+        <action
+            android:id="@+id/action_singleTransportationFragment_to_dashBoard"
+            app:destination="@id/dashBoard"
+            app:popUpTo="@id/dashBoard" />
+    </fragment>
+    <fragment
+        android:id="@+id/tripsFragment"
+        android:name="com.example.bezo.view.dashboard.trips.TripsFragment"
+        android:label="TripsFragment"
+        tools:layout="@layout/fragment_trips">
+        <action
+            android:id="@+id/action_tripsFragment_to_singleTripsFragment"
+            app:destination="@id/singleTripsFragment" />
+        <action
+            android:id="@+id/action_tripsFragment_to_dashBoard"
+            app:destination="@id/dashBoard"
+            app:popUpTo="@id/dashBoard" />
+        <argument
+            android:name="collection"
+            app:argType="com.example.bezo.model.data.Collection" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleTripsFragment"
+        android:name="com.example.bezo.view.single.trips.SingleTripsFragment"
+        android:label="SingleTripsFragment"
+        tools:layout="@layout/fragment_single_trips">
+        <action
+            android:id="@+id/action_singleTripsFragment_to_tripsFragment"
+            app:destination="@id/tripsFragment"
+            app:popUpTo="@id/tripsFragment" />
+        <argument
+            android:name="tripData"
+            app:argType="com.example.bezo.model.data.Trip" />
+        <action
+            android:id="@+id/action_singleTripsFragment_to_dashBoard"
+            app:destination="@id/dashBoard"
+            app:popUpTo="@id/dashBoard" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullTripFragment"
+        android:name="com.example.bezo.view.dashboard.fulltrip.FullTripFragment"
+        android:label="FullTripFragment"
+        tools:layout="@layout/fragment_full_trip">
+        <action
+            android:id="@+id/action_fullTripFragment_to_singleFullTripFragment"
+            app:destination="@id/singleFullTripFragment" />
+        <action
+            android:id="@+id/action_fullTripFragment_to_dashBoard"
+            app:destination="@id/dashBoard"
+            app:popUpTo="@id/dashBoard" />
+        <argument
+            android:name="collection"
+            app:argType="com.example.bezo.model.data.Collection" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleFullTripFragment"
+        android:name="com.example.bezo.view.single.fulltrip.SingleFullTripFragment"
+        android:label="SingleFullTripFragment"
+        tools:layout="@layout/fragment_single_full_trip">
+        <action
+            android:id="@+id/action_singleFullTripFragment_to_fullTripFragment"
+            app:destination="@id/fullTripFragment"
+            app:popUpTo="@id/fullTripFragment" />
+        <argument
+            android:name="fullTripData"
+            app:argType="com.example.bezo.model.data.FullTrip" />
+        <action
+            android:id="@+id/action_singleFullTripFragment_to_dashBoard"
+            app:destination="@id/dashBoard"
+            app:popUpTo="@id/dashBoard" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePassword2"
+        android:name="com.example.bezo.view.user.change.ChangePassword"
+        android:label="ChangePassword"
+        tools:layout="@layout/change_password">
+        <action
+            android:id="@+id/action_changePassword2_to_dashBoard"
+            app:destination="@id/dashBoard"
+            app:popUpTo="@id/dashBoard" />
+        <argument
+            android:name="userData"
+            app:argType="com.example.bezo.model.data.UserData" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfile2"
+        android:name="com.example.bezo.view.user.edit.EditProfile"
+        android:label="EditProfile"
+        tools:layout="@layout/edit_profile">
+        <action
+            android:id="@+id/action_editProfile2_to_dashBoard"
+            app:destination="@id/dashBoard"
+            app:popUpTo="@id/dashBoard" />
+        <argument
+            android:name="userData"
+            app:argType="com.example.bezo.model.data.UserData" />
+        <argument
+            android:name="collection"
+            app:argType="com.example.bezo.model.data.Collection" />
+    </fragment>
+</navigation>

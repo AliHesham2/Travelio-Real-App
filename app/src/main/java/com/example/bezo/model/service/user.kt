@@ -1,8 +1,6 @@
 package com.example.bezo.model.service
 
-import com.example.bezo.model.data.UserLoginData
-import com.example.bezo.model.data.UserSignUpData
-import com.example.bezo.model.data.Users
+import com.example.bezo.model.data.*
 import com.example.bezo.view.util.PopUpMsg
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -36,6 +34,28 @@ interface UserAuth {
 
     @POST("/api/userLogin")
     suspend fun signIn(@Body requestBody: UserLoginData): Response<Users>
+
+    @GET("/api/cities")
+    suspend fun getCitiesList(@Query("perPage") page:Int = 0,
+                              @Query("page") pageNumber:Int = 0, @Query("getAll") boolean: Boolean = true): Response<Cities>
+
+    @GET("/api/transportType")
+    suspend fun getTypesList(@Query("perPage") page:Int = 0,
+                              @Query("page") pageNumber:Int = 0, @Query("getAll") boolean: Boolean = true): Response<Types>
+
+
+    @GET("/api/tripLocation")
+    suspend fun getLocationsList(@Query("perPage") page:Int = 0,
+                              @Query("page") pageNumber:Int = 0, @Query("getAll") boolean: Boolean = true): Response<Locations>
+
+    @GET("/api/meals")
+    suspend fun getMealsList(@Query("perPage") page:Int = 0,
+                              @Query("page") pageNumber:Int = 0, @Query("getAll") boolean: Boolean = true): Response<Meals>
+
+    @GET("/api/transportLevel")
+    suspend fun getLevelsList(@Query("perPage") page:Int = 0,
+                              @Query("page") pageNumber:Int = 0, @Query("getAll") boolean: Boolean = true): Response<Levels>
+
 }
 
 object UserApi {

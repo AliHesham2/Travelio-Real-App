@@ -47,7 +47,7 @@ class BookingPopUp {
 
         private fun onPlusPress(quantity: TextInputLayout) {
             val numberText = quantity.editText?.text.toString()
-            var number :Int = if(numberText.isEmpty()){
+            var number :Int = if(numberText.isEmpty() || !numberText.matches("-?\\d+(\\.\\d+)?".toRegex()) || numberText.toInt() < 0 ){
                 0
             }else{
                 numberText.toInt()
@@ -58,7 +58,7 @@ class BookingPopUp {
 
         private fun onMinusPress(quantity: TextInputLayout) {
             val numberText = quantity.editText?.text.toString()
-            var number :Int = if(numberText.isEmpty()){
+            var number :Int = if(numberText.isEmpty() || !numberText.matches("-?\\d+(\\.\\d+)?".toRegex()) || numberText.toInt() < 0){
                 0
             }else{
                 numberText.toInt()

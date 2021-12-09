@@ -7,11 +7,23 @@ import kotlinx.parcelize.Parcelize
 data class Users(val data:User): Parcelable
 
 @Parcelize
-data class User(val token:String,val user:UserData): Parcelable
+data class User(val token:String?,val user:UserData): Parcelable
 
 @Parcelize
 data class UserData(val id:Int,
                 val name:String,
-                val city:String,
+                val city_id:Int,
                 val email:String,
-                val phone:String): Parcelable
+                val phone:String,
+                val cities:HotelCitiesData): Parcelable
+
+data class UserUpdateData(val name:String,
+                          val city_id:Int,
+                          val email:String,
+                          val phone:String,
+                          val password:String?=null,
+                          val _method:String)
+
+
+
+

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentHotelBinding
+import com.example.bezo.view.util.HotelFilterPopUp
 import com.example.bezo.view.util.PopUpMsg
 
 
@@ -22,13 +23,12 @@ class HotelFragment : Fragment() {
     private var isLoading = false
     private var isScrolling = false
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         //Initialization
         binding = FragmentHotelBinding.inflate(inflater,container,false)
         val application = requireNotNull(activity).application
+        val collection = HotelFragmentArgs.fromBundle(requireArguments()).collection
         val viewModelFactory = HotelViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(HotelViewModel::class.java)
         binding.data = viewModel
@@ -43,13 +43,16 @@ class HotelFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.filter ->{
+                    HotelFilterPopUp.handleHotelFilter(this.requireContext(),collection){ data ->
+
+                    }
                     true
                 }
                 else -> false
             }
 
         }
-        binding.topAppBar.setNavigationOnClickListener { this.requireActivity().onBackPressed() }
+        binding.topAppBar.setNavigationOnClickListener { this.requireActivity().onBackPressed()}
 
         //observer
         viewModel.error.observe(this.viewLifecycleOwner,{

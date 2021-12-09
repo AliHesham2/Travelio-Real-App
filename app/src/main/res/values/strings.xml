@@ -25,6 +25,9 @@
     <!-- Toast -->
     <string name="INVALID_NUMBER">quantity can not be less than or equal 0</string>
     <string name="BOOKING_DONE">Done</string>
+    <string name="Updated">Updated</string>
+    <string name="Password_changed">Password_changed</string>
+
 
     <!-- Binding -->
     <string name="LE">LE</string>
@@ -47,7 +50,10 @@
     <string name="NO_DATA">Please fill all fields!</string>
     <string name="NO_INTERNET">Network Error</string>
     <string name="WRONG">SomeThing Went Wrong</string>
+    <string name="PATCH">patch</string>
+    <string name="PASSWORD_SAME">Both passwords must be the same</string>
     <string name="UN_KNOW_VIEW_MODEL">Unknown ViewModel class</string>
+    <string name="FROM_LIST">Please select from list</string>
 
     <!-- Response Static -->
     <string name="DATA">data</string>
@@ -70,5 +76,8 @@
     <string name="PENDING">Pending</string>
     <string name="no_orders_yet">No orders yet</string>
     <string name="submit_button">Submit</string>
-
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="DATE_FORM">yyyy-MM-dd</string>
 </resources>

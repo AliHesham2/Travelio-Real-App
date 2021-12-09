@@ -10,7 +10,6 @@
             type="com.example.bezo.view.dashboard.orders.transportation_order.TransportationOrderViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.dashboard.orders.transportation_order.TransportationOrder">
@@ -22,8 +21,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:transportOrderAdapter="@{data.data}"
         android:visibility="@{data.loading == false &amp;&amp; !data.data.isEmpty() ? View.VISIBLE :View.GONE }"
+        app:transportOrderAdapter="@{data.data}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/custom_reserve_transport" />
@@ -35,7 +34,7 @@
         android:textSize="25sp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:visibility="@{data.loading == false &amp;&amp; data.data.isEmpty()? View.VISIBLE :View.GONE }"
+        android:visibility="@{data.loading == false &amp;&amp; data.data.isEmpty() ? View.VISIBLE :View.GONE }"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

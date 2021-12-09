@@ -43,10 +43,10 @@ class TripsViewModel(private val app:Application) : AndroidViewModel(app) {
         callRequest()
     }
 
-    fun callRequest(){
+    fun callRequest( city_id:String?="", location_id:String?="", minPrice:String?="", maxPrice:String?="", fromDate:String?="", toDate:String?=""){
         viewModelScope.launch(Dispatchers.IO) {
             try{
-                getTrips()
+                getTrips(city_id, location_id, minPrice, maxPrice,fromDate,toDate)
             }catch (t: Exception){
                 handleException(t)
             }
@@ -54,10 +54,10 @@ class TripsViewModel(private val app:Application) : AndroidViewModel(app) {
     }
 
     //send pageNumber and get the response (Trips Data)
-    private suspend fun getTrips() {
+    private suspend fun getTrips(city_id: String?, location_id: String?, minPrice: String?, maxPrice: String?, fromDate: String?, toDate: String?) {
         loading()
         pageNumber++
-        TripRequests.getTrips(pageNumber,app.resources){ data, error, success ->
+        TripRequests.getTrips(pageNumber,app.resources,city_id!!, location_id!!, minPrice!!, maxPrice!!,fromDate!!,toDate!!){ data, error, success ->
             if(success){
                 whenSuccess(data)
             }else{

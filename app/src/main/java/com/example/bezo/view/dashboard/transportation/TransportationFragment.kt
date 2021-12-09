@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentTransportationBinding
 import com.example.bezo.view.util.PopUpMsg
+import com.example.bezo.view.util.TransportFilterPopUp
 
 
 class TransportationFragment : Fragment() {
@@ -30,10 +31,11 @@ class TransportationFragment : Fragment() {
         //Initialization
         binding = FragmentTransportationBinding.inflate(inflater)
         val application = requireNotNull(activity).application
+        val collection = TransportationFragmentArgs.fromBundle(requireArguments()).collection
         val viewModelFactory = TransportationViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(TransportationViewModel::class.java)
         binding.data = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         //Adapter
         binding.transportsRecycler.adapter = TransportAdapter(TransportAdapter.OnClickListener{
             this.findNavController().navigate(TransportationFragmentDirections.actionTransportationFragmentToSingleTransportationFragment(it))
@@ -43,6 +45,9 @@ class TransportationFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.filter ->{
+                    TransportFilterPopUp.handleTransportFilter(this.requireContext(),collection){ data ->
+
+                    }
                     true
                 }
                 else -> false

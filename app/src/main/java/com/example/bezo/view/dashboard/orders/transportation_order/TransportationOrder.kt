@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentTransportationOrderBinding
 import com.example.bezo.view.util.PopUpMsg

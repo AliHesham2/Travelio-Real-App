@@ -38,19 +38,48 @@ private val retrofit_app =
 interface AppAuth {
     @GET("/api/user/hotels/getAll")
     suspend fun getHotels(@Query("perPage") page:Int,
-                          @Query("page") pageNumber:Int): Response<Hotels>
+                          @Query("page") pageNumber:Int,
+                          @Query("hotels_list_id") hotelID:String,
+                          @Query("hotels_list_city_id") hotels_list_city_id:String,
+                          @Query("meal_id") mealID:String,
+                          @Query("stars") stars:String,
+                          @Query("perRoom") perRoom:String,
+                          @Query("minPrice") minPrice:String ,
+                          @Query("maxPrice") maxPrice:String): Response<Hotels>
 
     @GET("/api/user/trips/getAll")
     suspend fun getTrips(@Query("perPage") page:Int,
-                          @Query("page") pageNumber:Int): Response<Trips>
+                         @Query("page") pageNumber:Int,
+                         @Query("city_id") city_id:String,
+                         @Query("location_id") location_id:String,
+                         @Query("minPrice") minPrice:String,
+                         @Query("maxPrice") maxPrice:String,
+                         @Query("fromDate") fromDate:String,
+                         @Query("toDate") toDate:String ): Response<Trips>
 
     @GET("/api/user/transports/getAll")
     suspend fun getTransportations(@Query("perPage") page:Int,
-                                   @Query("page") pageNumber:Int): Response<Transportations>
+                                   @Query("page") pageNumber:Int,
+                                   @Query("city_from_id") city_from_id:String,
+                                   @Query("city_to_id") city_to_id:String,
+                                   @Query("level_id") level_id:String,
+                                   @Query("type_id") type_id:String,
+                                   @Query("minPrice") minPrice:String,
+                                   @Query("maxPrice") maxPrice:String ,
+                                   @Query("fromDate") fromDate:String,
+                                   @Query("toDate") toDate:String): Response<Transportations>
+
 
     @GET("/api/user/packages/getAll")
     suspend fun getFullTrips(@Query("perPage") page:Int,
-                          @Query("page") pageNumber:Int): Response<FullTrips>
+                             @Query("page") pageNumber:Int,
+                             @Query("hotels_list_id") hotels_list_id:String,
+                             @Query("hotels_list_city_id") hotels_list_city_id:String,
+                             @Query("minPrice") minPrice:String,
+                             @Query("maxPrice") maxPrice:String,
+                             @Query("fromDate") fromDate:String,
+                             @Query("toDate") toDate:String): Response<FullTrips>
+
 
     @POST("/api/user/hotels/booking")
     suspend fun hotelBooking(@Body requestBody: HotelBookingData): Response<ResponseBody>
@@ -88,6 +117,14 @@ interface AppAuth {
     @HTTP(method = "DELETE", path = "/api/user/packages/reservationsDelete", hasBody = true)
     suspend fun deleteReserveFullTrips(@Body requestBody: DeleteData): Response<ResponseBody>
 
+    @GET("/api/user/profile")
+    suspend fun getUserData() : Response<Users>
+
+    @POST("/api/user/editProfile")
+    suspend fun updateUserData(@Body requestBody: UserUpdateData) : Response<Users>
+    @GET("/api/user/hotelsList")
+    suspend fun getHotelList(@Query("perPage") page:Int = 0,
+                              @Query("page") pageNumber:Int = 0, @Query("getAll") boolean: Boolean = true): Response<HotelNames>
 }
 
 object AppApi {

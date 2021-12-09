@@ -42,20 +42,20 @@ class TransportationViewModel(private val app:Application):AndroidViewModel(app)
         callRequest()
     }
 
-    fun callRequest(){
+    fun callRequest(city_from_id:String?="", city_to_id:String?="", level_id:String?="", type_id:String?="", minPrice:String?="", maxPrice:String?="" , fromDate:String?="", toDate:String?=""){
         viewModelScope.launch(Dispatchers.IO) {
             try{
-                getTransports()
+                getTransports(city_from_id!!, city_to_id!!, level_id!!, type_id!!, minPrice!!, maxPrice!! , fromDate!!, toDate!!)
             }catch (t: Exception){
                 handleException(t)
             }
         }
     }
     //send pageNumber and get the response (Transports Data)
-    private suspend fun getTransports() {
+    private suspend fun getTransports(city_from_id: String, city_to_id: String, level_id: String, type_id: String, minPrice: String, maxPrice: String, fromDate: String, toDate: String) {
         loading()
         pageNumber++
-       TransportationRequests.getTransportations(pageNumber,app.resources){ data, error, success ->
+       TransportationRequests.getTransportations(pageNumber,app.resources,city_from_id, city_to_id, level_id, type_id, minPrice, maxPrice , fromDate, toDate){ data, error, success ->
            if(success){
                whenSuccess(data)
            }else{

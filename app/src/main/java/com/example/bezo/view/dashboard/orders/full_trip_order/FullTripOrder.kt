@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentFullTripOrderBinding
-import com.example.bezo.view.single.fulltrip.SingleTripHotelAdapter
 import com.example.bezo.view.util.PopUpMsg
 
 

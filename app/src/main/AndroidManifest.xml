@@ -17,13 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity android:name=".view.util.FullScreenImage"  />
-        <activity android:name=".view.user.change.ChangePassword" />
-        <activity android:name=".view.user.edit.EditProfile" />
         <activity android:name=".view.dashboard.orders.OrderActivity" />
-        <activity android:name=".view.dashboard.trips.TripsActivity" />
-        <activity android:name=".view.dashboard.transportation.TransportationActivity" />
-        <activity android:name=".view.dashboard.hotel.HotelActivity" />
-        <activity android:name=".view.dashboard.fulltrip.FullTripActivity" />
         <activity android:name=".view.dashboard.DashBoardActivity" />
         <activity android:name=".view.registration.RegistrationActivity" />
         <activity

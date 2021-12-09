@@ -57,10 +57,10 @@
 
     <ProgressBar
         android:id="@+id/first_load"
-        android:visibility="@{data.loading == true &amp;&amp; data.data == null ? View.VISIBLE :View.GONE }"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/Mix9"
+        android:visibility="@{data.loading == true &amp;&amp; data.data == null ? View.VISIBLE :View.GONE }"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,15 +68,13 @@
 
     <ProgressBar
         android:id="@+id/other_load"
-        android:visibility="@{data.loading == true &amp;&amp; data.data != null ? View.VISIBLE :View.GONE }"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:indeterminateTint="@color/Mix9"
+        android:visibility="@{data.loading == true &amp;&amp; data.data != null ? View.VISIBLE :View.GONE }"
         app:layout_constraintEnd_toEndOf="@+id/trips_recycler"
         app:layout_constraintStart_toStartOf="@+id/trips_recycler"
         app:layout_constraintBottom_toBottomOf="parent" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

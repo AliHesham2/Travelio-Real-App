@@ -101,7 +101,8 @@
                     android:src="@drawable/accepted"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:status="@{data.pivot.status}" />
+                    app:status="@{data.pivot.status}"
+                    android:contentDescription="@string/just_photo"/>
 
                 <ImageButton
                     android:id="@+id/deleteOrder"

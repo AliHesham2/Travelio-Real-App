@@ -5,8 +5,10 @@
       <map>
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/baseline_add_24.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/baseline_airport_shuttle_24.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/baseline_call_24.xml" value="0.22604166666666667" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/baseline_delete_24.xml" value="0.365625" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/baseline_directions_bus_filled_20.xml" value="0.32421875" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/baseline_lock_24.xml" value="0.3416666666666667" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/baseline_remove_24.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/custom_outline.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/fill_button.xml" value="0.37447916666666664" />
@@ -17,6 +19,12 @@
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/login_button.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/outline_delete_24.xml" value="0.365625" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/outline_event_24.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/radio_normal.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/radio_selected.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/radio_selector.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/radioselector.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/top_bar.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/drawable/top_view.xml" value="0.22604166666666667" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/activity_dash_board.xml" value="0.22" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/activity_full_screen_image.xml" value="0.35833333333333334" />
@@ -27,7 +35,12 @@
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/activity_order.xml" value="0.12" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/activity_registration.xml" value="0.3255208333333333" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/activity_transportation.xml" value="0.5375" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/change_password.xml" value="0.25" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_booking.xml" value="0.25" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_filter_full_trip.xml" value="0.25" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_filter_hotel.xml" value="0.25" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_filter_transport.xml" value="0.25" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_filter_trip.xml" value="0.22" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_full_trip_card_view.xml" value="0.33" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_full_trip_image.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_hotel_card_view.xml" value="0.28532608695652173" />
@@ -44,18 +57,21 @@
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_trip_image.xml" value="0.3" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_trip_img.xml" value="0.2554347826086957" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/custom_trips_card_view.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/edit_profile.xml" value="0.22" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_change_password.xml" value="0.22" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_dash_board.xml" value="0.22" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_edit_profile.xml" value="0.3255208333333333" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_full_trip.xml" value="0.2554347826086957" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_full_trip_expired_order.xml" value="0.25" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_full_trip_order.xml" value="0.2" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_full_trip_order2.xml" value="0.2" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_hotel.xml" value="0.22" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_hotel_expired_order.xml" value="0.2" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_hotel_order.xml" value="0.2" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_hotel_order2.xml" value="0.2" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_local_air.xml" value="0.3625" />
-        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_sign_in.xml" value="0.5375" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_sign_in.xml" value="0.22" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_sign_up.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_single_full_trip.xml" value="0.2554347826086957" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_single_full_trip_order.xml" value="0.22" />
@@ -69,15 +85,17 @@
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_transportation_expired_order.xml" value="0.2" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_transportation_order.xml" value="0.25" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_transportation_order2.xml" value="0.22" />
-        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_trip_expired_order.xml" value="0.25" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_trip_expired_order.xml" value="0.22" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_trip_order.xml" value="0.22" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_trip_order2.xml" value="0.25" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_trips.xml" value="0.25" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/fragment_verify.xml" value="0.3625" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/header_drawer.xml" value="0.22" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/layout/loading.xml" value="0.5375" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/menu/drawer.xml" value="0.3" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/menu/filter.xml" value="0.5375" />
         <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/menu/order_bottom_nav.xml" value="0.25" />
+        <entry key="..\:/Users/aly_m/AndroidStudioProjects/Bezo/app/src/main/res/menu/user.xml" value="0.3255208333333333" />
       </map>
     </option>
   </component>

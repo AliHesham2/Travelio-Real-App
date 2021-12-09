@@ -10,8 +10,8 @@ import org.json.JSONObject
 
 class FullTripRequests {
     companion object{
-        suspend fun getFullPackage(pageNumber: Int, resources: Resources, isSuccess: (data: FullTrips?, error: String?, success: Boolean) -> Unit) {
-            val response = AppApi.appData.getFullTrips(5, pageNumber)
+        suspend fun getFullPackage(pageNumber: Int, resources: Resources,  hotels_list_id:String,hotels_list_city_id:String, minPrice:String, maxPrice:String, fromDate:String, toDate:String,isSuccess: (data: FullTrips?, error: String?, success: Boolean) -> Unit) {
+            val response = AppApi.appData.getFullTrips(5, pageNumber, hotels_list_id,hotels_list_city_id, minPrice, maxPrice, fromDate, toDate)
             if (response.isSuccessful) {
                 val data = response.body()
                 withContext(Dispatchers.Main){

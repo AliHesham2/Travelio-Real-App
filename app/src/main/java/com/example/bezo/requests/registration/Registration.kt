@@ -19,7 +19,7 @@ class Registration {
             val result = UserApi.user.signUp(requestBody)
             if(result.isSuccessful){
                 val bodyResponse = result.body()
-                Token.saveToken(bodyResponse!!.data.token)
+                Token.saveToken(bodyResponse!!.data.token!!)
                 withContext(Dispatchers.Main){
                     isSuccess(bodyResponse.data.user,null,true)
                 }
@@ -39,7 +39,7 @@ class Registration {
             val result = UserApi.user.signIn(requestBody)
             if (result.isSuccessful) {
                 val bodyResponse = result.body()
-                Token.saveToken(bodyResponse!!.data.token)
+                Token.saveToken(bodyResponse!!.data.token!!)
                 withContext(Dispatchers.Main){
                     isSuccess(bodyResponse.data.user,null,true)
                 }

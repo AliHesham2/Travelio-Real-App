@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.bezo.R

@@ -21,8 +21,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:transportOrderAdapter="@{data.expiredData}"
         android:visibility="@{data.loading == false &amp;&amp; !data.expiredData.isEmpty() ? View.VISIBLE :View.GONE }"
+        app:transportOrderAdapter="@{data.expiredData}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/custom_reserve_transport" />
@@ -45,8 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/Mix9"
-        android:visibility="@{data.loading == true  ? View.VISIBLE :View.GONE }"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="@{data.loading == true  ? View.VISIBLE :View.GONE }"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

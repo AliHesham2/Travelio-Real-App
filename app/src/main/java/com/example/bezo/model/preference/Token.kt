@@ -3,7 +3,7 @@ package com.example.bezo.model.preference
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.bezo.R
-import com.example.bezo.view.util.PopUpMsg
+
 
 object Token{
     private  lateinit  var preference: SharedPreferences

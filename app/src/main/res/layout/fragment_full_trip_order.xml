@@ -20,9 +20,9 @@
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="@{data.loading == false &amp;&amp; !data.data.isEmpty() ? View.VISIBLE :View.GONE }"
         app:layout_constraintEnd_toEndOf="parent"
         app:fullTripReserveAdapter="@{data.data}"
-        android:visibility="@{data.loading == false &amp;&amp; !data.data.isEmpty() ? View.VISIBLE :View.GONE }"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/custom_reserve_full_trip" />

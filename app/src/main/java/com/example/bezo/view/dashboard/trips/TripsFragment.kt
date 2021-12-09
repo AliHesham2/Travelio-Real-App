@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentTripsBinding
 import com.example.bezo.view.util.PopUpMsg
+import com.example.bezo.view.util.TripFilterPopUp
 
 
 class TripsFragment : Fragment() {
@@ -27,6 +28,7 @@ class TripsFragment : Fragment() {
     ): View {
         binding = FragmentTripsBinding.inflate(inflater)
         val application = requireNotNull(activity).application
+        val collection = TripsFragmentArgs.fromBundle(requireArguments()).collection
         val viewModelFactory = TripsViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(TripsViewModel::class.java)
         binding.data = viewModel
@@ -41,6 +43,9 @@ class TripsFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.filter ->{
+                    TripFilterPopUp.handleTripFilter(this.requireContext(),collection){ data ->
+
+                    }
                     true
                 }
                 else -> false

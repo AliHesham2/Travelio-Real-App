@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentFullTripBinding
+import com.example.bezo.view.util.FullTripFilterPopUp
 import com.example.bezo.view.util.PopUpMsg
 
 
@@ -29,6 +30,7 @@ class FullTripFragment : Fragment() {
         //initialization
         binding = FragmentFullTripBinding.inflate(inflater)
         val application = requireNotNull(activity).application
+        val collection = FullTripFragmentArgs.fromBundle(requireArguments()).collection
         val viewModelFactory = FullTripViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(FullTripViewModel::class.java)
         binding.data = viewModel
@@ -43,6 +45,9 @@ class FullTripFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.filter ->{
+                    FullTripFilterPopUp.handleFullTripFilter(this.requireContext(),collection){ data ->
+
+                    }
                     true
                 }
                 else -> false

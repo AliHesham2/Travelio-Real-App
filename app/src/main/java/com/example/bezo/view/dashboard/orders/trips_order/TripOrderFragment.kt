@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentTripOrder2Binding
-import com.example.bezo.view.dashboard.orders.transportation_order.TransportationOrderFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 

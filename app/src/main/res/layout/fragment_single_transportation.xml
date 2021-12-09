@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:text="@{data.data.type}"
+        android:text="@{data.data.types.name}"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -56,14 +56,15 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/baseline_room_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hotelName" />
+        app:layout_constraintTop_toBottomOf="@+id/hotelName"
+        android:contentDescription="@string/just_photo" />
 
     <TextView
         android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:transportFrom="@{data.data.from}"
+        app:transportFrom="@{data.data.from_cities.name}"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -148,7 +149,8 @@
             android:src="@drawable/baseline_room_1_24"
             app:layout_constraintEnd_toStartOf="@+id/address"
             app:layout_constraintStart_toEndOf="@+id/name"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/just_photo" />
 
         <TextView
             android:id="@+id/address"
@@ -172,7 +174,8 @@
             android:src="@drawable/baseline_email_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/home_s"
-            app:layout_constraintTop_toBottomOf="@+id/home_s" />
+            app:layout_constraintTop_toBottomOf="@+id/home_s"
+            android:contentDescription="@string/just_photo" />
 
         <TextView
             android:id="@+id/email"
@@ -197,7 +200,8 @@
             android:src="@drawable/baseline_call_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/home_s1"
-            app:layout_constraintTop_toBottomOf="@+id/home_s1" />
+            app:layout_constraintTop_toBottomOf="@+id/home_s1"
+            android:contentDescription="@string/just_photo" />
 
         <TextView
             android:id="@+id/phone"
@@ -234,7 +238,8 @@
             android:src="@drawable/outline_event_24"
             app:layout_constraintEnd_toStartOf="@+id/date"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/just_photo" />
 
         <TextView
             android:id="@+id/date"
@@ -257,7 +262,8 @@
             android:src="@drawable/baseline_star_24"
             app:layout_constraintEnd_toStartOf="@+id/stars"
             app:layout_constraintStart_toEndOf="@+id/date"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/just_photo" />
 
         <TextView
             android:id="@+id/stars"
@@ -270,7 +276,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/stars_s"
             app:layout_constraintTop_toTopOf="parent"
-            app:transportClass="@{data.data.level}" />
+            app:transportClass="@{data.data.levels.name}" />
 
         <ImageView
             android:id="@+id/money_s"
@@ -280,7 +286,8 @@
             android:src="@drawable/baseline_attach_money_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/date_s"
-            app:layout_constraintTop_toBottomOf="@+id/date_s" />
+            app:layout_constraintTop_toBottomOf="@+id/date_s"
+            android:contentDescription="@string/just_photo" />
 
         <TextView
             android:id="@+id/price"
@@ -305,7 +312,8 @@
             android:src="@drawable/outline_person_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/stars_s"
-            app:layout_constraintTop_toBottomOf="@+id/stars_s" />
+            app:layout_constraintTop_toBottomOf="@+id/stars_s"
+            android:contentDescription="@string/just_photo" />
 
         <TextView
             android:id="@+id/to"
@@ -320,7 +328,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/stars_s"
             app:layout_constraintTop_toBottomOf="@+id/stars"
-            app:transportTo="@{data.data.to}" />
+            app:transportTo="@{data.data.to_cities.name}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

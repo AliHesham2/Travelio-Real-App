@@ -1,7 +1,6 @@
 package com.example.bezo.view.dashboard.orders.hotel_order
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -77,7 +76,6 @@ class HotelOrderViewModel (private val app: Application) : AndroidViewModel(app)
                     }
                 }
             }catch (e:Exception){
-                Log.i("errorzz",e.message.toString())
                 handleException(e)
             }
         }
