@@ -12,7 +12,6 @@ import androidx.core.widget.doOnTextChanged
 import com.example.bezo.R
 import com.example.bezo.databinding.CustomFilterTransportBinding
 import  com.example.bezo.model.data.Collection
-import com.example.bezo.model.data.HotelFilterCollection
 import com.example.bezo.model.data.TransportFilterCollection
 import com.google.android.material.slider.RangeSlider
 import java.text.NumberFormat
@@ -26,12 +25,13 @@ class TransportFilterPopUp {
         private var levelValidation = true
         private var cityValidation = true
         private var cityTValidation = true
+        private var priceValidation = true
+        private var prices = mutableListOf(0F, 20000F)
         private val myCalendar: Calendar = Calendar.getInstance()
 
-    fun handleTransportFilter(context: Context, collection:Collection,transportParams:(data: TransportFilterCollection) -> Unit ) {
-        val transportBinding =
-            CustomFilterTransportBinding.inflate(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
-        var prices = mutableListOf(0F, 20000F)
+    fun handleTransportFilter(context: Context, collection:Collection,oldFilter:TransportFilterCollection?,transportParams:(data: TransportFilterCollection) -> Unit ) {
+        val transportBinding = CustomFilterTransportBinding.inflate(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
+        if (oldFilter != null){ displayOldFilter(transportBinding,oldFilter,context) }
         setupCities(transportBinding, context, collection)
         setupCitiesT(transportBinding, context, collection)
         setupLevels(transportBinding, context, collection)
@@ -46,7 +46,7 @@ class TransportFilterPopUp {
         transportBinding.transportSlider.setLabelFormatter { value: Float ->
             val format = NumberFormat.getCurrencyInstance()
             format.maximumFractionDigits = 0
-            format.currency = Currency.getInstance("EGP")
+            format.currency = Currency.getInstance(context.resources.getString(R.string.Currency))
             format.format(value.toDouble())
         }
         //date
@@ -75,11 +75,22 @@ class TransportFilterPopUp {
             val priceF = transportBinding.transportPriceF.editText?.text.toString().trim().toIntOrNull()
             val priceT = transportBinding.transportPriceT.editText?.text.toString().trim().toIntOrNull()
 
-            val dateF = transportBinding.transportDateF.editText?.text?.toString() ?: ""
-            val dateT = transportBinding.transportDateT.editText?.text?.toString() ?: ""
+            priceValidation = !(priceF == null || priceT == null || priceF > priceT || priceF < 0 || priceT < 0 || priceT > 20000 || priceF > 20000)
+            if(!priceValidation){PopUpMsg.toastMsg(context,context.resources.getString(R.string.CHECK_PRICE))}
 
-            if(cityValidation && levelValidation && typeValidation && cityTValidation){
-               TransportFilterCollection(wantedCity?.id?.toString() ?: "",wantedCityT?.id?.toString() ?: "",wantedTransportLevel?.id?.toString() ?: "",wantedTransportType?.id?.toString() ?: "",priceF?.toString() ?: "" , priceT?.toString() ?: "" ,dateF, dateT)
+            val dateF = transportBinding.transportDateF.editText?.text?.toString() ?: context.resources.getString(R.string.EMPTY)
+            val dateT = transportBinding.transportDateT.editText?.text?.toString() ?: context.resources.getString(R.string.EMPTY)
+
+            if(cityValidation && levelValidation && typeValidation && cityTValidation && priceValidation){
+                transportParams(TransportFilterCollection(
+                    wantedCity?.id?.toString() ?: context.resources.getString(R.string.EMPTY), wantedCity?.name ?:context.resources.getString(R.string.EMPTY) , wantedCity?.country?.iso3 ?:context.resources.getString(R.string.EMPTY) ,
+                    wantedCityT?.id?.toString() ?: context.resources.getString(R.string.EMPTY), wantedCityT?.name ?: context.resources.getString(R.string.EMPTY) , wantedCityT?.country?.iso3 ?:context.resources.getString(R.string.EMPTY),
+                    wantedTransportLevel?.id?.toString() ?: context.resources.getString(R.string.EMPTY), wantedTransportLevel?.name ?: context.resources.getString(R.string.EMPTY) ,
+                    wantedTransportType?.id?.toString() ?: context.resources.getString(R.string.EMPTY), wantedTransportType?.name ?:context.resources.getString(R.string.EMPTY) ,
+                    priceF?.toString() ?: context.resources.getString(R.string.EMPTY) ,
+                    priceT?.toString() ?: context.resources.getString(R.string.EMPTY),
+                    dateF, dateT))
+                tProgressDialog.hide()
             }
         }
 
@@ -96,7 +107,9 @@ class TransportFilterPopUp {
         transportBinding.transClose.setOnClickListener {
             tProgressDialog.dismiss()
         }
-
+        transportBinding.resetAll.setOnClickListener {
+            resetAll(transportBinding,context)
+        }
         transportBinding.transportSlider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
             override fun onStartTrackingTouch(slider: RangeSlider) {
             }
@@ -109,16 +122,20 @@ class TransportFilterPopUp {
 
         })
         transportBinding.transportPriceF.editText?.doOnTextChanged { text, _, _, _ ->
-            if (text != null && text.isNotEmpty()) {
-                prices = HotelFilterPopUp.handleFirstValue(prices, text)
-                handleSliders(transportBinding, prices)
+             if (text != null && text.isNotEmpty() && text.toString().matches("-?\\d+(\\.\\d+)?".toRegex()) && text.toString().toFloat() > 0 && text.toString().toInt() <= 20000 ) {
+                 prices[0] = text.toString().toFloat()
+            }else{
+                 prices[0] = 0F
             }
+            handleSliders(transportBinding, prices)
         }
         transportBinding.transportPriceT.editText?.doOnTextChanged { text, _, _, _ ->
-            if (text != null && text.isNotEmpty()) {
-                prices = HotelFilterPopUp.handleSecondValue(prices, text)
-                handleSliders(transportBinding, prices)
+              if (text != null && text.isNotEmpty() && text.toString().matches("-?\\d+(\\.\\d+)?".toRegex()) && text.toString().toFloat() > 0 && text.toString().toInt() <= 20000 ) {
+                  prices[1] = text.toString().toFloat()
+            }else{
+                  prices[1] =  20000F
             }
+            handleSliders(transportBinding, prices)
         }
 
     }
@@ -173,6 +190,34 @@ class TransportFilterPopUp {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 editText?.setText(format.format(myCalendar.time))
             }
+        }
+        private fun resetAll(binding:CustomFilterTransportBinding, context: Context) {
+            binding.transportType.editText?.text?.clear()
+            binding.TransportClass.editText?.text?.clear()
+            binding.transportCity.editText?.text?.clear()
+            binding.transportCityT.editText?.text?.clear()
+            binding.transportPriceF.editText?.setText(context.resources.getString(R.string.DEFAULT_VALUE))
+            binding.transportPriceT.editText?.setText(context.resources.getString(R.string.MAX_PRICE))
+            binding.transportDateF.editText?.text?.clear()
+            binding.transportDateT.editText?.text?.clear()
+            binding.transportSlider.setValues(context.resources.getString(R.string.DEFAULT_VALUE).toFloat(), context.resources.getString(R.string.MAX_PRICE).toFloat())
+            typeValidation = true
+            levelValidation = true
+            cityValidation = true
+            cityTValidation = true
+        }
+        private fun displayOldFilter(binding: CustomFilterTransportBinding, oldFilter: TransportFilterCollection, context: Context) {
+            val cityF = if (oldFilter.cityFName.isNullOrEmpty()){context.resources.getString(R.string.EMPTY)}else{ "${oldFilter.cityFName} (${oldFilter.countryFName})"}
+            val cityT = if (oldFilter.cityTName.isNullOrEmpty()){context.resources.getString(R.string.EMPTY)}else{ "${oldFilter.cityTName} (${oldFilter.countryTName})"}
+            binding.transportCity.editText?.setText(cityF)
+            binding.transportCityT.editText?.setText(cityT)
+
+            binding.transportType.editText?.setText(oldFilter.typeName)
+            binding.TransportClass.editText?.setText(oldFilter.levelName)
+            binding.transportPriceF.editText?.setText(oldFilter.minPrice)
+            binding.transportPriceT.editText?.setText(oldFilter.maxPrice)
+            binding.transportDateF.editText?.setText(oldFilter.fromDate)
+            binding.transportDateT.editText?.setText(oldFilter.toDate)
         }
     }
 }

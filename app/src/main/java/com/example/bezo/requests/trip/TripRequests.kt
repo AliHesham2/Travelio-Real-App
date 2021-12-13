@@ -1,6 +1,7 @@
 package com.example.bezo.requests.trip
 
 import android.content.res.Resources
+import android.util.Log
 import com.example.bezo.R
 import com.example.bezo.model.data.Trips
 import com.example.bezo.model.service.AppApi
@@ -11,6 +12,7 @@ import org.json.JSONObject
 class TripRequests {
     companion object{
         suspend fun getTrips(pageNumber: Int, resources: Resources,  city_id:String, location_id:String, minPrice:String, maxPrice:String, fromDate:String, toDate:String, isSuccess: (data: Trips?, error: String?, success: Boolean) -> Unit) {
+            Log.i("Data::Trip","city_id:$city_id  location_id:$location_id  minPrice:$minPrice maxPrice:$maxPrice  fromDate:$fromDate   toDate:$toDate")
             val response = AppApi.appData.getTrips(5, pageNumber,city_id, location_id, minPrice, maxPrice,fromDate,toDate)
             if (response.isSuccessful) {
                 val data = response.body()

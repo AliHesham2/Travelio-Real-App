@@ -80,4 +80,15 @@
     <string name="change_password">Change Password</string>
     <string name="sign_out">Sign Out</string>
     <string name="DATE_FORM">yyyy-MM-dd</string>
+    <string name="no_hotels_found">NO Hotels Found</string>
+    <string name="no_package_found">No Package Found</string>
+    <string name="no_trips_found">No Trips Found</string>
+    <string name="no_transport_found">No Transport Found</string>
+    <string name="DEFAULT_VALUE">0</string>
+    <string name="MAX_PRICE">20000</string>
+    <string name="RATING_DEFAULT">0.0</string>
+    <string name="CHECK_PRICE">Check Price Range</string>
+    <string name="CHECK_PERSON">per person must be more than  0</string>
+    <string name="EMPTY"> </string>
+    <string name="Currency">EGP</string>
 </resources>

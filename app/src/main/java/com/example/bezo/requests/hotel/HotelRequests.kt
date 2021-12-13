@@ -1,6 +1,7 @@
 package com.example.bezo.requests.hotel
 
 import android.content.res.Resources
+import android.util.Log
 import com.example.bezo.R
 import com.example.bezo.model.data.Hotels
 import com.example.bezo.model.service.AppApi
@@ -11,6 +12,7 @@ import org.json.JSONObject
 class HotelRequests {
     companion object {
         suspend fun getHotels(pageNumber: Int,resources: Resources,hotelID:String,hotelCityID:String,mealID:String, stars:String,perRoom:String,minPrice:String,maxPrice:String ,isSuccess: (data: Hotels?, error: String?, success: Boolean) -> Unit) {
+            Log.i("Data::Hotel","hotelID:$hotelID  hotelCityID:$hotelCityID  mealID:$mealID stars:$stars  perRoom:$perRoom   minPrice:$minPrice   maxPrice:$maxPrice")
             val response = AppApi.appData.getHotels(5, pageNumber,hotelID,hotelCityID,mealID,stars,perRoom,minPrice,maxPrice)
             if (response.isSuccessful) {
                 val data = response.body()

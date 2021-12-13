@@ -5,7 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.bezo.R
 import com.example.bezo.model.data.FullTrip
+import com.example.bezo.model.data.FullTripFilterCollection
 import com.example.bezo.model.data.FullTrips
 import com.example.bezo.model.preference.Token
 import com.example.bezo.requests.fulltrip.FullTripRequests
@@ -17,13 +19,21 @@ import kotlinx.coroutines.withContext
 class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
     private var pageNumber = 0
 
-    private var _data = MutableLiveData<List<FullTrip>>()
-    val data: LiveData<List<FullTrip>>
+    private var _data = MutableLiveData<MutableList<FullTrip>?>()
+    val data: LiveData<MutableList<FullTrip>?>
         get() = _data
+
+    private var _filterData = MutableLiveData<FullTripFilterCollection?>()
+    val filterData : LiveData<FullTripFilterCollection?>
+        get() = _filterData
 
     private val _loading = MutableLiveData<Boolean?>()
     val loading: LiveData<Boolean?>
         get() = _loading
+
+    private val _swipeLoading = MutableLiveData<Boolean?>()
+    val swipeLoading: LiveData<Boolean?>
+        get() = _swipeLoading
 
     private val _noAuth = MutableLiveData<Boolean?>()
     val noAuth: LiveData<Boolean?>
@@ -41,7 +51,7 @@ class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
         callRequest()
     }
 
-    fun callRequest( hotels_list_id:String?="",hotels_list_city_id:String?="", minPrice:String?="", maxPrice:String?="", fromDate:String?="", toDate:String?="") {
+    fun callRequest(hotels_list_id:String?=app.resources.getString(R.string.EMPTY), hotels_list_city_id:String?=app.resources.getString(R.string.EMPTY), minPrice:String?=app.resources.getString(R.string.EMPTY), maxPrice:String?=app.resources.getString(R.string.EMPTY), fromDate:String?=app.resources.getString(R.string.EMPTY), toDate:String?=app.resources.getString(R.string.EMPTY)) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 getFullTrips(hotels_list_id,hotels_list_city_id, minPrice, maxPrice, fromDate, toDate)
@@ -69,19 +79,26 @@ class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
 
     private fun whenSuccess(data: FullTrips?) {
         if (data != null) {
-            stopLoading()
             val tripData = data.data.Packages.data
             if (tripData.isNotEmpty()) {
                 _loadMore.value = true
                 if (_data.value.isNullOrEmpty()) {
-                    _data.value = tripData
+                    _data.value = tripData.toMutableList()
+                    _data.value =_data.value
                 } else {
-                    _data.value = _data.value!!.plus(tripData)
+                    _data.value!!.addAll(tripData)
+                    _data.value = _data.value
                 }
             } else {
                 _loadMore.value = false
             }
+            stopLoading()
         }
+    }
+
+    fun resetData(){
+        _data.value = null
+        pageNumber = 0
     }
 
     //Show Loading spinner
@@ -101,6 +118,7 @@ class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
 
     //Hide loading spinner
     private fun stopLoading() {
+        _swipeLoading.value = false
         _loading.value = false
     }
 
@@ -115,5 +133,17 @@ class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
         stopLoading()
         Token.removeToken()
         _noAuth.value = true
+    }
+    fun saveFilterData(data: FullTripFilterCollection) {
+        _filterData.value = data
+    }
+    fun swipeLoadHandle(){
+        resetData()
+        _swipeLoading.value = true
+        if(_filterData.value != null){
+            callRequest(_filterData.value!!.hotels_list_id, _filterData.value!!.hotels_list_city_id, _filterData.value!!.minPrice, _filterData.value!!.maxPrice, _filterData.value!!.fromDate, _filterData.value!!.toDate)
+        }else{
+            callRequest()
+        }
     }
 }

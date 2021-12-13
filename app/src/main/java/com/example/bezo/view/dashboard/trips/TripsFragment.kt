@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentTripsBinding
+import com.example.bezo.model.data.TripFilterCollection
 import com.example.bezo.view.util.PopUpMsg
 import com.example.bezo.view.util.TripFilterPopUp
 
@@ -20,6 +21,7 @@ class TripsFragment : Fragment() {
     private lateinit var binding : FragmentTripsBinding
     private lateinit var viewModel: TripsViewModel
     private var  loadMore : Boolean = true
+    private var  swipeRefresh : Boolean = true
     private var isLoading = false
     private var isScrolling = false
     override fun onCreateView(
@@ -29,10 +31,11 @@ class TripsFragment : Fragment() {
         binding = FragmentTripsBinding.inflate(inflater)
         val application = requireNotNull(activity).application
         val collection = TripsFragmentArgs.fromBundle(requireArguments()).collection
+        var filterData : TripFilterCollection? = null
         val viewModelFactory = TripsViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(TripsViewModel::class.java)
         binding.data = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         //Adapter
         binding.tripsRecycler.adapter = TripAdapter(TripAdapter.OnClickListener{
@@ -43,8 +46,10 @@ class TripsFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.filter ->{
-                    TripFilterPopUp.handleTripFilter(this.requireContext(),collection){ data ->
-
+                    TripFilterPopUp.handleTripFilter(this.requireContext(),collection,filterData){ data ->
+                        viewModel.saveFilterData(data)
+                        viewModel.resetData()
+                        viewModel.callRequest(data.city_id,data.location_id,data.minPrice,data.maxPrice,data.fromDate,data.toDate)
                     }
                     true
                 }
@@ -61,6 +66,11 @@ class TripsFragment : Fragment() {
                 PopUpMsg.alertMsg(this.requireView(),it)
             }
         })
+        viewModel.filterData.observe(this.viewLifecycleOwner,{
+            if(it != null){
+                filterData = it
+            }
+        })
 
         viewModel.loadMore.observe(this.viewLifecycleOwner,{
             if(it != null){
@@ -73,7 +83,18 @@ class TripsFragment : Fragment() {
                 PopUpMsg.showLoginAgainDialogue(this)
             }
         })
+        viewModel.swipeLoading.observe(this.viewLifecycleOwner,{
+            if (it != null){
+                swipeRefresh = it
+                swipeRefreshToggle()
+            }
+        })
 
+        //onSwipeAction
+        binding.swipeLoad.setOnRefreshListener {
+            viewModel.swipeLoadHandle()
+            binding.swipeLoad.isRefreshing = swipeRefresh
+        }
 
         //Pagination
         binding.tripsRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -90,7 +111,11 @@ class TripsFragment : Fragment() {
                     val shouldPaginate =   isAtLastItem && isNotAtBeginning &&
                             isTotalMoreThanVisible && isScrolling && !isLoading
                     if(shouldPaginate) {
-                        viewModel.callRequest()
+                        if(filterData != null){
+                            viewModel.callRequest(filterData!!.city_id, filterData!!.location_id, filterData!!.minPrice, filterData!!.maxPrice, filterData!!.fromDate, filterData!!.toDate)
+                        }else{
+                            viewModel.callRequest()
+                        }
                         isScrolling = false
                     }
                 }
@@ -105,6 +130,8 @@ class TripsFragment : Fragment() {
 
         return binding.root
     }
-
+    private fun swipeRefreshToggle(){
+        binding.swipeLoad.isRefreshing = swipeRefresh
+    }
 
 }

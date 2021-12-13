@@ -76,9 +76,9 @@ fun showImage(img: ImageView, data: String?) {
 
 //Hotels
 @BindingAdapter("hotelAdapter")
-fun hotelAdapter(recyclerView: RecyclerView, data: List<Hotel>?) {
+fun hotelAdapter(recyclerView: RecyclerView, data: MutableList<Hotel>?) {
     val adapter = recyclerView.adapter as HotelAdapter
-    adapter.submitList(data)
+        adapter.submitList(data?.toMutableList())
 }
 
 @BindingAdapter("hotelArray")
@@ -118,7 +118,7 @@ fun hotelRate(rate: RatingBar, data: Int?) {
 @BindingAdapter("transportAdapter")
 fun transportAdapter(recyclerView: RecyclerView, data: List<Transportation>?) {
     val adapter = recyclerView.adapter as TransportAdapter
-    adapter.submitList(data)
+        adapter.submitList(data?.toMutableList())
 }
 
 @BindingAdapter("transportOrderAdapter")
@@ -164,9 +164,9 @@ fun transportClass(txt: TextView, data: String?) {
 
 //Trips
 @BindingAdapter("tripAdapter")
-fun tripAdapter(recyclerView: RecyclerView, data: List<Trip>?) {
+fun tripAdapter(recyclerView: RecyclerView, data: MutableList<Trip>?) {
     val adapter = recyclerView.adapter as TripAdapter
-    adapter.submitList(data)
+    adapter.submitList(data?.toMutableList())
 }
 
 @BindingAdapter("tripOrderAdapter")
@@ -184,9 +184,9 @@ fun tripImageAdapter(recyclerView: RecyclerView, data: List<TripImages>?) {
 
 //FullTrips
 @BindingAdapter("fullTripAdapter")
-fun fullTripAdapter(recyclerView: RecyclerView, data: List<FullTrip>?) {
+fun fullTripAdapter(recyclerView: RecyclerView, data: MutableList<FullTrip>?) {
     val adapter = recyclerView.adapter as FullTripAdapter
-    adapter.submitList(data)
+    adapter.submitList(data?.toMutableList())
 }
 @BindingAdapter("fullTripReserveAdapter")
 fun fullTripReserveAdapter(recyclerView: RecyclerView, data: List<FullTripReserveData>?) {

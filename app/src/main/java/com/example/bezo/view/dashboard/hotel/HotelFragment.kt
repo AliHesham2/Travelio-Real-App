@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentHotelBinding
+import com.example.bezo.model.data.HotelFilterCollection
 import com.example.bezo.view.util.HotelFilterPopUp
 import com.example.bezo.view.util.PopUpMsg
 
@@ -20,6 +21,7 @@ class HotelFragment : Fragment() {
     private lateinit var binding:FragmentHotelBinding
     private lateinit var viewModel:HotelViewModel
     private var  loadMore : Boolean = true
+    private var  swipeRefresh : Boolean = true
     private var isLoading = false
     private var isScrolling = false
     override fun onCreateView(
@@ -29,10 +31,12 @@ class HotelFragment : Fragment() {
         binding = FragmentHotelBinding.inflate(inflater,container,false)
         val application = requireNotNull(activity).application
         val collection = HotelFragmentArgs.fromBundle(requireArguments()).collection
+        var filterData : HotelFilterCollection?= null
         val viewModelFactory = HotelViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(HotelViewModel::class.java)
         binding.data = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
+
 
         //Adapter
         binding.hotelsRecycler.adapter = HotelAdapter(HotelAdapter.OnClickListener{
@@ -43,8 +47,10 @@ class HotelFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.filter ->{
-                    HotelFilterPopUp.handleHotelFilter(this.requireContext(),collection){ data ->
-
+                    HotelFilterPopUp.handleHotelFilter(this.requireContext(),collection,filterData){ data ->
+                        viewModel.saveFilterData(data)
+                        viewModel.resetData()
+                        viewModel.callRequest(data.hotels_list_id,data.hotels_list_city_id,data.meal_id,data.stars,data.perRoom,data.minPrice,data.maxPrice)
                     }
                     true
                 }
@@ -61,6 +67,11 @@ class HotelFragment : Fragment() {
             }
         })
 
+        viewModel.filterData.observe(this.viewLifecycleOwner,{
+            if(it != null){
+                filterData = it
+            }
+        })
 
         viewModel.loadMore.observe(this.viewLifecycleOwner,{
             if(it != null){
@@ -73,8 +84,18 @@ class HotelFragment : Fragment() {
                PopUpMsg.showLoginAgainDialogue(this)
             }
         })
+        viewModel.swipeLoading.observe(this.viewLifecycleOwner,{
+            if (it != null){
+                swipeRefresh = it
+                swipeRefreshToggle()
+            }
+        })
 
-
+        //onSwipeAction
+        binding.swipeLoad.setOnRefreshListener {
+            viewModel.swipeLoadHandle()
+            binding.swipeLoad.isRefreshing = swipeRefresh
+        }
 
         //Pagination
         binding.hotelsRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -91,7 +112,11 @@ class HotelFragment : Fragment() {
                     val shouldPaginate =   isAtLastItem && isNotAtBeginning &&
                             isTotalMoreThanVisible && isScrolling && !isLoading
                     if(shouldPaginate) {
-                        viewModel.callRequest()
+                        if (filterData != null){
+                            viewModel.callRequest(filterData!!.hotels_list_id, filterData!!.hotels_list_city_id, filterData!!.meal_id, filterData!!.stars, filterData!!.perRoom, filterData!!.minPrice, filterData!!.maxPrice)
+                        }else{
+                            viewModel.callRequest()
+                        }
                         isScrolling = false
                     }
                 }
@@ -105,5 +130,8 @@ class HotelFragment : Fragment() {
         })
 
         return  binding.root
+    }
+    private fun swipeRefreshToggle(){
+        binding.swipeLoad.isRefreshing = swipeRefresh
     }
 }

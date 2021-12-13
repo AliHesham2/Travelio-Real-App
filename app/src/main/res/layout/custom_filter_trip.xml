@@ -32,6 +32,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/resetAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Reset All"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scroll"
             android:layout_width="match_parent"
@@ -131,10 +143,9 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/price_f"
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="-5dp"
                     android:hint="@string/LE"
                     android:textColorHint="@color/black"
                     app:boxBackgroundColor="@null"
@@ -146,17 +157,14 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:inputType="date" />
+                        android:inputType="number"
+                        android:text="@string/DEFAULT_VALUE" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/price_t"
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="-5dp"
@@ -171,11 +179,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:inputType="date" />
+                        android:inputType="number"
+                        android:text="@string/MAX_PRICE" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.slider.RangeSlider

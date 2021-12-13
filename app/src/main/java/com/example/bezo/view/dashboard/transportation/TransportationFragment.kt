@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentTransportationBinding
+import com.example.bezo.model.data.TransportFilterCollection
 import com.example.bezo.view.util.PopUpMsg
 import com.example.bezo.view.util.TransportFilterPopUp
 
@@ -20,22 +21,20 @@ class TransportationFragment : Fragment() {
     private lateinit var binding : FragmentTransportationBinding
     private lateinit var viewModel: TransportationViewModel
     private var  loadMore : Boolean = true
+    private var  swipeRefresh : Boolean = true
     private var isLoading = false
     private var isScrolling = false
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-
-    ): View {
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         //Initialization
         binding = FragmentTransportationBinding.inflate(inflater)
         val application = requireNotNull(activity).application
         val collection = TransportationFragmentArgs.fromBundle(requireArguments()).collection
+        var filterData : TransportFilterCollection?= null
         val viewModelFactory = TransportationViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(TransportationViewModel::class.java)
         binding.data = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
         //Adapter
         binding.transportsRecycler.adapter = TransportAdapter(TransportAdapter.OnClickListener{
             this.findNavController().navigate(TransportationFragmentDirections.actionTransportationFragmentToSingleTransportationFragment(it))
@@ -45,8 +44,10 @@ class TransportationFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.filter ->{
-                    TransportFilterPopUp.handleTransportFilter(this.requireContext(),collection){ data ->
-
+                    TransportFilterPopUp.handleTransportFilter(this.requireContext(),collection,filterData){ data ->
+                        viewModel.saveFilterData(data)
+                        viewModel.resetData()
+                        viewModel.callRequest(data.city_from_id,data.city_to_id,data.level_id,data.type_id,data.minPrice,data.maxPrice,data.fromDate,data.toDate)
                     }
                     true
                 }
@@ -63,6 +64,11 @@ class TransportationFragment : Fragment() {
                 PopUpMsg.alertMsg(this.requireView(),it)
             }
         })
+        viewModel.filterData.observe(this.viewLifecycleOwner,{
+            if(it != null){
+               filterData = it
+            }
+        })
 
         viewModel.loadMore.observe(this.viewLifecycleOwner,{
             if(it != null){
@@ -75,8 +81,17 @@ class TransportationFragment : Fragment() {
                 PopUpMsg.showLoginAgainDialogue(this)
             }
         })
-
-
+        viewModel.swipeLoading.observe(this.viewLifecycleOwner,{
+            if (it != null){
+                swipeRefresh = it
+                swipeRefreshToggle()
+            }
+        })
+        //onSwipeAction
+        binding.swipeLoad.setOnRefreshListener {
+            viewModel.swipeLoadHandle()
+            binding.swipeLoad.isRefreshing = swipeRefresh
+        }
         //Pagination
         binding.transportsRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -92,7 +107,11 @@ class TransportationFragment : Fragment() {
                     val shouldPaginate =   isAtLastItem && isNotAtBeginning &&
                             isTotalMoreThanVisible && isScrolling && !isLoading
                     if(shouldPaginate) {
-                        viewModel.callRequest()
+                        if(filterData != null){
+                            viewModel.callRequest(filterData!!.city_from_id, filterData!!.city_to_id, filterData!!.level_id, filterData!!.type_id, filterData!!.minPrice, filterData!!.maxPrice, filterData!!.fromDate, filterData!!.toDate)
+                        }else{
+                            viewModel.callRequest()
+                        }
                         isScrolling = false
                     }
                 }
@@ -107,5 +126,7 @@ class TransportationFragment : Fragment() {
 
         return binding.root
     }
-
+    private fun swipeRefreshToggle(){
+        binding.swipeLoad.isRefreshing = swipeRefresh
+    }
 }

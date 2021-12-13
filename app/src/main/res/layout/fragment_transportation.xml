@@ -40,11 +40,23 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/transports_recycler"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layoutAnimation="@anim/layout_animation"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,13 +65,14 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:transportAdapter="@{data.data}"
         tools:listitem="@layout/custom_transports_card_view" />
-
+    </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <ProgressBar
         android:id="@+id/first_load"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/Mix9"
-        android:visibility="@{data.loading == true &amp;&amp; data.data == null ? View.VISIBLE :View.GONE }"
+        android:visibility="@{data.loading == true &amp;&amp; data.data == null &amp;&amp; data.swipeLoading == false ? View.VISIBLE :View.GONE }"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,11 +84,19 @@
         android:layout_height="30dp"
         android:indeterminateTint="@color/Mix9"
         android:visibility="@{data.loading == true &amp;&amp; data.data != null ? View.VISIBLE :View.GONE }"
-        app:layout_constraintEnd_toEndOf="@+id/transports_recycler"
-        app:layout_constraintStart_toStartOf="@+id/transports_recycler"
+        app:layout_constraintEnd_toEndOf="@+id/swipeLoad"
+        app:layout_constraintStart_toStartOf="@+id/swipeLoad"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_transport_found"
+        android:visibility="@{data.loading == false &amp;&amp; data.data == null &amp;&amp; data.swipeLoading == false ? View.VISIBLE :View.GONE }"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

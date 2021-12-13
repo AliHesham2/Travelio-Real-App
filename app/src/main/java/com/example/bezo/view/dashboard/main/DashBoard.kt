@@ -2,6 +2,7 @@ package com.example.bezo.view.dashboard.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +48,10 @@ class DashBoard : Fragment() {
             }
         }
 
+        //onClick
+        binding.hotelContainer.setOnClickListener {
+            Log.i("A7oz","A75aa5a5a")
+        }
         //observer
         viewModel.error.observe(this.viewLifecycleOwner,{
             if(it != null){

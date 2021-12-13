@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bezo.R
 import com.example.bezo.databinding.FragmentFullTripBinding
+import com.example.bezo.model.data.FullTripFilterCollection
 import com.example.bezo.view.util.FullTripFilterPopUp
 import com.example.bezo.view.util.PopUpMsg
 
@@ -20,6 +21,7 @@ class FullTripFragment : Fragment() {
     private lateinit var binding : FragmentFullTripBinding
     private lateinit var viewModel: FullTripViewModel
     private var  loadMore : Boolean = true
+    private var  swipeRefresh : Boolean = true
     private var isLoading = false
     private var isScrolling = false
     override fun onCreateView(
@@ -31,10 +33,11 @@ class FullTripFragment : Fragment() {
         binding = FragmentFullTripBinding.inflate(inflater)
         val application = requireNotNull(activity).application
         val collection = FullTripFragmentArgs.fromBundle(requireArguments()).collection
+        var filterData : FullTripFilterCollection?= null
         val viewModelFactory = FullTripViewModelFactory(application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(FullTripViewModel::class.java)
         binding.data = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         //Adapter
         binding.fullTripsRecycler.adapter = FullTripAdapter(FullTripAdapter.OnClickListener{
@@ -45,8 +48,10 @@ class FullTripFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.filter ->{
-                    FullTripFilterPopUp.handleFullTripFilter(this.requireContext(),collection){ data ->
-
+                    FullTripFilterPopUp.handleFullTripFilter(this.requireContext(),collection,filterData){ data ->
+                        viewModel.saveFilterData(data)
+                        viewModel.resetData()
+                        viewModel.callRequest(data.hotels_list_id,data.hotels_list_city_id,data.minPrice,data.maxPrice,data.fromDate,data.toDate)
                     }
                     true
                 }
@@ -63,6 +68,11 @@ class FullTripFragment : Fragment() {
                 PopUpMsg.alertMsg(this.requireView(),it)
             }
         })
+        viewModel.filterData.observe(this.viewLifecycleOwner,{
+            if(it != null){
+                filterData = it
+            }
+        })
 
         viewModel.noAuth.observe(this.viewLifecycleOwner,{
             if(it == true){
@@ -75,6 +85,18 @@ class FullTripFragment : Fragment() {
                 loadMore = it
             }
         })
+        viewModel.swipeLoading.observe(this.viewLifecycleOwner,{
+            if (it != null){
+                swipeRefresh = it
+                swipeRefreshToggle()
+            }
+        })
+
+        //onSwipeAction
+        binding.swipeLoad.setOnRefreshListener {
+            viewModel.swipeLoadHandle()
+            binding.swipeLoad.isRefreshing = swipeRefresh
+        }
 
         //Pagination
         binding.fullTripsRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -88,10 +110,13 @@ class FullTripFragment : Fragment() {
                     val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
                     val isNotAtBeginning = firstVisibleItemPosition >= 0
                     val isTotalMoreThanVisible = totalItemCount >= 5
-                    val shouldPaginate =   isAtLastItem && isNotAtBeginning &&
-                            isTotalMoreThanVisible && isScrolling && !isLoading
+                    val shouldPaginate =   isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling && !isLoading
                     if(shouldPaginate) {
-                        viewModel.callRequest()
+                        if(filterData != null){
+                            viewModel.callRequest(filterData!!.hotels_list_id, filterData!!.hotels_list_city_id, filterData!!.minPrice, filterData!!.maxPrice, filterData!!.fromDate, filterData!!.toDate)
+                        }else{
+                            viewModel.callRequest()
+                        }
                         isScrolling = false
                     }
                 }
@@ -105,5 +130,8 @@ class FullTripFragment : Fragment() {
         })
 
         return binding.root
+    }
+    private fun swipeRefreshToggle(){
+        binding.swipeLoad.isRefreshing = swipeRefresh
     }
 }

@@ -5,7 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.bezo.R
 import com.example.bezo.model.data.Hotel
+import com.example.bezo.model.data.HotelFilterCollection
 import com.example.bezo.model.data.Hotels
 import com.example.bezo.model.preference.Token
 import com.example.bezo.requests.hotel.HotelRequests
@@ -19,13 +21,22 @@ class HotelViewModel(private val app:Application): AndroidViewModel(app) {
 
     private var pageNumber = 0
 
-    private var _data = MutableLiveData<List<Hotel>?>()
-    val data : LiveData<List<Hotel>?>
+    private var _data = MutableLiveData<MutableList<Hotel>?>()
+    val data : LiveData<MutableList<Hotel>?>
         get() = _data
+
+    private var _filterData = MutableLiveData<HotelFilterCollection?>()
+    val filterData : LiveData<HotelFilterCollection?>
+        get() = _filterData
 
     private val _loading = MutableLiveData<Boolean?>()
     val loading: LiveData<Boolean?>
         get() = _loading
+
+    private val _swipeLoading = MutableLiveData<Boolean?>()
+    val swipeLoading: LiveData<Boolean?>
+        get() = _swipeLoading
+
 
     private val _noAuth = MutableLiveData<Boolean?>()
     val noAuth: LiveData<Boolean?>
@@ -43,7 +54,7 @@ class HotelViewModel(private val app:Application): AndroidViewModel(app) {
         callRequest()
     }
 
-      fun callRequest(hotelID:String?="",hotelCityID:String?="",mealID:String?="", stars:String?="",perRoom:String?="",minPrice:String?="",maxPrice:String?=""){
+      fun callRequest(hotelID:String?=app.resources.getString(R.string.EMPTY), hotelCityID:String?=app.resources.getString(R.string.EMPTY), mealID:String?=app.resources.getString(R.string.EMPTY), stars:String?=app.resources.getString(R.string.EMPTY), perRoom:String?=app.resources.getString(R.string.EMPTY), minPrice:String?=app.resources.getString(R.string.EMPTY), maxPrice:String?=app.resources.getString(R.string.EMPTY)){
              viewModelScope.launch(Dispatchers.IO) {
                  try{
                      getHotelsData(hotelID,hotelCityID,mealID,stars,perRoom,minPrice,maxPrice)
@@ -78,18 +89,20 @@ class HotelViewModel(private val app:Application): AndroidViewModel(app) {
     //Display data
     private  fun whenSuccess(data: Hotels?) {
         if (data != null) {
-            stopLoading()
             val hotelData = data.data.hotels.data
             if(hotelData.isNotEmpty()){
                 _loadMore.value = true
                 if(_data.value.isNullOrEmpty()){
-                    _data.value = hotelData
+                    _data.value = hotelData.toMutableList()
+                    _data.value = _data.value
                 }else{
-                    _data.value = _data.value!!.plus(hotelData)
+                    _data.value!!.addAll(hotelData)
+                    _data.value = _data.value
                 }
             }else{
                 _loadMore.value = false
             }
+            stopLoading()
         }
     }
 
@@ -108,6 +121,7 @@ class HotelViewModel(private val app:Application): AndroidViewModel(app) {
     }
     //Stop loading spinner
     private  fun stopLoading(){
+        _swipeLoading.value = false
         _loading.value = false
     }
     //Handle Backend Errors
@@ -122,5 +136,17 @@ class HotelViewModel(private val app:Application): AndroidViewModel(app) {
         _noAuth.value = true
     }
 
+    fun saveFilterData(data: HotelFilterCollection) {
+        _filterData.value = data
+    }
 
+    fun swipeLoadHandle(){
+        resetData()
+        _swipeLoading.value = true
+        if(_filterData.value != null){
+            callRequest(_filterData.value!!.hotels_list_id, _filterData.value!!.hotels_list_city_id, _filterData.value!!.meal_id, _filterData.value!!.stars, _filterData.value!!.perRoom, _filterData.value!!.minPrice, _filterData.value!!.maxPrice)
+        }else{
+            callRequest()
+        }
+    }
 }

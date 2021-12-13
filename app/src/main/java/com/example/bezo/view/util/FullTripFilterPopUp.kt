@@ -4,7 +4,6 @@ package com.example.bezo.view.util
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -15,8 +14,6 @@ import com.example.bezo.R
 import com.example.bezo.databinding.CustomFilterFullTripBinding
 import com.example.bezo.model.data.Collection
 import com.example.bezo.model.data.FullTripFilterCollection
-import com.example.bezo.model.data.HotelFilterCollection
-import com.example.bezo.model.data.TripFilterCollection
 import com.google.android.material.slider.RangeSlider
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -27,11 +24,13 @@ class FullTripFilterPopUp {
         private lateinit var fProgressDialog: Dialog
         private var cityValidation = true
         private var hotelValidation = true
+        private var priceValidation = true
+        private var prices = mutableListOf(0F, 20000F)
         private val myCalendar: Calendar = Calendar.getInstance()
 
-        fun handleFullTripFilter(context: Context, collection: Collection,fullTripParams:(data: FullTripFilterCollection) -> Unit) {
+        fun handleFullTripFilter(context: Context, collection: Collection,oldFilter:FullTripFilterCollection?,fullTripParams:(data: FullTripFilterCollection) -> Unit) {
             val binding = CustomFilterFullTripBinding.inflate(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
-            var prices = mutableListOf(0F, 20000F)
+            if(oldFilter != null) { displayOldFilter(binding, oldFilter,context) }
             setupCities(binding, context, collection)
             setupHotels(binding, context, collection)
 
@@ -45,7 +44,7 @@ class FullTripFilterPopUp {
             binding.slider.setLabelFormatter { value: Float ->
                 val format = NumberFormat.getCurrencyInstance()
                 format.maximumFractionDigits = 0
-                format.currency = Currency.getInstance("EGP")
+                format.currency = Currency.getInstance(context.resources.getString(R.string.Currency))
                 format.format(value.toDouble())
             }
             //date
@@ -57,19 +56,28 @@ class FullTripFilterPopUp {
                 val wantedHotel = collection.hotelName.data.hotelsList.find { it.name == binding.HotelName.editText?.text.toString().trim() }
 
                 if (binding.City.editText?.text.toString().isNotEmpty()) { if (wantedCity == null) { cityValidation = false
-                    binding.City.editText?.error = context.resources.getString(R.string.FROM_LIST) } } else { cityValidation = true }
+                    binding.City.editText?.error = context.resources.getString(R.string.FROM_LIST) } else { cityValidation = true} }
 
 
                 if (binding.HotelName.editText?.text.toString().isNotEmpty()) { if (wantedHotel == null) { hotelValidation = false
-                    binding.HotelName.editText?.error = context.resources.getString(R.string.FROM_LIST) } } else { hotelValidation = true }
+                    binding.HotelName.editText?.error = context.resources.getString(R.string.FROM_LIST) } else { hotelValidation = true }  }
 
                 val priceF = binding.PriceF.editText?.text.toString().trim().toIntOrNull()
                 val priceT = binding.PriceT.editText?.text.toString().trim().toIntOrNull()
 
+                priceValidation = !(priceF == null || priceT == null || priceF > priceT || priceF < 0 || priceT < 0 || priceT > 20000 || priceF > 20000)
+                if(!priceValidation){PopUpMsg.toastMsg(context,context.resources.getString(R.string.CHECK_PRICE))}
+
                 val dateF = binding.DateF.editText?.text.toString()
                 val dateT = binding.DateT.editText?.text.toString()
-                if(cityValidation && hotelValidation ){
-                   FullTripFilterCollection(wantedHotel?.id?.toString() ?: "",wantedCity?.id?.toString() ?: "" ,priceF?.toString() ?: "" , priceT?.toString() ?: "" ,dateF, dateT)
+                if(cityValidation && hotelValidation && priceValidation){
+                  fullTripParams(FullTripFilterCollection(
+                      wantedHotel?.id?.toString() ?: context.resources.getString(R.string.EMPTY), wantedHotel?.name ?:context.resources.getString(R.string.EMPTY) ,
+                      wantedCity?.id?.toString() ?: context.resources.getString(R.string.EMPTY) ,   wantedCity?.name ?: context.resources.getString(R.string.EMPTY), wantedCity?.country?.iso3?: context.resources.getString(R.string.EMPTY),
+                      priceF?.toString() ?: context.resources.getString(R.string.EMPTY) ,
+                      priceT?.toString() ?: context.resources.getString(R.string.EMPTY) ,
+                      dateF, dateT))
+                    fProgressDialog.hide()
                 }
 
             }
@@ -86,6 +94,9 @@ class FullTripFilterPopUp {
             binding.close.setOnClickListener {
                 fProgressDialog.dismiss()
             }
+            binding.resetAll.setOnClickListener {
+                resetAll(binding,context)
+            }
             binding.slider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
                 override fun onStartTrackingTouch(slider: RangeSlider) {
                 }
@@ -98,16 +109,20 @@ class FullTripFilterPopUp {
 
             })
             binding.PriceF.editText?.doOnTextChanged { text, _, _, _ ->
-                if (text != null && text.isNotEmpty()) {
-                    prices = HotelFilterPopUp.handleFirstValue(prices, text)
-                    handleSliders(binding, prices)
+                if (text != null && text.isNotEmpty()&& text.toString().matches("-?\\d+(\\.\\d+)?".toRegex()) && text.toString().toFloat() > 0 && text.toString().toInt() <= 20000 ) {
+                    prices[0] =  text.toString().toFloat()
+                }else{
+                    prices[0] = 0F
                 }
+                handleSliders(binding, prices)
             }
-            binding.PriceF.editText?.doOnTextChanged { text, _, _, _ ->
-                if (text != null && text.isNotEmpty()) {
-                    prices = HotelFilterPopUp.handleSecondValue(prices, text)
-                    handleSliders(binding, prices)
+            binding.PriceT.editText?.doOnTextChanged { text, _, _, _ ->
+                 if (text != null && text.isNotEmpty()&& text.toString().matches("-?\\d+(\\.\\d+)?".toRegex()) && text.toString().toFloat() > 0 && text.toString().toInt() <= 20000 ) {
+                     prices[1] = text.toString().toFloat()
+                }else{
+                     prices[1] = 20000F
                 }
+                handleSliders(binding, prices)
             }
 
         }
@@ -140,6 +155,26 @@ class FullTripFilterPopUp {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 editText?.setText(format.format(myCalendar.time))
             }
+        }
+        private fun resetAll(binding:CustomFilterFullTripBinding, context: Context) {
+            binding.HotelName.editText?.text?.clear()
+            binding.City.editText?.text?.clear()
+            binding.PriceF.editText?.text?.clear()
+            binding.PriceT.editText?.text?.clear()
+            binding.DateF.editText?.text?.clear()
+            binding.DateT.editText?.text?.clear()
+            binding.slider.setValues(context.resources.getString(R.string.DEFAULT_VALUE).toFloat(), context.resources.getString(R.string.MAX_PRICE).toFloat())
+            cityValidation = true
+            hotelValidation = true
+        }
+        private fun displayOldFilter(binding: CustomFilterFullTripBinding, oldFilter: FullTripFilterCollection, context: Context) {
+            val city = if (oldFilter.cityName.isNullOrEmpty()){context.resources.getString(R.string.EMPTY)}else{ "${oldFilter.cityName} (${oldFilter.countryName})"}
+            binding.HotelName.editText?.setText(oldFilter.hotelName)
+            binding.City.editText?.setText(city)
+            binding.PriceF.editText?.setText(oldFilter.minPrice)
+            binding.PriceT.editText?.setText(oldFilter.maxPrice)
+            binding.DateF.editText?.setText(oldFilter.fromDate)
+            binding.DateT.editText?.setText(oldFilter.toDate)
         }
     }
 }

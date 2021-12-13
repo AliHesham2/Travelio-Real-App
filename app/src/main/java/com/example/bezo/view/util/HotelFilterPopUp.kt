@@ -21,10 +21,13 @@ companion object {
     private var cityValidation = true
     private var mealValidation = true
     private var hotelValidation = true
+    private var priceValidation = true
+    private var personValidation = true
+    private var prices = mutableListOf(0F, 20000F)
 
-    fun handleHotelFilter(context: Context, collection: Collection,hotelParams:(data:HotelFilterCollection) -> Unit) {
+    fun handleHotelFilter(context: Context, collection: Collection,oldFilter:HotelFilterCollection?,hotelParams:(data:HotelFilterCollection) -> Unit) {
         val hotelBinding = CustomFilterHotelBinding.inflate(context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
-        var prices = mutableListOf(0F, 20000F)
+        if (oldFilter != null){displayOldFilter(hotelBinding,oldFilter,context)}
         setupCities(hotelBinding, context, collection)
         setupMeals(hotelBinding, context, collection)
         setupHotels(hotelBinding, context, collection)
@@ -41,7 +44,7 @@ companion object {
         hotelBinding.slider.setLabelFormatter { value: Float ->
             val format = NumberFormat.getCurrencyInstance()
             format.maximumFractionDigits = 0
-            format.currency = Currency.getInstance("EGP")
+            format.currency = Currency.getInstance(context.resources.getString(R.string.Currency))
             format.format(value.toDouble())
         }
         hotelBinding.submit.setOnClickListener {
@@ -69,18 +72,31 @@ companion object {
             val priceT = hotelBinding.priceT.editText?.text.toString().trim().toIntOrNull()
             val perPerson = hotelBinding.id.editText?.text.toString().trim().toIntOrNull()
 
-             rating =  if(rating == "0.0"){""}else{ rating }
+            personValidation = !(perPerson == null || perPerson < 0)
+            if(!personValidation){PopUpMsg.toastMsg(context,context.resources.getString(R.string.CHECK_PERSON))}
+
+            priceValidation = !(priceF == null || priceT == null || priceF > priceT || priceF < 0 || priceT < 0 || priceT > 20000 || priceF > 20000)
+            if(!priceValidation){PopUpMsg.toastMsg(context,context.resources.getString(R.string.CHECK_PRICE))}
+
+             rating =  if(rating == context.resources.getString(R.string.RATING_DEFAULT)){context.resources.getString(R.string.EMPTY)}else{ rating.toFloat().toInt().toString() }
             val perPersonText = if(perPerson == 0 || perPerson == null){""}else{perPerson.toString()}
 
-
-            if(cityValidation && mealValidation && hotelValidation){
-                HotelFilterCollection(perPersonText,wantedHotel?.id?.toString() ?: "",wantedCity?.id?.toString() ?: "",wantedMeal?.id?.toString() ?: "",rating,priceF?.toString() ?: "",priceT?.toString() ?: "")
+            if(cityValidation && mealValidation && hotelValidation && priceValidation && personValidation ){
+                hotelParams(HotelFilterCollection(perPersonText,
+                    wantedHotel?.id?.toString() ?: context.resources.getString(R.string.EMPTY), wantedHotel?.name ?: context.resources.getString(R.string.EMPTY),
+                    wantedCity?.id?.toString() ?: context.resources.getString(R.string.EMPTY), wantedCity?.name ?: context.resources.getString(R.string.EMPTY) , wantedCity?.country?.iso3 ?: context.resources.getString(R.string.EMPTY),
+                    wantedMeal?.id?.toString() ?: context.resources.getString(R.string.EMPTY), wantedMeal?.name ?: context.resources.getString(R.string.EMPTY) ,
+                    rating,priceF?.toString() ?: context.resources.getString(R.string.EMPTY),
+                    priceT?.toString() ?: context.resources.getString(R.string.EMPTY)))
+                hProgressDialog.dismiss()
             }
 
-            // hProgressDialog.dismiss()
         }
         hotelBinding.reset.setOnClickListener {
-            hotelBinding.rBar.rating = 0F
+            resetRateBar(hotelBinding)
+        }
+        hotelBinding.resetAll.setOnClickListener {
+            resetAll(hotelBinding,context)
         }
         hotelBinding.close.setOnClickListener {
             hProgressDialog.dismiss()
@@ -103,46 +119,27 @@ companion object {
 
         })
         hotelBinding.priceF.editText?.doOnTextChanged { text, _, _, _ ->
-            if (text != null && text.isNotEmpty()) {
-                prices = handleFirstValue(prices, text)
-                handleSliders(hotelBinding, prices)
+             if (text != null && text.isNotEmpty() && text.toString().matches("-?\\d+(\\.\\d+)?".toRegex()) && text.toString().toInt() > 0 && text.toString().toInt() <= 20000 ) {
+                 prices[0] =text.toString().toFloat()
+            }else{
+                 prices[0] = 0F
             }
+            handleSliders(hotelBinding, prices)
         }
         hotelBinding.priceT.editText?.doOnTextChanged { text, _, _, _ ->
-            if (text != null && text.isNotEmpty()) {
-                prices = handleSecondValue(prices, text)
-                handleSliders(hotelBinding, prices)
+             if (text != null && text.isNotEmpty() && text.toString().matches("-?\\d+(\\.\\d+)?".toRegex()) && text.toString().toInt() > 0 && text.toString().toInt() <= 20000) {
+                prices[1] = text.toString().toFloat()
+            }else{
+                prices[1] = 20000F
             }
+            handleSliders(hotelBinding, prices)
         }
-
-    }
-
-    fun handleFirstValue(prices: MutableList<Float>, text: CharSequence): MutableList<Float> {
-        if (text.toString().isEmpty() || !text.toString()
-                .matches("-?\\d+(\\.\\d+)?".toRegex()) || text.toString().toFloat() < 0
-        ) {
-            prices[0] = 0F
-        } else {
-            prices[0] = text.toString().toFloat()
-        }
-        return prices
-    }
-
-    fun handleSecondValue(prices: MutableList<Float>, text: CharSequence): MutableList<Float> {
-        if (text.toString().isEmpty() || !text.toString()
-                .matches("-?\\d+(\\.\\d+)?".toRegex()) || text.toString().toFloat() < 0
-        ) {
-            prices[1] = 20000F
-        } else {
-
-            prices[1] = text.toString().toFloat()
-        }
-        return prices
     }
 
     private fun handleSliders(binding: CustomFilterHotelBinding, prices: MutableList<Float>) {
         binding.slider.setValues(prices[0], prices[1])
     }
+
 
     private fun setupCities(binding: CustomFilterHotelBinding, context: Context, collection: Collection) {
         val x = mutableListOf<String>()
@@ -194,6 +191,32 @@ companion object {
             number--
         }
         binding.id.editText?.setText(number.toString())
+    }
+    private fun resetAll(hotelBinding: CustomFilterHotelBinding, context: Context) {
+        resetRateBar(hotelBinding)
+        hotelBinding.HotelName.editText?.text?.clear()
+        hotelBinding.Meal.editText?.text?.clear()
+        hotelBinding.City.editText?.text?.clear()
+        hotelBinding.id.editText?.setText(context.resources.getString(R.string.DEFAULT_VALUE))
+        hotelBinding.priceF.editText?.setText(context.resources.getString(R.string.DEFAULT_VALUE))
+        hotelBinding.priceT.editText?.setText(context.resources.getString(R.string.MAX_PRICE))
+        hotelBinding.slider.setValues(context.resources.getString(R.string.DEFAULT_VALUE).toFloat(), context.resources.getString(R.string.MAX_PRICE).toFloat())
+        cityValidation = true
+        mealValidation = true
+        hotelValidation = true
+    }
+
+    private fun resetRateBar(hotelBinding: CustomFilterHotelBinding) {
+        hotelBinding.rBar.rating = 0F
+    }
+    private fun displayOldFilter(hotelBinding: CustomFilterHotelBinding, oldFilter: HotelFilterCollection, context: Context,) {
+        val city = if (oldFilter.cityName.isNullOrEmpty()){context.resources.getString(R.string.EMPTY)}else{ "${oldFilter.cityName} (${oldFilter.countryName})"}
+        hotelBinding.City.editText?.setText(city)
+        hotelBinding.HotelName.editText?.setText(oldFilter.hotelName)
+        hotelBinding.Meal.editText?.setText(oldFilter.mealName)
+        hotelBinding.id.editText?.setText(oldFilter.perRoom)
+        hotelBinding.priceF.editText?.setText(oldFilter.minPrice)
+        hotelBinding.priceT.editText?.setText(oldFilter.maxPrice)
     }
 }
 }

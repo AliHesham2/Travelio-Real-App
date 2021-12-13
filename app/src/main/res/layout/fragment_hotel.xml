@@ -41,23 +41,38 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/hotels_recycler"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLoad"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="3dp"
-        android:layoutAnimation="@anim/layout_animation"
-        app:hotelAdapter="@{data.data}"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        tools:listitem="@layout/custom_hotel_card_view" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/hotels_recycler"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:layoutAnimation="@anim/layout_animation"
+                app:hotelAdapter="@{data.data}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/custom_hotel_card_view" />
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/first_load"
-        android:visibility="@{data.loading == true &amp;&amp; data.data == null ? View.VISIBLE :View.GONE }"
+        android:visibility="@{data.loading == true &amp;&amp; data.data == null &amp;&amp; data.swipeLoading == false ? View.VISIBLE :View.GONE }"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/Mix9"
@@ -74,8 +89,18 @@
         android:indeterminateTint="@color/Mix9"
         android:visibility="@{data.loading == true &amp;&amp; data.data != null ? View.VISIBLE :View.GONE }"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/hotels_recycler"
-        app:layout_constraintStart_toStartOf="@+id/hotels_recycler" />
+        app:layout_constraintEnd_toEndOf="@+id/swipeLoad"
+        app:layout_constraintStart_toStartOf="@+id/swipeLoad" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_hotels_found"
+        android:visibility="@{data.loading == false &amp;&amp; data.data == null &amp;&amp; data.swipeLoading == false ? View.VISIBLE :View.GONE }"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
