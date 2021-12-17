@@ -4,7 +4,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.bezo.model.data.TransportationImages" />
+            type="com.example.travelio.model.data.TransportationImages" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"

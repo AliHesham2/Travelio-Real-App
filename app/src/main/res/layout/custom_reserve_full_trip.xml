@@ -5,7 +5,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.bezo.model.data.FullTripReserveData" />
+            type="com.example.travelio.model.data.FullTripReserveData" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"

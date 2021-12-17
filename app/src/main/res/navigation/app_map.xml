@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/dashBoard"
-        android:name="com.example.bezo.view.dashboard.main.DashBoard"
+        android:name="com.example.travelio.view.dashboard.main.DashBoard"
         android:label="DashBoard"
         tools:layout="@layout/fragment_dash_board">
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/hotelFragment"
-        android:name="com.example.bezo.view.dashboard.hotel.HotelFragment"
+        android:name="com.example.travelio.view.dashboard.hotel.HotelFragment"
         android:label="HotelFragment"
         tools:layout="@layout/fragment_hotel">
         <action
@@ -57,16 +57,16 @@
             app:popUpTo="@id/dashBoard" />
         <argument
             android:name="collection"
-            app:argType="com.example.bezo.model.data.Collection" />
+            app:argType="com.example.travelio.model.data.Collection" />
     </fragment>
     <fragment
         android:id="@+id/singleHotelFragment"
-        android:name="com.example.bezo.view.single.hotel.SingleHotelFragment"
+        android:name="com.example.travelio.view.single.hotel.SingleHotelFragment"
         android:label="SingleHotelFragment"
         tools:layout="@layout/fragment_single_hotel">
         <argument
             android:name="hotelData"
-            app:argType="com.example.bezo.model.data.Hotel" />
+            app:argType="com.example.travelio.model.data.Hotel" />
         <action
             android:id="@+id/action_singleHotelFragment_to_dashBoard"
             app:destination="@id/dashBoard"
@@ -80,7 +80,7 @@
 
     <fragment
         android:id="@+id/transportationFragment"
-        android:name="com.example.bezo.view.dashboard.transportation.TransportationFragment"
+        android:name="com.example.travelio.view.dashboard.transportation.TransportationFragment"
         android:label="TransportationFragment"
         tools:layout="@layout/fragment_transportation">
         <action
@@ -92,12 +92,12 @@
             app:popUpTo="@id/dashBoard" />
         <argument
             android:name="collection"
-            app:argType="com.example.bezo.model.data.Collection" />
+            app:argType="com.example.travelio.model.data.Collection" />
     </fragment>
 
     <fragment
         android:id="@+id/singleTransportationFragment"
-        android:name="com.example.bezo.view.single.transportation.SingleTransportationFragment"
+        android:name="com.example.travelio.view.single.transportation.SingleTransportationFragment"
         android:label="SingleTransportationFragment"
         tools:layout="@layout/fragment_single_transportation">
         <action
@@ -106,7 +106,7 @@
             app:popUpTo="@id/transportationFragment" />
         <argument
             android:name="transportData"
-            app:argType="com.example.bezo.model.data.Transportation" />
+            app:argType="com.example.travelio.model.data.Transportation" />
         <action
             android:id="@+id/action_singleTransportationFragment_to_dashBoard"
             app:destination="@id/dashBoard"
@@ -114,7 +114,7 @@
     </fragment>
     <fragment
         android:id="@+id/tripsFragment"
-        android:name="com.example.bezo.view.dashboard.trips.TripsFragment"
+        android:name="com.example.travelio.view.dashboard.trips.TripsFragment"
         android:label="TripsFragment"
         tools:layout="@layout/fragment_trips">
         <action
@@ -126,11 +126,11 @@
             app:popUpTo="@id/dashBoard" />
         <argument
             android:name="collection"
-            app:argType="com.example.bezo.model.data.Collection" />
+            app:argType="com.example.travelio.model.data.Collection" />
     </fragment>
     <fragment
         android:id="@+id/singleTripsFragment"
-        android:name="com.example.bezo.view.single.trips.SingleTripsFragment"
+        android:name="com.example.travelio.view.single.trips.SingleTripsFragment"
         android:label="SingleTripsFragment"
         tools:layout="@layout/fragment_single_trips">
         <action
@@ -139,7 +139,7 @@
             app:popUpTo="@id/tripsFragment" />
         <argument
             android:name="tripData"
-            app:argType="com.example.bezo.model.data.Trip" />
+            app:argType="com.example.travelio.model.data.Trip" />
         <action
             android:id="@+id/action_singleTripsFragment_to_dashBoard"
             app:destination="@id/dashBoard"
@@ -147,7 +147,7 @@
     </fragment>
     <fragment
         android:id="@+id/fullTripFragment"
-        android:name="com.example.bezo.view.dashboard.fulltrip.FullTripFragment"
+        android:name="com.example.travelio.view.dashboard.fulltrip.FullTripFragment"
         android:label="FullTripFragment"
         tools:layout="@layout/fragment_full_trip">
         <action
@@ -159,11 +159,11 @@
             app:popUpTo="@id/dashBoard" />
         <argument
             android:name="collection"
-            app:argType="com.example.bezo.model.data.Collection" />
+            app:argType="com.example.travelio.model.data.Collection" />
     </fragment>
     <fragment
         android:id="@+id/singleFullTripFragment"
-        android:name="com.example.bezo.view.single.fulltrip.SingleFullTripFragment"
+        android:name="com.example.travelio.view.single.fulltrip.SingleFullTripFragment"
         android:label="SingleFullTripFragment"
         tools:layout="@layout/fragment_single_full_trip">
         <action
@@ -172,7 +172,7 @@
             app:popUpTo="@id/fullTripFragment" />
         <argument
             android:name="fullTripData"
-            app:argType="com.example.bezo.model.data.FullTrip" />
+            app:argType="com.example.travelio.model.data.FullTrip" />
         <action
             android:id="@+id/action_singleFullTripFragment_to_dashBoard"
             app:destination="@id/dashBoard"
@@ -180,7 +180,7 @@
     </fragment>
     <fragment
         android:id="@+id/changePassword2"
-        android:name="com.example.bezo.view.user.change.ChangePassword"
+        android:name="com.example.travelio.view.user.change.ChangePassword"
         android:label="ChangePassword"
         tools:layout="@layout/change_password">
         <action
@@ -189,11 +189,11 @@
             app:popUpTo="@id/dashBoard" />
         <argument
             android:name="userData"
-            app:argType="com.example.bezo.model.data.UserData" />
+            app:argType="com.example.travelio.model.data.UserData" />
     </fragment>
     <fragment
         android:id="@+id/editProfile2"
-        android:name="com.example.bezo.view.user.edit.EditProfile"
+        android:name="com.example.travelio.view.user.edit.EditProfile"
         android:label="EditProfile"
         tools:layout="@layout/edit_profile">
         <action
@@ -202,9 +202,9 @@
             app:popUpTo="@id/dashBoard" />
         <argument
             android:name="userData"
-            app:argType="com.example.bezo.model.data.UserData" />
+            app:argType="com.example.travelio.model.data.UserData" />
         <argument
             android:name="collection"
-            app:argType="com.example.bezo.model.data.Collection" />
+            app:argType="com.example.travelio.model.data.Collection" />
     </fragment>
 </navigation>

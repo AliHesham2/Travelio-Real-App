@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.bezo">
+    package="com.example.travelio">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,6 +21,7 @@
         <activity android:name=".view.dashboard.DashBoardActivity" />
         <activity android:name=".view.registration.RegistrationActivity" />
         <activity
+            android:theme="@style/custom"
             android:name=".view.splash.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -29,6 +30,21 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".firebase.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/icon" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/CHANNEL_ID" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

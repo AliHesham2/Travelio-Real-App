@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="data"
-            type="com.example.bezo.view.single.fulltrip.SingleFullTripViewModel" />
+            type="com.example.travelio.view.single.fulltrip.SingleFullTripViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/half_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,15 +48,17 @@
 
                 <TextView
                     android:id="@+id/Location"
-                    android:layout_width="wrap_content"
-                    android:maxLines="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:maxLines="2"
                     android:text="@{data.data.title}"
                     android:textColor="@color/white"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,7 +70,8 @@
                     android:layout_marginTop="16dp"
                     android:src="@drawable/baseline_room_24"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Location" />
+                    app:layout_constraintTop_toBottomOf="@+id/Location"
+                    android:contentDescription="@string/just_photo"/>
 
                 <TextView
                     android:id="@+id/city"
@@ -86,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
-                    android:text="Trip Details"
+                    android:text="@string/package_details"
                     android:textColor="@color/Mix9"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -99,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
-                    android:text="Company Details"
+                    android:text="@string/company_details"
                     android:textColor="@color/Mix9"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -112,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
-                    android:text="Trip Pictures"
+                    android:text="@string/trip_pictures"
                     android:textColor="@color/Mix9"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -136,7 +140,8 @@
                         android:src="@drawable/baseline_home_24"
                         app:layout_constraintEnd_toStartOf="@+id/name"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/just_photo"/>
 
                     <TextView
                         android:id="@+id/name"
@@ -159,7 +164,8 @@
                         android:src="@drawable/baseline_room_1_24"
                         app:layout_constraintEnd_toStartOf="@+id/address"
                         app:layout_constraintStart_toEndOf="@+id/name"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/just_photo"/>
 
                     <TextView
                         android:id="@+id/address"
@@ -183,7 +189,8 @@
                         android:src="@drawable/baseline_email_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/home_s"
-                        app:layout_constraintTop_toBottomOf="@+id/home_s" />
+                        app:layout_constraintTop_toBottomOf="@+id/home_s"
+                        android:contentDescription="@string/just_photo"/>
 
                     <TextView
                         android:id="@+id/email"
@@ -208,7 +215,8 @@
                         android:src="@drawable/baseline_call_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/home_s1"
-                        app:layout_constraintTop_toBottomOf="@+id/home_s1" />
+                        app:layout_constraintTop_toBottomOf="@+id/home_s1"
+                        android:contentDescription="@string/just_photo"/>
 
                     <TextView
                         android:id="@+id/phone"
@@ -245,6 +253,7 @@
                         android:src="@drawable/outline_event_24"
                         app:layout_constraintEnd_toStartOf="@+id/meal"
                         app:layout_constraintStart_toStartOf="parent"
+                        android:contentDescription="@string/just_photo"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
@@ -267,7 +276,8 @@
                         android:src="@drawable/baseline_attach_money_24"
                         app:layout_constraintEnd_toStartOf="@+id/price"
                         app:layout_constraintStart_toEndOf="@+id/meal"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/just_photo"/>
 
                     <TextView
                         android:id="@+id/price"
@@ -287,7 +297,8 @@
                         android:layout_marginTop="16dp"
                         android:src="@drawable/outline_person_24"
                         app:layout_constraintStart_toStartOf="@+id/meal_s"
-                        app:layout_constraintTop_toBottomOf="@+id/meal_s" />
+                        app:layout_constraintTop_toBottomOf="@+id/meal_s"
+                        android:contentDescription="@string/just_photo" />
 
                     <TextView
                         android:id="@+id/person"
@@ -328,7 +339,7 @@
                     android:layout_height="27dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:text="No Image"
+                    android:text="@string/no_image"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -344,7 +355,7 @@
                     android:layout_height="27dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
-                    android:text="Hotel Details"
+                    android:text="@string/hotel_details"
                     android:textColor="@color/Mix9"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -375,7 +386,7 @@
                     android:layout_height="27dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:text="No Image"
+                    android:text="@string/no_image"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -392,7 +403,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/fill_button"
-                    android:text="Book Now"
+                    android:text="@string/book_now"
                     android:onClick="@{(v) -> data.onBookClick(v)}"
                     android:textSize="12sp"
                     app:backgroundTint="@null"

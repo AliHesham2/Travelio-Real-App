@@ -9,7 +9,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Filters"
+            android:text="@string/filters"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:text="Close"
+            android:text="@string/close"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Reset All"
+            android:text="@string/reset_all"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
-                    android:text="Transport Type"
+                    android:text="@string/transport_type_filter"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
-                    android:hint="Type"
+                    android:hint="@string/type_filter"
                     android:textColorHint="@color/Mix9"
                     app:boxBackgroundColor="@null"
                     app:boxStrokeColor="@color/mix9"
@@ -82,6 +82,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/transportType_t">
                     <AutoCompleteTextView
+                        android:hint="@string/EMPTY"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -91,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
-                    android:text="Class"
+                    android:text="@string/class_filter"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +106,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
-                    android:hint="Class"
+                    android:hint="@string/class_filter"
                     android:textColorHint="@color/Mix9"
                     app:boxBackgroundColor="@null"
                     app:boxStrokeColor="@color/mix9"
@@ -116,6 +117,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/transportClass_s">
 
                     <AutoCompleteTextView
+                        android:hint="@string/EMPTY"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -126,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
-                    android:text="Price"
+                    android:text="@string/price_filter"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -197,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:text="To"
+                    android:text="@string/to_filter"
                     android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@+id/transportPrice_f"
                     app:layout_constraintTop_toBottomOf="@+id/transportSlider" />
@@ -208,7 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
-                    android:text="From "
+                    android:text="@string/from_filter"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/transportSlider" />
@@ -220,7 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
-                    android:text="From"
+                    android:text="@string/from_filter"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -234,7 +236,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
-                    android:hint="City"
+                    android:hint="@string/city_filter"
                     android:textColorHint="@color/Mix9"
                     app:boxBackgroundColor="@null"
                     app:boxStrokeColor="@color/mix9"
@@ -245,6 +247,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/transportCity_s">
 
                     <AutoCompleteTextView
+                        android:hint="@string/EMPTY"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -256,7 +259,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
-                    android:text="To"
+                    android:text="@string/to_filter"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -270,7 +273,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
-                    android:hint="City"
+                    android:hint="@string/city_filter"
                     android:textColorHint="@color/Mix9"
                     app:boxBackgroundColor="@null"
                     app:boxStrokeColor="@color/mix9"
@@ -282,7 +285,8 @@
 
                     <AutoCompleteTextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:hint="@string/EMPTY"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -291,7 +295,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
-                    android:text="Date"
+                    android:text="@string/date_filter"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -303,7 +307,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:text="To"
+                    android:text="@string/to_filter"
                     android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@+id/transportDateF"
                     app:layout_constraintTop_toBottomOf="@+id/transportDate" />
@@ -314,7 +318,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="20dp"
-                    android:text="From "
+                    android:text="@string/from_filter"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/transportDate" />
@@ -325,7 +329,7 @@
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:hint="date"
+                    android:hint="@string/date_filter"
                     android:textColorHint="@color/black"
                     app:boxBackgroundColor="@null"
                     app:boxStrokeColor="@color/black"
@@ -349,7 +353,7 @@
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:hint="date"
+                    android:hint="@string/date_filter"
                     android:textColorHint="@color/black"
                     app:boxBackgroundColor="@null"
                     app:boxStrokeColor="@color/black"
@@ -374,7 +378,7 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginBottom="24dp"
                     android:background="@drawable/fill_button"
-                    android:text="submit"
+                    android:text="@string/filter_submit"
                     android:textSize="12sp"
                     app:backgroundTint="@null"
                     app:layout_constraintBottom_toBottomOf="parent"

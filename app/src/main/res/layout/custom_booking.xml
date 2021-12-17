@@ -70,7 +70,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Quantity"
+                android:hint="@string/Quantity"
                 android:textColorHint="@color/black"
                 app:boxBackgroundColor="@null"
                 app:boxStrokeColor="@color/black"

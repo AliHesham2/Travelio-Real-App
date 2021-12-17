@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Filters"
+        android:text="@string/filters"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:text="Close"
+        android:text="@string/close"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Reset All"
+        android:text="@string/reset_all"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:text="Hotel Name"
+                android:text="@string/hotel_name"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:hint="Hotel Name"
+                android:hint="@string/hotel_name"
                 android:textColorHint="@color/Mix9"
                 app:boxBackgroundColor="@null"
                 app:boxStrokeColor="@color/mix9"
@@ -93,6 +93,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView6">
 
                 <AutoCompleteTextView
+                    android:hint="@string/EMPTY"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -103,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:text="Meals"
+                android:text="@string/meals_filter"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +118,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:hint="Meals"
+                android:hint="@string/meals_filter"
                 android:textColorHint="@color/Mix9"
                 app:boxBackgroundColor="@null"
                 app:boxStrokeColor="@color/mix9"
@@ -128,6 +129,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7">
 
                 <AutoCompleteTextView
+                    android:hint="@string/EMPTY"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -138,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:text="Price"
+                android:text="@string/price_filter"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -209,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="To"
+                android:text="@string/to_filter"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/price_f"
                 app:layout_constraintTop_toBottomOf="@+id/slider" />
@@ -220,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="From "
+                android:text="@string/from_filter"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/slider" />
@@ -232,7 +234,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:text="City"
+                android:text="@string/city_filter"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -246,7 +248,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:hint="City"
+                android:hint="@string/city_filter"
                 android:textColorHint="@color/Mix9"
                 app:boxBackgroundColor="@null"
                 app:boxStrokeColor="@color/mix9"
@@ -257,6 +259,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView9">
 
                 <AutoCompleteTextView
+                    android:hint="@string/EMPTY"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -267,7 +270,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Stars"
+                android:text="@string/stars_filter"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -290,7 +293,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
-                android:text="reset"
+                android:text="@string/reset_filter"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView10"
@@ -303,7 +306,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Person per room"
+                android:text="@string/person_per_room_filter"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -378,7 +381,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/fill_button"
-                android:text="submit"
+                android:text="@string/filter_submit"
                 android:textSize="12sp"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"

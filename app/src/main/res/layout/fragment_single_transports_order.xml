@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="data"
-            type="com.example.bezo.view.dashboard.single_order.trans.SingleTransportsOrderViewModel" />
+            type="com.example.travelio.view.dashboard.single_order.trans.SingleTransportsOrderViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:text="Transport Details"
+                android:text="@string/transport_details"
                 android:textColor="@color/Mix9"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Transport Pictures"
+                android:text="@string/transport_pictures"
                 android:textColor="@color/Mix9"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Company Details"
+                android:text="@string/company_details"
                 android:textColor="@color/Mix9"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -235,7 +235,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Reserve Details"
+                android:text="@string/reserve_details"
                 android:textColor="@color/Mix9"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -436,7 +436,7 @@
                 android:layout_height="27dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="24dp"
-                android:text="No Image"
+                android:text="@string/no_image"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"

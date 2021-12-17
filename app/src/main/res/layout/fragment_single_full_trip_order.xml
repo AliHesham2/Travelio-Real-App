@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="data"
-            type="com.example.bezo.view.dashboard.single_order.full.SingleFullTripOrderViewModel" />
+            type="com.example.travelio.view.dashboard.single_order.full.SingleFullTripOrderViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:text="Trip Details"
+                android:text="@string/package_details"
                 android:textColor="@color/Mix9"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Company Details"
+                android:text="@string/company_details"
                 android:textColor="@color/Mix9"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Trip Pictures"
+                android:text="@string/trip_pictures"
                 android:textColor="@color/Mix9"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -239,7 +239,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Reserve Details"
+                android:text="@string/reserve_details"
                 android:textColor="@color/Mix9"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -413,7 +413,7 @@
                 android:layout_height="27dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:text="No Image"
+                android:text="@string/no_image"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -429,7 +429,7 @@
                 android:layout_height="27dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
-                android:text="Hotel Details"
+                android:text="@string/hotel_details"
                 android:textColor="@color/Mix9"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -459,7 +459,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
                 android:layout_marginTop="20dp"
-                android:text="No Image"
+                android:text="@string/no_image"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"

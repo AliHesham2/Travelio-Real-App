@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="data"
-            type="com.example.bezo.view.user.edit.EditProfileViewModel" />
+            type="com.example.travelio.view.user.edit.EditProfileViewModel" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="140dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,9 +38,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="35dp"
             android:fontFamily="@font/aclonica"
-            android:text="Welcome"
+            android:text="@string/welcome"
             android:textColor="@color/white"
             android:textSize="23sp"
             app:layout_constraintStart_toStartOf="@+id/view"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginBottom="20dp"
-            android:text="EditProfile"
+            android:text="@string/edit_profile"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -66,7 +66,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="80dp"
             android:layout_marginEnd="32dp"
-            android:hint="Username"
+            android:hint="@string/username"
             android:textColorHint="@color/Mix9"
             app:boxBackgroundColor="@null"
             app:boxStrokeColor="@color/mix9"
@@ -93,7 +93,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="Email"
+            android:hint="@string/email"
             app:endIconMode="custom"
             app:errorEnabled="true"
             android:textColorHint="@color/Mix9"
@@ -120,7 +120,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="Phone"
+            android:hint="@string/phone"
             app:endIconMode="custom"
             app:errorEnabled="true"
             android:textColorHint="@color/Mix9"
@@ -148,7 +148,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="City"
+            android:hint="@string/city"
             app:errorEnabled="true"
             android:textColorHint="@color/Mix9"
             app:boxBackgroundColor="@null"
@@ -160,6 +160,7 @@
             <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/EMPTY"
                 app:city="@{data.data}"
                 />
 

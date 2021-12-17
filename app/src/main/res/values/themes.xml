@@ -14,6 +14,11 @@
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 
+    <!-- FullScreen -->
+    <style name="custom" parent="Theme.Bezo" >
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
     <!-- Over Flow Menu -->
     <style name="actionOverflowButtonStyle" parent="@style/Widget.AppCompat.ActionButton.Overflow">

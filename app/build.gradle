@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
     id "androidx.navigation.safeargs.kotlin"
 }
 
@@ -10,7 +11,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.bezo"
+        applicationId "com.example.travelio"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -37,7 +38,7 @@ android {
 }
 
 dependencies {
-
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.0"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
@@ -54,6 +55,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
     //lifecycle
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation "androidx.room:room-runtime:2.3.0"
     // moshi
@@ -65,5 +67,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //preference
     implementation 'androidx.preference:preference-ktx:1.1.1'
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-analytics'
 
 }

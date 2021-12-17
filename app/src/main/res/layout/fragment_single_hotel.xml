@@ -7,365 +7,393 @@
         <import type="android.view.View"/>
         <variable
             name="data"
-            type="com.example.bezo.view.single.hotel.SingleHotelViewModel" />
+            type="com.example.travelio.view.single.hotel.SingleHotelViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/half_view"
     tools:context=".view.single.hotel.SingleHotelFragment">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/top_view"/>
-
-    <View
-        android:id="@+id/view1"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/bottom_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/half_view"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/hotelName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:text="@{data.data.hotels_list.name}"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:background="@drawable/top_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/baseline_room_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hotelName" />
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/bottom_view"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
 
-    <TextView
-        android:id="@+id/city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@{data.data.hotels_list.cities.name}"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/hotelName" />
+            <TextView
+                android:id="@+id/hotelName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="8dp"
+                android:maxLines="2"
+                android:text="@{data.data.hotels_list.name}"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/HD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:text="Hotel Details"
-        android:textColor="@color/Mix9"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/baseline_room_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hotelName"
+                android:contentDescription="@string/just_photo" />
 
-    <TextView
-        android:id="@+id/CD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Company Details"
-        android:textColor="@color/Mix9"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+            <TextView
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{data.data.hotels_list.cities.name}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/hotelName" />
 
-    <TextView
-        android:id="@+id/CHD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Hotel Pictures"
-        android:textColor="@color/Mix9"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout1" />
+            <TextView
+                android:id="@+id/HD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/hotel_details"
+                android:textColor="@color/Mix9"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CD">
+            <TextView
+                android:id="@+id/CD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/company_details"
+                android:textColor="@color/Mix9"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-        <ImageView
-            android:id="@+id/home_s"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/baseline_home_24"
-            app:layout_constraintEnd_toStartOf="@+id/name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/CHD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/hotel_pictures"
+                android:textColor="@color/Mix9"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout1" />
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="4dp"
-            android:maxLines="2"
-            android:text="@{data.data.companies.name}"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toStartOf="@+id/home_s1"
-            app:layout_constraintStart_toEndOf="@+id/home_s"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CD">
 
-        <ImageView
-            android:id="@+id/home_s1"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/baseline_room_1_24"
-            app:layout_constraintEnd_toStartOf="@+id/address"
-            app:layout_constraintStart_toEndOf="@+id/name"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/home_s"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/baseline_home_24"
+                    app:layout_constraintEnd_toStartOf="@+id/name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/just_photo" />
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="2dp"
-            android:maxLines="2"
-            android:text="@{data.data.companies.address}"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/home_s1"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:maxLines="2"
+                    android:text="@{data.data.companies.name}"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toStartOf="@+id/home_s1"
+                    app:layout_constraintStart_toEndOf="@+id/home_s"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/home_s2"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/baseline_email_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/home_s"
-            app:layout_constraintTop_toBottomOf="@+id/home_s" />
+                <ImageView
+                    android:id="@+id/home_s1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/baseline_room_1_24"
+                    app:layout_constraintEnd_toStartOf="@+id/address"
+                    app:layout_constraintStart_toEndOf="@+id/name"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/just_photo" />
 
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp"
-            android:maxLines="2"
-            android:text="@{data.data.companies.email}"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/home_s4"
-            app:layout_constraintStart_toStartOf="@+id/name"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="2dp"
+                    android:maxLines="2"
+                    android:text="@{data.data.companies.address}"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/home_s1"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/home_s4"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/baseline_call_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/home_s1"
-            app:layout_constraintTop_toBottomOf="@+id/home_s1" />
+                <ImageView
+                    android:id="@+id/home_s2"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/baseline_email_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/home_s"
+                    app:layout_constraintTop_toBottomOf="@+id/home_s"
+                    android:contentDescription="@string/just_photo" />
 
-        <TextView
-            android:id="@+id/phone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="2dp"
-            android:maxLines="1"
-            android:text="@{data.data.companies.phone}"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/home_s1"
-            app:layout_constraintTop_toBottomOf="@+id/address" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:maxLines="2"
+                    android:text="@{data.data.companies.email}"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/home_s4"
+                    app:layout_constraintStart_toStartOf="@+id/name"
+                    app:layout_constraintTop_toBottomOf="@+id/name" />
+
+                <ImageView
+                    android:id="@+id/home_s4"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/baseline_call_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/home_s1"
+                    app:layout_constraintTop_toBottomOf="@+id/home_s1"
+                    android:contentDescription="@string/just_photo" />
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="2dp"
+                    android:maxLines="1"
+                    android:text="@{data.data.companies.phone}"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/home_s1"
+                    app:layout_constraintTop_toBottomOf="@+id/address" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HD">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/HD">
 
-        <ImageView
-            android:id="@+id/meal_s"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/baseline_restaurant_24"
-            app:layout_constraintEnd_toStartOf="@+id/meal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/meal_s"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/baseline_restaurant_24"
+                    app:layout_constraintEnd_toStartOf="@+id/meal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/just_photo" />
 
-        <TextView
-            android:id="@+id/meal"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:maxLines="1"
-            android:text="@{data.data.meals.name}"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintStart_toEndOf="@+id/meal_s"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/meal"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:maxLines="1"
+                    android:text="@{data.data.meals.name}"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:layout_constraintStart_toEndOf="@+id/meal_s"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/stars_s"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="15dp"
-            android:src="@drawable/baseline_star_24"
-            app:layout_constraintEnd_toStartOf="@+id/stars"
-            app:layout_constraintStart_toEndOf="@+id/meal"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/stars_s"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/baseline_star_24"
+                    app:layout_constraintEnd_toStartOf="@+id/stars"
+                    app:layout_constraintStart_toEndOf="@+id/meal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/just_photo" />
 
-        <RatingBar
-            android:id="@+id/stars"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:numStars="5"
-            android:isIndicator="true"
-            android:progressTint="@color/mix9"
-            android:stepSize="1"
-            app:hotelRate="@{data.data.hotels_list.star}"
-            app:layout_constraintStart_toEndOf="@+id/stars_s"
-            app:layout_constraintTop_toTopOf="parent" />
+                <RatingBar
+                    android:id="@+id/stars"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:progressTint="@color/mix9"
+                    android:stepSize="1"
+                    app:hotelRate="@{data.data.hotels_list.star}"
+                    app:layout_constraintStart_toEndOf="@+id/stars_s"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/money_s"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/baseline_attach_money_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/meal_s"
-            app:layout_constraintTop_toBottomOf="@+id/meal_s" />
+                <ImageView
+                    android:id="@+id/money_s"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/baseline_attach_money_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/meal_s"
+                    app:layout_constraintTop_toBottomOf="@+id/meal_s"
+                    android:contentDescription="@string/just_photo" />
 
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:maxLines="1"
-            android:text="@{data.data.price}"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/meal"
-            app:layout_constraintTop_toBottomOf="@+id/meal" />
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:maxLines="1"
+                    android:text="@{data.data.price}"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/meal"
+                    app:layout_constraintTop_toBottomOf="@+id/meal" />
 
-        <ImageView
-            android:id="@+id/person_s"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/outline_person_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/stars_s"
-            app:layout_constraintTop_toBottomOf="@+id/stars_s" />
+                <ImageView
+                    android:id="@+id/person_s"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/outline_person_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/stars_s"
+                    app:layout_constraintTop_toBottomOf="@+id/stars_s"
+                    android:contentDescription="@string/just_photo" />
 
-        <TextView
-            android:id="@+id/person"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:hotelPerPerson="@{data.data.persons_per_room}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/stars_s"
-            app:layout_constraintTop_toBottomOf="@+id/stars" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:hotelPerPerson="@{data.data.persons_per_room}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/stars_s"
+                    app:layout_constraintTop_toBottomOf="@+id/stars" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_img"
-        android:layout_width="match_parent"
-        android:layout_height="196dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:visibility="@{data.noImage == true ? View.GONE : View.VISIBLE}"
-        app:hotelImageAdapter="@{data.data.images}"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/booking"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CHD"
-        tools:listitem="@layout/custom_hotel_image" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_img"
+                android:layout_width="match_parent"
+                android:layout_height="196dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:visibility="@{data.noImage == true ? View.GONE : View.VISIBLE}"
+                app:hotelImageAdapter="@{data.data.images}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@+id/booking"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CHD"
+                tools:listitem="@layout/custom_hotel_image" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="27dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="24dp"
-        android:text="No Image"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="@{data.noImage == true ? View.VISIBLE : View.GONE}"
-        app:layout_constraintBottom_toTopOf="@+id/booking"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CHD" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/no_image"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="@{data.noImage == true ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/booking"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CHD" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/booking"
-        android:layout_width="300dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/fill_button"
-        android:text="Book Now"
-        android:onClick="@{(v) -> data.onBookClick(v)}"
-        android:textSize="12sp"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_img" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/booking"
+                android:layout_width="300dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/fill_button"
+                android:onClick="@{(v) -> data.onBookClick(v)}"
+                android:text="@string/book_now"
+                android:textSize="12sp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_img" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

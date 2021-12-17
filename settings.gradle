@@ -5,5 +5,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Bezo"
+rootProject.name = "travelio"
 include ':app'

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "342325639491",
+    "project_id": "travelio-d60a0",
+    "storage_bucket": "travelio-d60a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342325639491:android:51b73ad96c585054eb97f6",
+        "android_client_info": {
+          "package_name": "com.example.travelio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "342325639491-5luhutkog4ptrpuqa7ffqd7ie498v8af.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPqg-7ZAGIcOxFfB2uE2mS5dUjLUw1IYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "342325639491-5luhutkog4ptrpuqa7ffqd7ie498v8af.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

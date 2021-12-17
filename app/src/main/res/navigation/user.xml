@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.bezo.view.registration.home.Home"
+        android:name="com.example.travelio.view.registration.home.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/signIn"
-        android:name="com.example.bezo.view.registration.signin.SignIn"
+        android:name="com.example.travelio.view.registration.signin.SignIn"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/signUp"
-        android:name="com.example.bezo.view.registration.signup.SignUp"
+        android:name="com.example.travelio.view.registration.signup.SignUp"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/verifyFragment"
-        android:name="com.example.bezo.view.registration.verify.VerifyFragment"
+        android:name="com.example.travelio.view.registration.verify.VerifyFragment"
         android:label="VerifyFragment"
         tools:layout="@layout/fragment_verify"/>
 </navigation>
