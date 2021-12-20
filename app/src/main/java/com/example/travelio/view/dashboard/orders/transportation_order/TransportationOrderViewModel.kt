@@ -1,7 +1,6 @@
 package com.example.travelio.view.dashboard.orders.transportation_order
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -109,10 +108,6 @@ class TransportationOrderViewModel(private val app: Application) : AndroidViewMo
         stopLoading()
         Token.removeToken()
         _noAuth.value = true
-    }
-    override fun onCleared() {
-        Log.i("ClearedDataTrans","Clear")
-        super.onCleared()
     }
 
 }

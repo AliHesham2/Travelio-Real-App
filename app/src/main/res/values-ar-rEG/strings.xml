@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Travelio</string>
+    <!--- Code Views "possible to translate" -->
+    <!-- Dialogue "possible to translate"-->
+
+    <!-- Session Expired -->
+    <string name="title">انتهاء صلاحيه الدخول</string>
+    <string name="supporting_text">الرجاء تسجيل الدخول إلى الحساب مرة أخرى</string>
+    <string name="submit">موافق</string>
+    <!-- Booking -->
+    <string name="offer">كم شخص لكل عرض..</string>
+    <string name="Quantity">الكمية</string>
+    <string name="ok">موافق</string>
+    <string name="cancel">غير موافق</string>
+    <!-- Orders -->
+    <string name="MSG">هل تريد الغاء هذا العرض ؟</string>
+    <!-- ChangeLanguage -->
+    <string name="change_language">تغير اللغة</string>
+
+    <!-- End -->
+
+    <!-- Util Binding "possible to translate"-->
+    <string name="LE">ج.م</string>
+
+    <!-- Hotels -->
+    <string name="PER_PERSON">لكل شخص</string>
+    <!-- Transport -->
+    <string name="CLASS">درجة: </string>
+    <string name="TO">الى: </string>
+    <string name="FROM">من: </string>
+    <!-- END -->
+
+    <!-- Tabs "possible to translate" -->
+    <string name="RECENT">الطلبيات الأخيرة</string>
+    <string name="EXPIRED">الطلبيات منتهية الصلاحية </string>
+
+    <!-- Toast "possible to translate"-->
+    <string name="INVALID_NUMBER">الكمية يجب ان تكون اكبر من او يساوي 0</string>
+    <string name="BOOKING_DONE">تم</string>
+    <string name="Updated">تم التغير</string>
+    <string name="Password_changed">تغير كلمة المرور</string>
+    <string name="CHECK_PRICE">تحقق من خانه الفلوس</string>
+    <string name="CHECK_PERSON">عدد الاشخاص يحب ان يكون اكبر من 0</string>
+
+    <!--Code Errors "possible to translate"-->
+    <string name="INVALID_EMAIL_FORM">خطأ فى البريد الالكترونى</string>
+    <string name="NO_EMAIL">برجاء ادخال البريد الالكترونى</string>
+    <string name="INVALID_PASSWORD">كلمة المرور يجب ان تكون اكبر من ٨</string>
+    <string name="NO_PASSWORD">برجاء ادخال كلمة المرور</string>
+    <string name="INVALID_PHONE">رقم الهاتف يحب ان يكون ١١ رقم</string>
+    <string name="NO_PHONE">برجاء أدخال رقم الهاتف</string>
+    <string name="INVALID_NAME">الاسم يجب ان يكون اكبر من 3 حروف</string>
+    <string name="NO_NAME"> برجاء أدخال الاسم كامل</string>
+    <string name="NO_DATA">من فضلك أملأ كل الحقول</string>
+    <string name="NO_INTERNET">خطأ في الشبكة</string>
+    <string name="WRONG">حدث خطأ ما</string>
+    <string name="PASSWORD_SAME">يجب أن تكون كلمتا المرور متطابقتين</string>
+    <string name="FROM_LIST">الرجاء الاختيار من القائمة</string>
+    <!-- End -->
+
+                                                               <!--- App Views "possible to translate" -->
+
+
+    <!-- Login  && SignUp && edit && changePassword -->
+    <string name="password">كلمة المرور</string>
+    <string name="phone">رقم الهاتف</string>
+
+
+    <!-- edit && changePassword -->
+    <string name="submit_button">تم التغير</string>
+    <!-- edit -->
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <!-- changePassword -->
+    <string name="change_password">تغير كلمة المرور</string>
+    <string name="confirm_password">ناكيد نغير كلمة المرور</string>
+    <!-- END -->
+
+    <!-- Login -->
+    <string name="sign_in_button">تسجيل الدخول</string>
+    <string name="forgotten_password">هل نسيت كلمة السر ؟</string>
+    <string name="welcome_back">مرحبا بعودتك</string>
+    <string name="register_here">التسجيل</string>
+
+
+    <!-- SignUp && edit && changePassword-->
+    <string name="login_here">التسجيل</string>
+    <string name="welcome">مرحبا</string>
+    <string name="sign_up_button">تسجيل الدخول</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="email">البريد الالكترونى</string>
+    <string name="city">المدينة</string>
+
+    <!-- Drawer Texts && Bottom Navigation Texts-->
+    <string name="full_trip_package">الرحلات الشاملة</string>
+    <string name="requests">الطلبات</string>
+    <string name="sign_out">تسجيل الخروج</string>
+
+    <!-- Trips -->
+    <string name="trips">الرحلات</string>
+    <string name="no_trips_found">لا يوجد رحلات حاليا</string>
+
+    <!-- Hotels -->
+    <string name="hotels">الفنادق</string>
+    <string name="no_hotels_found">لا يوجد فنادق حاليا</string>
+    <string name="per_room">لكل غرفة</string>
+
+    <!-- Package -->
+    <string name="full_package">الرحلات الشاملة</string>
+    <string name="no_package_found">لا يوجد رحلات شاملة حاليا</string>
+
+    <!-- Transports -->
+    <string name="transportation">النقل</string>
+    <string name="no_transport_found">لا يوجد وسائل نقل حاليا</string>
+    <!-- End -->
+
+    <!-- Single Reserve  && Orders-->
+    <string name="no_image">لا يوجد صور</string>
+    <string name="book_now">احجز الان</string>
+    <string name="company_details">تفاصيل الشركة</string>
+    <string name="reserve_details">تفاصيل الحجز</string>
+    <!--Orders -->
+    <string name="no_orders_yet">لا يوجد طلبات</string>
+    <string name="quantity">العدد : </string>
+    <string name="price">السعر : </string>
+    <!--Trips -->
+    <string name="trip_details">تفاصيل الرحلة</string>
+    <string name="trip_pictures">صور الرحلة</string>
+    <!-- Hotels -->
+    <string name="hotel_details">تفاصيل الفندق</string>
+    <string name="hotel_pictures">صور الفندق</string>
+    <!-- Package -->
+    <string name="package_details">تفاصيل الرحلة</string>
+    <!-- Transports -->
+    <string name="transport_pictures">صور النقل</string>
+    <string name="transport_details">تفاصيل النقل</string>
+    <!-- End -->
+
+    <!-- Filters-->
+    <string name="reset_all">إعادة ضبط</string>
+    <string name="close">أغلق</string>
+    <string name="filters">المرشحات</string>
+    <string name="filter_submit">تم</string>
+    <string name="city_filter">المدينة</string>
+    <string name="price_filter">السعر</string>
+    <string name="from_filter">من</string>
+    <string name="to_filter">الى</string>
+    <string name="date_filter">التاريخ</string>
+    <string name="hotel_name">اسم الفندق</string>
+    <string name="location_filter">الموقع</string>
+    <string name="class_filter">الدرجة</string>
+    <string name="type_filter">نوع النقل</string>
+    <string name="transport_type_filter">نوع النقل</string>
+    <string name="meals_filter">الوجبات</string>
+    <string name="reset_filter">مسح</string>
+    <string name="stars_filter">النجوم</string>
+    <string name="person_per_room_filter">شخص لكل غرفة</string>
+
+    <!-- End -->
+    <string name="confirm">Confirm</string>
+    <string name="top_hotels">الفنادق الاعلى تقييماً</string>
+    <string name="see_all">مشاهدة الكل</string>
+    <string name="top_trips">الرحلات الاعلى تقييماً</string>
+    <string name="top_packages">الرحلات الشاملة الاعلى تقييماً</string>
+    <string name="top_transports">وسائل النقل الاعلى تقييماً</string>
+</resources>

@@ -66,7 +66,7 @@ class TripsViewModel(private val app:Application) : AndroidViewModel(app) {
     private suspend fun getTrips(city_id: String?, location_id: String?, minPrice: String?, maxPrice: String?, fromDate: String?, toDate: String?) {
         loading()
         pageNumber++
-        TripRequests.getTrips(pageNumber,app.resources,city_id!!, location_id!!, minPrice!!, maxPrice!!,fromDate!!,toDate!!){ data, error, success ->
+        TripRequests.getTrips(pageNumber,app.resources,city_id!!, location_id!!, minPrice!!, maxPrice!!,fromDate!!,toDate!!,app.resources.getString(R.string._0)){ data, error, success ->
             if(success){
                 whenSuccess(data)
             }else{

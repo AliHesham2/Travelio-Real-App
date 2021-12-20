@@ -62,10 +62,12 @@
                         android:layout_height="50dp"
                         android:layout_marginEnd="110dp"
                         android:src="@drawable/icon"
+                        android:layoutDirection="ltr"
                         app:layout_constraintBottom_toBottomOf="@+id/topAppBar"
                         app:layout_constraintEnd_toEndOf="@+id/topAppBar"
                         app:layout_constraintStart_toStartOf="@+id/topAppBar"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/just_photo" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.AppBarLayout>
@@ -96,7 +98,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="Top Hotels"
+                            android:text="@string/top_hotels"
                             android:textColor="@color/mix9"
                             android:textSize="18sp"
                             android:textStyle="bold"
@@ -108,7 +110,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
-                            android:text="see all"
+                            android:text="@string/see_all"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/textView12"
@@ -122,12 +124,26 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="8dp"
                             android:orientation="horizontal"
+                            android:visibility="@{data.hotelListData != null ? View.VISIBLE : View.GONE }"
+                            app:hotelAdapter="@{data.hotelListData}"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView12"
                             tools:listitem="@layout/custom_hotel_card_view" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:visibility="@{data.hotelListData == null ? View.VISIBLE : View.GONE }"
+                            android:text="@string/no_hotels_found"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -144,7 +160,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="Top Trips"
+                            android:text="@string/top_trips"
                             android:textColor="@color/mix9"
                             android:textSize="18sp"
                             android:textStyle="bold"
@@ -156,7 +172,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
-                            android:text="see all"
+                            android:text="@string/see_all"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/textView122"
@@ -169,6 +185,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="8dp"
+                            android:visibility="@{data.tripListData != null ? View.VISIBLE : View.GONE }"
+                            app:tripAdapter="@{data.tripListData}"
                             android:orientation="horizontal"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -177,17 +195,29 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView122"
                             tools:listitem="@layout/custom_transports_card_view" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:visibility="@{data.tripListData == null ? View.VISIBLE : View.GONE }"
+                            android:text="@string/no_trips_found"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView122" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/packageContainer"
+                        android:id="@+id/transportContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tripContainer">
+                        app:layout_constraintTop_toBottomOf="@+id/packageContainer">
 
                         <TextView
                             android:id="@+id/textView1222"
@@ -195,7 +225,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="Top Packages"
+                            android:text="@string/top_transports"
                             android:textColor="@color/mix9"
                             android:textSize="18sp"
                             android:textStyle="bold"
@@ -207,12 +237,77 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
-                            android:text="see all"
+                            android:text="@string/see_all"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/textView1222"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/textView1222" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/forTransports"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal"
+                            android:visibility="@{data.transportListData != null ? View.VISIBLE : View.GONE }"
+                            app:transportAdapter="@{data.transportListData}"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView1222"
+                            tools:listitem="@layout/custom_transports_card_view" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:visibility="@{data.transportListData == null ? View.VISIBLE : View.GONE }"
+                            android:text="@string/no_transport_found"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView1222" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/packageContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/transportContainer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tripContainer">
+
+                        <TextView
+                            android:id="@+id/textView12221"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/top_packages"
+                            android:textColor="@color/mix9"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/transportSeeAll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:text="@string/see_all"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView12221"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/textView12221" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/forPackages"
@@ -221,12 +316,26 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="8dp"
                             android:orientation="horizontal"
+                            android:visibility="@{data.packageListData != null ? View.VISIBLE : View.GONE }"
+                            app:fullTripAdapter="@{data.packageListData}"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView1222"
+                            app:layout_constraintTop_toBottomOf="@+id/textView12221"
                             tools:listitem="@layout/custom_full_trip_card_view" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:visibility="@{data.packageListData == null ? View.VISIBLE : View.GONE }"
+                            android:text="@string/no_package_found"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView12221" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>

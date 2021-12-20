@@ -209,7 +209,11 @@ companion object {
     private fun resetRateBar(hotelBinding: CustomFilterHotelBinding) {
         hotelBinding.rBar.rating = 0F
     }
-    private fun displayOldFilter(hotelBinding: CustomFilterHotelBinding, oldFilter: HotelFilterCollection, context: Context,) {
+    private fun displayOldFilter(
+        hotelBinding: CustomFilterHotelBinding,
+        oldFilter: HotelFilterCollection,
+        context: Context,
+    ) {
         val city = if (oldFilter.cityName.isNullOrEmpty()){context.resources.getString(R.string.EMPTY)}else{ "${oldFilter.cityName} (${oldFilter.countryName})"}
         val perRoom = if (oldFilter.perRoom.isEmpty()){context.resources.getString(R.string.DEFAULT_VALUE)}else{oldFilter.perRoom}
         hotelBinding.City.editText?.setText(city)

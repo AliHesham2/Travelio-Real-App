@@ -1,7 +1,6 @@
 package com.example.travelio.requests.transportation
 
 import android.content.res.Resources
-import android.util.Log
 import com.example.travelio.R
 import com.example.travelio.model.data.Transportations
 import com.example.travelio.model.service.AppApi
@@ -11,9 +10,8 @@ import org.json.JSONObject
 
 class TransportationRequests {
     companion object{
-        suspend fun getTransportations(pageNumber: Int, resources: Resources, city_from_id:String, city_to_id:String, level_id:String, type_id:String, minPrice:String, maxPrice:String , fromDate:String, toDate:String, isSuccess: (data: Transportations?, error: String?, success: Boolean) -> Unit) {
-            Log.i("Data::Hotel","city_from_id:$city_from_id  city_to_id:$city_to_id  level_id:$level_id type_id:$type_id  minPrice:$minPrice   maxPrice:$maxPrice   fromDate:$fromDate     toDate:$toDate")
-            val response = AppApi.appData.getTransportations(5, pageNumber,   city_from_id, city_to_id, level_id, type_id, minPrice, maxPrice , fromDate, toDate)
+        suspend fun getTransportations(pageNumber: Int, resources: Resources, city_from_id:String, city_to_id:String, level_id:String, type_id:String, minPrice:String, maxPrice:String , fromDate:String, toDate:String,homePage:String, isSuccess: (data: Transportations?, error: String?, success: Boolean) -> Unit) {
+            val response = AppApi.appData.getTransportations(5, pageNumber,   city_from_id, city_to_id, level_id, type_id, minPrice, maxPrice , fromDate, toDate,homePage)
             if (response.isSuccessful) {
                 val data = response.body()
                 withContext(Dispatchers.Main){

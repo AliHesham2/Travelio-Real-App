@@ -258,13 +258,15 @@
 
                 <TextView
                     android:id="@+id/meal"
-                    android:layout_width="140dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
                     android:maxLines="1"
                     android:text="@{data.data.meals.name}"
                     android:textColor="@color/black"
                     android:textSize="17sp"
+                    app:layout_constraintEnd_toStartOf="@+id/stars_s"
                     app:layout_constraintStart_toEndOf="@+id/meal_s"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -272,12 +274,11 @@
                     android:id="@+id/stars_s"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginStart="15dp"
+                    android:contentDescription="@string/just_photo"
                     android:src="@drawable/baseline_star_24"
                     app:layout_constraintEnd_toStartOf="@+id/stars"
                     app:layout_constraintStart_toEndOf="@+id/meal"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/just_photo" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <RatingBar
                     android:id="@+id/stars"
@@ -286,11 +287,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
+                    android:layout_marginEnd="39dp"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:progressTint="@color/mix9"
                     android:stepSize="1"
                     app:hotelRate="@{data.data.hotels_list.star}"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/stars_s"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -307,14 +310,16 @@
 
                 <TextView
                     android:id="@+id/price"
-                    android:layout_width="140dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="4dp"
                     android:maxLines="1"
                     android:text="@{data.data.price}"
                     android:textColor="@color/black"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/person_s"
                     app:layout_constraintStart_toStartOf="@+id/meal"
                     app:layout_constraintTop_toBottomOf="@+id/meal" />
 
@@ -331,15 +336,17 @@
 
                 <TextView
                     android:id="@+id/person"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="2dp"
                     android:maxLines="1"
                     android:textColor="@color/black"
                     android:textSize="17sp"
                     app:hotelPerPerson="@{data.data.persons_per_room}"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/stars_s"
                     app:layout_constraintTop_toBottomOf="@+id/stars" />
             </androidx.constraintlayout.widget.ConstraintLayout>

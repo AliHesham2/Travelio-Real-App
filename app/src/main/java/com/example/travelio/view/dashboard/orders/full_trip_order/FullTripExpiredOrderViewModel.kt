@@ -1,7 +1,6 @@
 package com.example.travelio.view.dashboard.orders.full_trip_order
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -45,7 +44,6 @@ class FullTripExpiredOrderViewModel (private val app: Application) : AndroidView
                 loading()
                 getExpiredOrdersData()
             }catch(e: Exception){
-                Log.i("error!!", e.message.toString())
                 handleException(e)
             }
         }

@@ -68,7 +68,7 @@ class HotelViewModel(private val app:Application): AndroidViewModel(app) {
     private suspend fun getHotelsData(hotelID: String?, hotelCityID: String?, mealID: String?, stars: String?, perRoom: String?, minPrice: String?, maxPrice: String?) {
         loading()
         pageNumber++
-        HotelRequests.getHotels(pageNumber,app.resources,hotelID!!,hotelCityID!!,mealID!!,stars!!,perRoom!!,minPrice!!,maxPrice!!){ data, error, success ->
+        HotelRequests.getHotels(pageNumber,app.resources,hotelID!!,hotelCityID!!,mealID!!,stars!!,perRoom!!,minPrice!!,maxPrice!!,app.resources.getString(R.string._0)){ data, error, success ->
             if(success){
                 whenSuccess(data)
             }else{

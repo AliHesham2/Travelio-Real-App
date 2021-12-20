@@ -1,40 +1,45 @@
 <resources>
 
     <!-- Preferences "no translate" -->
-    <string name="TOKEN_SAVED_AT">_To_ken_</string>
-    <string name="TOKEN_DEVICE_SAVED_AT">_De_vice_</string>
+    <string name="TOKEN_SAVED_AT" translatable="false">_To_ken_</string>
+    <string name="TOKEN_DEVICE_SAVED_AT" translatable="false">_De_vice_</string>
+    <string name="Language_SAVED_AT" translatable="false">_Language_</string>
 
     <!-- WebLinks "no translate" -->
-    <string name="PHOTO_LINK">https://res.cloudinary.com/hatravel/image/upload/v1636822208/</string>
-    <string name="PHOTO_Default_LINK">https://i.ibb.co/Vmw0Ybk/image-not-found.png</string>
+    <string name="PHOTO_LINK" translatable="false">https://res.cloudinary.com/hatravel/image/upload/v1636822208/</string>
+    <string name="PHOTO_Default_LINK" translatable="false">https://i.ibb.co/Vmw0Ybk/image-not-found.png</string>
 
     <!-- Notifications "no translate"-->
-    <string name="CHANNEL_ID">TravelioID</string>
-    <string name="CHANNEL_NAME">Travelio</string>
-    <string name="HOTEL">hotel</string>
-    <string name="TRANSPORT">transport</string>
-    <string name="TRIPS">trip</string>
-    <string name="PACKAGE">package</string>
-    <string name="HOTEL_RESERVATION">Hotel Reservation</string>
-    <string name="TRANSPORT_RESERVATION">Transport Reservation</string>
-    <string name="TRIPS_RESERVATION">Trip Reservation</string>
-    <string name="PACKAGE_RESERVATION">Package Reservation</string>
-    <string name="RESERVATION_MSG">A user want to reserve </string>
+    <string name="CHANNEL_ID" translatable="false">TravelioID</string>
+    <string name="CHANNEL_NAME" translatable="false">Travelio</string>
+    <string name="HOTEL" translatable="false">hotel</string>
+    <string name="TRANSPORT" translatable="false">transport</string>
+    <string name="TRIPS" translatable="false">trip</string>
+    <string name="PACKAGE" translatable="false">package</string>
+    <string name="HOTEL_RESERVATION" translatable="false">Hotel Reservation</string>
+    <string name="TRANSPORT_RESERVATION" translatable="false">Transport Reservation</string>
+    <string name="TRIPS_RESERVATION" translatable="false">Trip Reservation</string>
+    <string name="PACKAGE_RESERVATION" translatable="false">Package Reservation</string>
+    <string name="RESERVATION_MSG" translatable="false">A user want to reserve </string>
 
     <!-- Static In Code "no translate"-->
-    <string name="DATA">data</string>
-    <string name="USER">UserData</string>
-    <string name="TOKEN">token</string>
-    <string name="MESSAGE">message</string>
-    <string name="_0">0</string>
-    <string name="DATE_FORM">yyyy-MM-dd</string>
-    <string name="DEFAULT_VALUE">0</string>
-    <string name="MAX_PRICE">20000</string>
-    <string name="RATING_DEFAULT">0.0</string>
-    <string name="EMPTY"> </string>
-    <string name="EMPTY_WITH_SPACE">" "</string>
-    <string name="Currency">EGP</string>
-    <string name="PATCH">patch</string>
+    <string name="DATA" translatable="false">data</string>
+    <string name="USER" translatable="false">UserData</string>
+    <string name="TOKEN" translatable="false">token</string>
+    <string name="MESSAGE" translatable="false">message</string>
+    <string name="_0" translatable="false">0</string>
+    <string name="_1" translatable="false">1</string>
+    <string name="DATE_FORM" translatable="false">yyyy-MM-dd</string>
+    <string name="DEFAULT_VALUE" translatable="false">0</string>
+    <string name="MAX_PRICE" translatable="false">20000</string>
+    <string name="RATING_DEFAULT" translatable="false">0.0</string>
+    <string name="EMPTY" translatable="false"> </string>
+    <string name="EMPTY_WITH_SPACE" translatable="false">" "</string>
+    <string name="Currency" translatable="false">EGP</string>
+    <string name="PATCH" translatable="false">patch</string>
+    <string name="TYPE_NAVIGATION" translatable="false">type</string>
+    <string name="Current_NAVIGATION" translatable="false">current</string>
+    <string name="FOREGROUND" translatable="false">foreGround</string>
 
                                                                  <!--- Code Views "possible to translate" -->
     <!-- Dialogue "possible to translate"-->
@@ -50,13 +55,17 @@
     <string name="cancel">Cancel</string>
     <!-- Orders -->
     <string name="MSG">Do u want to delete this order ?</string>
+    <!-- ChangeLanguage -->
+    <string name="change_language">Change Language</string>
+    <string name="ENGLISH" translatable="false">en</string>
+    <string name="Arabic" translatable="false">ar</string>
     <!-- End -->
 
     <!-- Util Binding "possible to translate"-->
     <string name="LE">LE</string>
-    <string name="ACCEPTED">Done</string>
-    <string name="REJECTED">Refused</string>
-    <string name="PENDING">Pending</string>
+    <string name="ACCEPTED" translatable="false">Done</string>
+    <string name="REJECTED" translatable="false">Refused</string>
+    <string name="PENDING" translatable="false">Pending</string>
     <!-- Hotels -->
     <string name="PER_PERSON">per person</string>
     <!-- Transport -->
@@ -90,16 +99,16 @@
     <string name="NO_INTERNET">Network Error</string>
     <string name="WRONG">SomeThing Went Wrong</string>
     <string name="PASSWORD_SAME">Both passwords must be the same</string>
-    <string name="UN_KNOW_VIEW_MODEL">Unknown ViewModel class</string>
+    <string name="UN_KNOW_VIEW_MODEL" translatable="false">Unknown ViewModel class</string>
     <string name="FROM_LIST">Please select from list</string>
                                                                  <!-- End -->
 
                                                                  <!--- App Views "possible to translate" -->
 
     <string name="app_name">Travelio</string>
-    <string name="name_app">Travelio</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="just_photo">JustPhoto</string>
+    <string name="name_app" translatable="false">Travelio</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="just_photo" translatable="false">JustPhoto</string>
 
     <!-- Login  && SignUp && edit && changePassword -->
     <string name="password">Password</string>
@@ -197,5 +206,10 @@
 
                                                                                 <!-- End -->
     <string name="confirm">Confirm</string>
+    <string name="top_hotels">Top Hotels</string>
+    <string name="see_all">see all</string>
+    <string name="top_trips">Top Trips</string>
+    <string name="top_packages">Top Packages</string>
+    <string name="top_transports">Top Transports</string>
 
 </resources>

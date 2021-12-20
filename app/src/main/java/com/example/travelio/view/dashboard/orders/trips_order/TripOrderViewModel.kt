@@ -1,7 +1,6 @@
 package com.example.travelio.view.dashboard.orders.trips_order
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -116,8 +115,4 @@ class TripOrderViewModel(private val app: Application) : AndroidViewModel(app) {
         _noAuth.value = true
     }
 
-    override fun onCleared() {
-        Log.i("ClearedDataTrip","Clear")
-        super.onCleared()
-    }
 }

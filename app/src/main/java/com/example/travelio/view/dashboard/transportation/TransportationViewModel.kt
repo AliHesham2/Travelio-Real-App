@@ -66,7 +66,7 @@ class TransportationViewModel(private val app:Application):AndroidViewModel(app)
     private suspend fun getTransports(city_from_id: String, city_to_id: String, level_id: String, type_id: String, minPrice: String, maxPrice: String, fromDate: String, toDate: String) {
         loading()
         pageNumber++
-       TransportationRequests.getTransportations(pageNumber,app.resources,city_from_id, city_to_id, level_id, type_id, minPrice, maxPrice , fromDate, toDate){ data, error, success ->
+       TransportationRequests.getTransportations(pageNumber,app.resources,city_from_id, city_to_id, level_id, type_id, minPrice, maxPrice , fromDate, toDate,app.resources.getString(R.string._0)){ data, error, success ->
            if(success){
                whenSuccess(data)
            }else{

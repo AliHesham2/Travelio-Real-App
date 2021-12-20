@@ -15,7 +15,4 @@ object DeviceToken {
     fun getDeviceToken():String?{
         return preferenceDevice.getString("DeviceToken", null)
     }
-    fun removeDeviceToken(){
-        preferenceDevice.edit().clear().apply()
-    }
 }

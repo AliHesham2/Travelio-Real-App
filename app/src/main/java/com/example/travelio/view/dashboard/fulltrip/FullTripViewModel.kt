@@ -64,7 +64,7 @@ class FullTripViewModel(private val app:Application):AndroidViewModel(app) {
     private suspend fun getFullTrips(hotels_list_id: String?, hotels_list_city_id: String?, minPrice: String?, maxPrice: String?, fromDate: String?, toDate: String?) {
         loading()
         pageNumber++
-        FullTripRequests.getFullPackage(pageNumber,app.resources,hotels_list_id!!,hotels_list_city_id!!, minPrice!!, maxPrice!!, fromDate!!, toDate!!){ data, error, success ->
+        FullTripRequests.getFullPackage(pageNumber,app.resources,hotels_list_id!!,hotels_list_city_id!!, minPrice!!, maxPrice!!, fromDate!!, toDate!!,app.resources.getString(R.string._0)){ data, error, success ->
             if(success){
                 whenSuccess(data)
             }else{

@@ -7,20 +7,23 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.core.app.NotificationCompat
-import com.example.travelio.view.splash.MainActivity
 import com.example.travelio.view.util.PopUpMsg
 import com.example.travelio.R
 import android.os.Build
+import com.example.travelio.requests.fcm.UpdateToken
+import com.example.travelio.view.dashboard.orders.OrderActivity
 
 
-fun NotificationManager.sendNotification(body: String, title: String?, applicationContext: Context) {
-    val contentIntent = Intent(applicationContext, MainActivity::class.java)
-    val contentPendingIntent =   checkSystem(contentIntent,applicationContext)
+fun NotificationManager.sendNotification(body: String,  title: String?,type: String, applicationContext: Context) {
+    val intent =  Intent(applicationContext, OrderActivity::class.java)
+    intent.putExtra(applicationContext.resources.getString(R.string.TYPE_NAVIGATION),UpdateToken.setDestinationID(applicationContext,type))
+    intent.putExtra(applicationContext.resources.getString(R.string.Current_NAVIGATION),applicationContext.resources.getString(R.string.FOREGROUND))
+    val contentPendingIntent = checkSystem(intent, applicationContext)
     val iconImage = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.icon)
     val bigPicStyle = NotificationCompat.BigPictureStyle().bigPicture(iconImage).bigLargeIcon(null)
+
     // Build the notification
     val builder = NotificationCompat.Builder(applicationContext, applicationContext.getString(R.string.CHANNEL_ID))
-        //small icon behind the name of app
         .setSmallIcon(R.drawable.icon)
         .setContentTitle(title)
         .setContentText(body)
@@ -32,9 +35,8 @@ fun NotificationManager.sendNotification(body: String, title: String?, applicati
     notify(PopUpMsg.NOTIFICATION_ID, builder.build())
 }
 
-fun NotificationManager.cancelNotifications() {
-    cancelAll()
-}
+
+
 
 @SuppressLint("UnspecifiedImmutableFlag")
 fun checkSystem(contentIntent: Intent, applicationContext: Context): PendingIntent? {

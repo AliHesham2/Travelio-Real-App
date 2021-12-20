@@ -45,7 +45,7 @@ class ChangePassword : Fragment() {
         viewModel.newData.observe(this.viewLifecycleOwner,{
             if(it != null){
                 navController.previousBackStackEntry?.savedStateHandle?.set(this.resources.getString(R.string.USER), it)
-                PopUpMsg.toastMsg(this.requireContext(),this.resources.getString(R.string.change_password))
+                PopUpMsg.toastMsg(this.requireContext(),this.resources.getString(R.string.BOOKING_DONE))
                 this.findNavController().popBackStack()
             }
         })
@@ -67,13 +67,17 @@ class ChangePassword : Fragment() {
 
         binding.password.editText?.doOnTextChanged { text, _, _, _ ->
             passwordText = text.toString()
-            if(text.isNullOrEmpty()){
-                binding.password.editText?.error = this.resources.getString(R.string.NO_PASSWORD)
-            }else if(text.trim().length < 8  ){
-                binding.password.editText?.error = this.resources.getString(R.string.INVALID_PASSWORD)
-                password = false
-            }else{
-                password = true
+            when {
+                text.isNullOrEmpty() -> {
+                    binding.password.editText?.error = this.resources.getString(R.string.NO_PASSWORD)
+                }
+                text.trim().length < 8 -> {
+                    binding.password.editText?.error = this.resources.getString(R.string.INVALID_PASSWORD)
+                    password = false
+                }
+                else -> {
+                    password = true
+                }
             }
         }
 

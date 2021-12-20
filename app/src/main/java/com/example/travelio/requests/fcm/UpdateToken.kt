@@ -1,7 +1,7 @@
 package com.example.travelio.requests.fcm
 
+import android.content.Context
 import android.content.res.Resources
-import android.util.Log
 import com.example.travelio.R
 import com.example.travelio.model.data.FcmModel
 import com.example.travelio.model.data.SendNotificationPostRequest
@@ -22,7 +22,6 @@ object UpdateToken {
     suspend fun updateToken(token: String, resources: Resources, isSuccess: (error: String?, success: Boolean) -> Unit) {
         val response = AppApi.appData.updateDeviceToken(UpdateToken(token))
         if (response.isSuccessful) {
-            Log.i("updated", "updatedSuccess ")
             withContext(Dispatchers.Main) { isSuccess(null, true) }
         } else {
             withContext(Dispatchers.Main) {
@@ -78,6 +77,26 @@ object UpdateToken {
                 }
 
             }
+        }
+    }
+    // handle fcm bundle and set the destination in orderActivity
+     fun setDestination(id:Int):Int{
+        return  when(id){
+            0 -> R.id.s1
+            1 -> R.id.s2
+            2 -> R.id.s3
+            3 -> R.id.s4
+            else -> R.id.s1
+        }
+    }
+
+    fun setDestinationID(context:Context ,type:String):Int{
+        return  when(type){
+            context.resources.getString(R.string.HOTEL)       -> 0
+            context.resources.getString(R.string.TRANSPORT)   -> 1
+            context.resources.getString(R.string.TRIPS)       -> 2
+            context.resources.getString(R.string.PACKAGE)     -> 3
+            else -> 0
         }
     }
 }

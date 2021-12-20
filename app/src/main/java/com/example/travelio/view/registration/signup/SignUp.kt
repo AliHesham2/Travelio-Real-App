@@ -76,16 +76,20 @@ class SignUp : Fragment() {
 
         //changeListeners
         binding.username.editText?.doOnTextChanged { text, _, _, _ ->
-            if(text.isNullOrEmpty()){
-                binding.username.editText?.error = this.resources.getString(R.string.NO_NAME)
-                binding.username.endIconDrawable = null
-            }else if (text.trim().length <= 2){
-                binding.username.editText?.error = this.resources.getString(R.string.INVALID_NAME)
-                binding.username.endIconDrawable = null
-                username = false
-            }else{
-                username = true
-                binding.username.setEndIconDrawable(R.drawable.outline_done_24)
+            when {
+                text.isNullOrEmpty() -> {
+                    binding.username.editText?.error = this.resources.getString(R.string.NO_NAME)
+                    binding.username.endIconDrawable = null
+                }
+                text.trim().length <= 2 -> {
+                    binding.username.editText?.error = this.resources.getString(R.string.INVALID_NAME)
+                    binding.username.endIconDrawable = null
+                    username = false
+                }
+                else -> {
+                    username = true
+                    binding.username.setEndIconDrawable(R.drawable.outline_done_24)
+                }
             }
         }
 
@@ -118,13 +122,17 @@ class SignUp : Fragment() {
         }
 
         binding.password.editText?.doOnTextChanged { text, _, _, _ ->
-            if(text.isNullOrEmpty()){
-                binding.password.editText?.error = this.resources.getString(R.string.NO_PASSWORD)
-            }else if(text.trim().length < 8  ){
-                binding.password.editText?.error = this.resources.getString(R.string.INVALID_PASSWORD)
-                password = false
-            }else{
-                password = true
+            when {
+                text.isNullOrEmpty() -> {
+                    binding.password.editText?.error = this.resources.getString(R.string.NO_PASSWORD)
+                }
+                text.trim().length < 8 -> {
+                    binding.password.editText?.error = this.resources.getString(R.string.INVALID_PASSWORD)
+                    password = false
+                }
+                else -> {
+                    password = true
+                }
             }
         }
             

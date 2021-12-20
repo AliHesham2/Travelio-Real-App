@@ -1,7 +1,6 @@
 package com.example.travelio.requests.hotel
 
 import android.content.res.Resources
-import android.util.Log
 import com.example.travelio.R
 import com.example.travelio.model.data.Hotels
 import com.example.travelio.model.service.AppApi
@@ -11,9 +10,8 @@ import org.json.JSONObject
 
 class HotelRequests {
     companion object {
-        suspend fun getHotels(pageNumber: Int,resources: Resources,hotelID:String,hotelCityID:String,mealID:String, stars:String,perRoom:String,minPrice:String,maxPrice:String ,isSuccess: (data: Hotels?, error: String?, success: Boolean) -> Unit) {
-            Log.i("Data::Hotel","hotelID:$hotelID  hotelCityID:$hotelCityID  mealID:$mealID stars:$stars  perRoom:$perRoom   minPrice:$minPrice   maxPrice:$maxPrice")
-            val response = AppApi.appData.getHotels(5, pageNumber,hotelID,hotelCityID,mealID,stars,perRoom,minPrice,maxPrice)
+        suspend fun getHotels(pageNumber: Int,resources: Resources,hotelID:String,hotelCityID:String,mealID:String, stars:String,perRoom:String,minPrice:String,maxPrice:String,homePage:String ,isSuccess: (data: Hotels?, error: String?, success: Boolean) -> Unit) {
+            val response = AppApi.appData.getHotels(5, pageNumber,hotelID,hotelCityID,mealID,stars,perRoom,minPrice,maxPrice,homePage)
             if (response.isSuccessful) {
                 val data = response.body()
                 withContext(Dispatchers.Main) {

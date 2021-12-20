@@ -4,4 +4,8 @@
         <item>0.0</item>
         <item>20000.0</item>
     </array>
+    <array name="Lang">
+        <item>English</item>
+        <item>Arabic</item>
+    </array>
 </resources>

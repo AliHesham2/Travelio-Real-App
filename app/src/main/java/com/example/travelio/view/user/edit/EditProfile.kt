@@ -81,16 +81,20 @@ class EditProfile : Fragment() {
 
         //changeListeners
         binding.username.editText?.doOnTextChanged { text, _, _, _ ->
-            if(text.isNullOrEmpty()){
-                binding.username.editText?.error = this.resources.getString(R.string.NO_NAME)
-                binding.username.endIconDrawable = null
-            }else if (text.trim().length <= 2){
-                binding.username.editText?.error = this.resources.getString(R.string.INVALID_NAME)
-                binding.username.endIconDrawable = null
-                username = false
-            }else{
-                username = true
-                binding.username.setEndIconDrawable(R.drawable.outline_done_24)
+            when {
+                text.isNullOrEmpty() -> {
+                    binding.username.editText?.error = this.resources.getString(R.string.NO_NAME)
+                    binding.username.endIconDrawable = null
+                }
+                text.trim().length <= 2 -> {
+                    binding.username.editText?.error = this.resources.getString(R.string.INVALID_NAME)
+                    binding.username.endIconDrawable = null
+                    username = false
+                }
+                else -> {
+                    username = true
+                    binding.username.setEndIconDrawable(R.drawable.outline_done_24)
+                }
             }
         }
 

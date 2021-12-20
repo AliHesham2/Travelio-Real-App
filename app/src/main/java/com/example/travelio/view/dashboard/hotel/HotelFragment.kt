@@ -109,8 +109,7 @@ class HotelFragment : Fragment() {
                     val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
                     val isNotAtBeginning = firstVisibleItemPosition >= 0
                     val isTotalMoreThanVisible = totalItemCount >= 5
-                    val shouldPaginate =   isAtLastItem && isNotAtBeginning &&
-                            isTotalMoreThanVisible && isScrolling && !isLoading
+                    val shouldPaginate =   isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling && !isLoading
                     if(shouldPaginate) {
                         if (filterData != null){
                             viewModel.callRequest(filterData!!.hotels_list_id, filterData!!.hotels_list_city_id, filterData!!.meal_id, filterData!!.stars, filterData!!.perRoom, filterData!!.minPrice, filterData!!.maxPrice)

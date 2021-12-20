@@ -21,9 +21,9 @@ class FullTripFragment : Fragment() {
     private lateinit var binding : FragmentFullTripBinding
     private lateinit var viewModel: FullTripViewModel
     private var  loadMore : Boolean = true
+    private var isScrolling = false
     private var  swipeRefresh : Boolean = true
     private var isLoading = false
-    private var isScrolling = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

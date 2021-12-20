@@ -10,6 +10,7 @@ import com.example.travelio.R
 import com.example.travelio.model.data.*
 import com.example.travelio.model.preference.Token
 import com.example.travelio.requests.booking.Booking
+import com.example.travelio.requests.fcm.UpdateToken
 import com.example.travelio.view.util.BookingPopUp
 import com.example.travelio.view.util.PopUpMsg
 import kotlinx.coroutines.Dispatchers
@@ -69,7 +70,6 @@ class SingleTripsViewModel(private val receivedData: Trip,private val app: Appli
         loading()
         Booking.tripBooking(tripsBookingData, app.resources){ success, error ->
             if(success){
-                PopUpMsg.toastMsg(app.applicationContext,app.resources.getString(R.string.BOOKING_DONE))
                 sendNotifications()
             }else{
                 if(error != null){
@@ -80,7 +80,6 @@ class SingleTripsViewModel(private val receivedData: Trip,private val app: Appli
             }
         }
     }
-    //TODO don't forget to stop loading
     private  fun sendNotifications(){
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -94,13 +93,36 @@ class SingleTripsViewModel(private val receivedData: Trip,private val app: Appli
 
     private suspend fun sendNotificationToFcm(){
         if (receivedData.companies.device_token != null){
-            val fcmMsg = app.resources.getString(R.string.RESERVATION_MSG) + receivedData.title + app.resources.getString(R.string.EMPTY_WITH_SPACE) + app.resources.getString(R.string.TRIPS)
+            val fcmMsg = app.resources.getString(R.string.RESERVATION_MSG) +  app.resources.getString(R.string.EMPTY_WITH_SPACE) + receivedData.title + app.resources.getString(R.string.EMPTY_WITH_SPACE) + app.resources.getString(R.string.TRIPS)
             val fcm = FcmModel(receivedData.companies.device_token,FcmDetail(app.resources.getString(R.string.TRIPS_RESERVATION),fcmMsg),FcmData(app.resources.getString(R.string.TRIPS) ))
+            UpdateToken.sendNotificationToFCM(app.resources,fcm){ error, success ->
+                if(success){
+                    stopLoading()
+                }else{
+                    if(error != null){
+                        whenFail(error)
+                    }else{
+                        authFail()
+                    }
+                }
+            }
         }
     }
 
     private suspend fun sendNotificationToServer(){
         val server = SendNotificationPostRequest(receivedData.id,app.resources.getString(R.string.TRIPS))
+        UpdateToken.sendNotificationToServer(app.resources,server){ error, success ->
+            if(success){
+                PopUpMsg.toastMsg(app.applicationContext,app.resources.getString(R.string.BOOKING_DONE))
+                stopLoading()
+            }else{
+                if(error != null){
+                    whenFail(error)
+                }else{
+                    authFail()
+                }
+            }
+        }
     }
 
     //Show Loading spinner

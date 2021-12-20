@@ -45,7 +45,8 @@ interface AppAuth {
                           @Query("stars") stars:String,
                           @Query("perRoom") perRoom:String,
                           @Query("minPrice") minPrice:String ,
-                          @Query("maxPrice") maxPrice:String): Response<Hotels>
+                          @Query("maxPrice") maxPrice:String,
+                          @Query("homePage") homePage:String): Response<Hotels>
 
     @GET("/api/user/trips/getAll")
     suspend fun getTrips(@Query("perPage") page:Int,
@@ -55,7 +56,8 @@ interface AppAuth {
                          @Query("minPrice") minPrice:String,
                          @Query("maxPrice") maxPrice:String,
                          @Query("fromDate") fromDate:String,
-                         @Query("toDate") toDate:String ): Response<Trips>
+                         @Query("toDate") toDate:String,
+                         @Query("homePage") homePage:String ): Response<Trips>
 
     @GET("/api/user/transports/getAll")
     suspend fun getTransportations(@Query("perPage") page:Int,
@@ -67,7 +69,8 @@ interface AppAuth {
                                    @Query("minPrice") minPrice:String,
                                    @Query("maxPrice") maxPrice:String ,
                                    @Query("fromDate") fromDate:String,
-                                   @Query("toDate") toDate:String): Response<Transportations>
+                                   @Query("toDate") toDate:String,
+                                   @Query("homePage") homePage:String): Response<Transportations>
 
 
     @GET("/api/user/packages/getAll")
@@ -78,7 +81,8 @@ interface AppAuth {
                              @Query("minPrice") minPrice:String,
                              @Query("maxPrice") maxPrice:String,
                              @Query("fromDate") fromDate:String,
-                             @Query("toDate") toDate:String): Response<FullTrips>
+                             @Query("toDate") toDate:String,
+                             @Query("homePage") homePage:String): Response<FullTrips>
 
 
     @POST("/api/user/hotels/booking")

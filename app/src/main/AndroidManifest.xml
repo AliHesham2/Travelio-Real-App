@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bezo"
         android:usesCleartextTraffic="true"
-        tools:targetApi="m">
+        tools:targetApi="m"
+        android:fullBackupContent="true">
         <activity android:name=".view.util.FullScreenImage"  />
         <activity android:name=".view.dashboard.orders.OrderActivity" />
         <activity android:name=".view.dashboard.DashBoardActivity" />

@@ -37,6 +37,10 @@
             android:icon="@drawable/baseline_lock_24"
             android:title="@string/change_password" />
         <item
+            android:id="@+id/changeLanguage"
+            android:icon="@drawable/outline_g_translate_24"
+            android:title="@string/change_language" />
+        <item
             android:id="@+id/signOut"
             android:icon="@drawable/baseline_logout_24"
             android:title="@string/sign_out" />
