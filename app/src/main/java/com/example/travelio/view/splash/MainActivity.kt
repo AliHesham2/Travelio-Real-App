@@ -35,10 +35,9 @@ class MainActivity : AppCompatActivity() {
         video.start()
         video.setOnCompletionListener {
             when {
-                bundle != null -> {
+                intent.hasExtra(this.resources.getString(R.string.TYPE_NAVIGATION))  -> {
                     val intent = Intent(this,OrderActivity::class.java)
-                    intent.putExtra(this.resources.getString(R.string.TYPE_NAVIGATION),UpdateToken.setDestinationID(this.applicationContext,
-                        (bundle.get(this.resources.getString(R.string.TYPE_NAVIGATION)) ?: this.resources.getString(R.string.HOTEL)) as String))
+                    intent.putExtra(this.resources.getString(R.string.TYPE_NAVIGATION),UpdateToken.setDestinationID(this.applicationContext, (bundle?.get(this.resources.getString(R.string.TYPE_NAVIGATION)) ?: this.resources.getString(R.string.HOTEL)) as String))
                     startActivity(intent)
                     finish()
                 }
